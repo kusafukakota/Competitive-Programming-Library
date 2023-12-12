@@ -468,19 +468,19 @@
 
   'for':
     'prefix':'for'
-    'body':'for(ll ${1:i}=0;${1:i}<${2:n};${1:i}++){$3}'
+    'body':'for(ll ${1:i}=0;${1:i}<${2:N};${1:i}++){$3}'
 
   'for_':
     'prefix':'for1'
-    'body':'for(ll ${1:i}=1;${1:i}<=${2:n};${1:i}++){$3}'
+    'body':'for(ll ${1:i}=1;${1:i}<=${2:N};${1:i}++){$3}'
 
   'lp':
     'prefix':'lp'
-    'body':'for(ll ${1:i}=0;${1:i}<${2:n};${1:i}++){$3}'
+    'body':'for(ll ${1:i}=0;${1:i}<${2:N};${1:i}++){$3}'
 
   'lp_':
     'prefix':'lp_'
-    'body':'for(ll ${1:i}=1;${1:i}<=${2:n};${1:i}++){$3}'
+    'body':'for(ll ${1:i}=1;${1:i}<=${2:N};${1:i}++){$3}'
 
   'lpv':
     'prefix':'lpv'
@@ -625,42 +625,42 @@
   'VI':
     'prefix':'VI'
     'body':"""
-    vector<ll> ${1:v}(${2:n});
+    vector<ll> ${1:v}(${2:N});
     for(auto &i:${1:v}) {cin>>i;}$3
     """
 
   'VD':
     'prefix':'VD'
     'body':"""
-    vector<long double> ${1:v}(${2:n});
+    vector<long double> ${1:v}(${2:N});
     for(auto &i:${1:v}) {cin>>i;}$3
     """
 
   'VC':
     'prefix':'VC'
     'body':"""
-    vector<char> ${1:v}(${2:n});
+    vector<char> ${1:v}(${2:N});
     for(auto &i:${1:v}) {cin>>i;}$3
     """
 
   'VM':
     'prefix':'VM'
     'body':"""
-    vector<mint> ${1:v}(${2:n});
+    vector<mint> ${1:v}(${2:N});
     for(auto &i:${1:v}) {cin>>i;}$3
     """
 
   'VS':
     'prefix':'VS'
     'body':"""
-    vector<string> ${1:v}(${2:n});
+    vector<string> ${1:v}(${2:N});
     for(auto &i:${1:v}) {cin>>i;}$3
     """
 
   'VP':
     'prefix':'VP'
     'body':"""
-    vector<pair<ll,ll>> ${1:v}(${2:n});
+    vector<pair<ll,ll>> ${1:v}(${2:N});
     for(auto &[x,y]:${1:v}) {cin>>x>>y;}$3
     """
 
@@ -709,8 +709,8 @@
   'lvi':
     'prefix':'lvi'
     'body':"""
-    ll ${1:n}; cin>>${1:n};
-    vector<ll> ${2:v}(${1:n});
+    ll ${1:N}; cin>>${1:N};
+    vector<ll> ${2:v}(${1:N});
     for(auto &i:${2:v}) {cin>>i;}
     $3
     """
@@ -718,8 +718,8 @@
   'lvp':
     'prefix':'lvp'
     'body':"""
-    ll ${1:n}; cin>>${1:n};
-    vector<pair<ll,ll>> ${2:v}(${1:n});
+    ll ${1:N}; cin>>${1:N};
+    vector<pair<ll,ll>> ${2:v}(${1:N});
     for(auto &[x,y]:${2:v}) {cin>>x>>y;}
     $3
     """
@@ -1148,7 +1148,7 @@
 
   'divisor':
     'prefix':'div'
-    'body':'Div($1);'
+    'body':'Div($1)'
 
   'Divcnt':
     'prefix':'Divcnt'
@@ -1181,24 +1181,44 @@
     'prefix':'digsum'
     'body':'Digsum($1)'
 
-  'Enum_Q':
-    'prefix':'Enum_Q'
+  'Enum_floor':
+    'prefix':'Enum_floor'
     'body':"""
-    vector<pair<pair<ll, ll>, ll>> Enum_Q(ll n) {
-      vector<pair<pair<ll, ll>, ll>> ret;
+    vector<tuple<ll, ll, ll>> Enum_floor(ll n) {
+      vector<tuple<ll, ll, ll>> ret;
       ll l = 1;
       while(l <= n) {
         ll q = n / l, r = n / q + 1;
-        ret.push_back({{l, r}, q});
+        ret.push_back({l, r, q});
         l = r;
       }
       return ret;
     }
     """
 
-  'enum_Q':
-    'prefix':'enum_Q'
-    'body':'Enum_Q($1)'
+  'enum_floor':
+    'prefix':'enum_floor'
+    'body':'Enum_floor($1)'
+
+  'Enum_ceil':
+    'prefix':'Enum_ceil'
+    'body':"""
+    vector<tuple<ll, ll, ll>> Enum_ceil(ll n) {
+      vector<tuple<ll, ll, ll>> ret;
+      ll l = 1;
+      while(l <= n) {
+        ll q = (n + l - 1) / l, r = n + 1;
+        if(q != 1) { r = (n - 1) / (q - 1) + 1; }
+        ret.push_back({l, r, q});
+        l = r;
+      }
+      return ret;
+    }
+    """
+
+  'enum_ceil':
+    'prefix':'enum_ceil'
+    'body':'Enum_ceil($1)'
 
   'PSUM':
     'prefix':'_PSUM'
@@ -1339,7 +1359,7 @@
   'graph':
     'prefix':'graph'
     'body':"""
-    vector<vector<ll>> g(${1:n});
+    vector<vector<ll>> g(${1:N});
     for(ll i=0,u,v;i<${2:m};i++){
       cin>>u>>v;
       u--,v--;
@@ -1351,9 +1371,9 @@
   'lgraph':
     'prefix':'lgraph'
     'body':"""
-    ll ${1:n},${2:m};
-    cin>>${1:n}>>${2:m};
-    vector<vector<ll>> g(${1:n});
+    ll ${1:N},${2:m};
+    cin>>${1:N}>>${2:m};
+    vector<vector<ll>> g(${1:N});
     for(ll i=0,u,v;i<${2:m};i++){
       cin>>u>>v;
       u--,v--;
@@ -1365,8 +1385,8 @@
   'tree':
     'prefix':'tree'
     'body':"""
-    vector<vector<ll>> g(${1:n});
-    for(ll i=0,u,v;i<${1:n}-1;i++){
+    vector<vector<ll>> g(${1:N});
+    for(ll i=0,u,v;i<${1:N}-1;i++){
       cin>>u>>v;
       u--,v--;
       g[u].emplace_back(v);
@@ -1377,10 +1397,10 @@
   'ltree':
     'prefix':'ltree'
     'body':"""
-    ll ${1:n};
-    cin>>${1:n};
-    vector<vector<ll>> g(${1:n});
-    for(ll i=0,u,v;i<${1:n}-1;i++){
+    ll ${1:N};
+    cin>>${1:N};
+    vector<vector<ll>> g(${1:N});
+    for(ll i=0,u,v;i<${1:N}-1;i++){
       cin>>u>>v;
       u--,v--;
       g[u].emplace_back(v);
@@ -1391,7 +1411,7 @@
   'wgraph':
     'prefix':'wgraph'
     'body':"""
-    vector<vector<pair<ll,ll>>> g(${1:n});
+    vector<vector<pair<ll,ll>>> g(${1:N});
     for(ll i=0,u,v,w;i<${2:m};i++){
       cin>>u>>v>>w;
       u--,v--;
@@ -1403,9 +1423,9 @@
   'lwgraph':
     'prefix':'lwgraph'
     'body':"""
-    ll ${1:n},${2:m};
-    cin>>${1:n}>>${2:m};
-    vector<vector<pair<ll,ll>>> g(${1:n});
+    ll ${1:N},${2:m};
+    cin>>${1:N}>>${2:m};
+    vector<vector<pair<ll,ll>>> g(${1:N});
     for(ll i=0,u,v,w;i<${2:m};i++){
       cin>>u>>v>>w;
       u--,v--;
@@ -1417,8 +1437,8 @@
   'wtree':
     'prefix':'wtree'
     'body':"""
-    vector<vector<pair<ll,ll>>> g(${1:n});
-    for(ll i=0,u,v,w;i<${1:n}-1;i++){
+    vector<vector<pair<ll,ll>>> g(${1:N});
+    for(ll i=0,u,v,w;i<${1:N}-1;i++){
       cin>>u>>v>>w;
       u--,v--;
       g[u].emplace_back(v,w);
@@ -1429,10 +1449,10 @@
   'lwtree':
     'prefix':'lwtree'
     'body':"""
-    ll ${1:n};
-    cin>>${1:n};
-    vector<vector<pair<ll,ll>>> g(${1:n});
-    for(ll i=0,u,v,w;i<${1:n}-1;i++){
+    ll ${1:N};
+    cin>>${1:N};
+    vector<vector<pair<ll,ll>>> g(${1:N});
+    for(ll i=0,u,v,w;i<${1:N}-1;i++){
       cin>>u>>v>>w;
       u--,v--;
       g[u].emplace_back(v,w);
@@ -1976,7 +1996,7 @@
 
   'inversion':
     'prefix':'inversion'
-    'body':'Inversion($1);'
+    'body':'Inversion($1)'
 
   'Unionfind':
     'prefix':'Unionfind'
@@ -2232,52 +2252,39 @@
 
     """
 
-  'SUM2D':
-    'prefix':'SUM2D'
+  'Sum2D':
+    'prefix':'Sum2D'
     'body':"""
-    template<typename T> struct SUM2D {
-      vector<vector<T>> D;
-      SUM2D(ll H, ll W) { D.assign(H + 1, vector<T>(W + 1, 0)); }
-      SUM2D(vector<vector<T>> &v) {
-        ll H = v.size(), W = v[0].size();
-        D.assign(H + 1, vector<T>(W + 1, T(0)));
-        for(ll i = 0; i < H; i++) {
-          for(ll j = 0; j < W; j++) {D[i + 1][j + 1] += v[i][j];}
+    template<typename T> struct Sum2D {
+      int H, W;
+      vector<vector<T>> v;
+      Sum2D(int h, int w): H(h), W(w), v(H + 3, vector<T>(W + 3, 0)) {}
+      Sum2D(vector<vector<T>> &ini): H(ini.size()), W(ini[0].size()), v(H + 3, vector<T>(W + 3, 0)) {
+        for(int i = 0; i < H; i++) {
+          for(int j = 0; j < W; j++) { v[i + 1][j + 1] += ini[i][j]; }
         }
         build();
       }
-      void add(ll x, ll y, T z) {
-        x++, y++;
-        D[x][y] += z;
-      }
-      void imos_add(ll x1, ll y1, ll x2, ll y2, T z) {
-        x2++, y2++;
-        add(x1, y1, z), add(x2, y2, z), add(x1, y2, -z), add(x2, y1, -z);
-      }
-      void operator()(ll x, ll y, T z) { add(x, y, z); }
-      void operator()(ll x1, ll y1, ll x2, ll y2, T z) { imos_add(x1, y1, x2, y2, z); }
+      void add(int h, int w, T z = 1) { v[h + 1][w + 1] += z; }
+      void imos_add(int h1, int w1, int h2, int w2, T z = 1) { add(h1, w1, z), add(h1, w2, -z), add(h2, w1, -z), add(h2, w2, z); }
       void build() {
-        for(ll i = 1; i < (ll)D.size(); i++) {
-          for(ll j = 1; j < (ll)D[0].size(); j++) {D[i][j] += D[i - 1][j] + D[i][j - 1] - D[i - 1][j - 1];}
+        for(int i = 1; i < (int)v.size(); i++) {
+          for(int j = 1; j < (int)v[i].size(); j++) { v[i][j] += v[i][j - 1] + v[i - 1][j] - v[i - 1][j - 1]; }
         }
       }
-      void operator()() { build(); }
-      T sum(ll x1, ll y1, ll x2, ll y2) {
-        x2++, y2++;
-        return D[x2][y2] - D[x1][y2] - D[x2][y1] + D[x1][y1];
-      }
-      T operator()(ll x1, ll y1, ll x2, ll y2) { return sum(x1, y1, x2, y2); }
-      T operator()(pair<ll, ll> s, pair<ll, ll> t) { return sum(s.first, s.second, t.first, t.second); }
-      vector<vector<T>> imos() { return D; }
-      // 全て閉区間, 0-indexed
-      // imosとsumの併用不可
-      // add/imos_add -> build -> sum/imos の順番のみ使用可能
+      T sum(int h1, int w1, int h2, int w2) const { return v[h2][w2] - v[h1][w2] - v[h2][w1] + v[h1][w1]; }
+      T operator()(int h, int w) const { return v[h][w]; }
+      T operator()(int h1, int w1, int h2, int w2) const { return v[h2][w2] - v[h1][w2] - v[h2][w1] + v[h1][w1]; }
+      T imos_get(int h, int w) { return v[h + 1][w + 1]; }
+      vector<vector<T>> imos() const { return v; }
     };
+    // 0-indexed, 半開区間
+    // add / imos_add -> build -> sum / get , 併用不可
     """
 
-  'sum2d':
-    'prefix':'sum2d'
-    'body':'SUM2D<ll> S($1);'
+  'sum2D':
+    'prefix':'sum2D'
+    'body':'Sum2D<ll> s($1);'
 
   'BIT':
     'prefix':'BIT'
@@ -3470,7 +3477,7 @@
       }
       Matrix operator*=(const Matrix &m) {
         ll h = this->size(), w = (*this)[0].size();
-        assert(w == m.size());
+        assert(w == (ll)m.size());
         vector<vector<T>> r(h, vector<T>(m[0].size(), T(0)));
         for(ll i = 0; i < h; i++) {
           for(ll j = 0; j < (ll)m[0].size(); j++) {
@@ -4022,14 +4029,14 @@
   'sortidx':
     'prefix':'sortidx'
     'body':"""
-    vector<ll> idx(n);
+    vector<ll> idx(N);
     iota(idx.begin(), idx.end(), 0);
     ranges::sort(idx, [&](auto i, auto j) { return $1[i] < $1[j]; });
     """
 
   'scc':
     'prefix':'scc'
-    'body':'scc_graph g(n);'
+    'body':'scc_graph g(N);'
 
   'suffix_array':
     'prefix':'suffix_array'
@@ -4046,7 +4053,7 @@
   'fenwick_tree':
     'prefix':'fenwick_tree'
     'body':"""
-    fenwick_tree<ll> $1(n);
+    fenwick_tree<ll> $1(N);
     // f.add(i,x) f[i]+=x;
     // f.sum(l,r) sum[l,r)
     """
@@ -4083,7 +4090,7 @@
 
   'MaxFlow':
     'prefix':'maxflow'
-    'body':'mf_graph<ll> g(n); ${1://https://atcoder.github.io/ac-library/document_ja/maxflow.html}'
+    'body':'mf_graph<ll> g(N); ${1://https://atcoder.github.io/ac-library/document_ja/maxflow.html}'
 
   'add_edge':
     'prefix':'add_edge'
@@ -4487,7 +4494,7 @@
 
   'rerooting':
     'prefix':'rerooting'
-    'body':'Rerooting<Cost, Data, merge, e, leaf, apply> g(n);'
+    'body':'Rerooting<Cost, Data, merge, e, leaf, apply> g(N);'
 
   'lim_grid':
     'prefix':'lim_grid'
@@ -6916,22 +6923,30 @@
     'body':"""
     struct Time {
       int lim;
+      bool start;
       chrono::system_clock::time_point t;
-      Time(int lim): lim(lim){};
-      void start() { t = chrono::system_clock::now(); }
-      void end() {
+      Time(int lim): lim(lim), start(false){};
+      long double operator()(bool output = true) {
+        if(!start) {
+          t = chrono::system_clock::now();
+          start = true;
+          return 0;
+        }
         auto d = chrono::system_clock::now() - t;
         auto msec = chrono::duration_cast<chrono::milliseconds>(d).count();
-        cerr << "\\\\n-------------------------------\\\\n";
-        if(msec <= lim) {
-          cerr << "[\\\\033[36mi\\\\033[m] ";
-          cerr << "\\\\033[36mExecution Time : " << msec << " ms\\\\033[m\\\\n";
+        if(output) {
+          cerr << "\\\\n-------------------------------\\\\n";
+          if(msec <= lim) {
+            cerr << "[\\\\033[36mi\\\\033[m] ";
+            cerr << "\\\\033[36mExecution Time : " << msec << " ms\\\\033[m\\\\n";
+          }
+          else {
+            cerr << "[\\\\033[33m!\\\\033[m] ";
+            cerr << "\\\\033[33mExecution Time : " << msec << " ms\\\\033[m\\\\n";
+          }
+          cerr << "-------------------------------\\\\n";
         }
-        else {
-          cerr << "[\\\\033[33m!\\\\033[m] ";
-          cerr << "\\\\033[33mExecution Time : " << msec << " ms\\\\033[m\\\\n";
-        }
-        cerr << "-------------------------------\\\\n";
+        return msec;
       }
     } Time(2000);
     """
@@ -7091,3 +7106,180 @@
   'lcm':
     'prefix':'lcm'
     'body':'lcm($1,$2)'
+
+  'Segtree2D':
+    'prefix':'Segtree2D'
+    'body':"""
+    template<typename S, auto op, auto e> struct SegTree2D {
+      static_assert(std::is_convertible_v<decltype(op), std::function<S(S, S)>>);
+      static_assert(std::is_convertible_v<decltype(e), std::function<S()>>);
+
+     private:
+      vector<S> seg;
+      bool built;
+      int id(int h, int w) const { return h * 2 * W + w; }
+      S inner_prod(int h, int w1, int w2) {
+        S res = e();
+        for(; w1 < w2; w1 >>= 1, w2 >>= 1) {
+          if(w1 & 1) { res = op(res, seg[id(h, w1)]), w1++; }
+          if(w2 & 1) { --w2, res = op(res, seg[id(h, w2)]); }
+        }
+        return res;
+      }
+
+     public:
+      int H, W;
+      SegTree2D(int h, int w): built(false) {
+        H = W = 1;
+        while(H < h) { H <<= 1; }
+        while(W < w) { W <<= 1; }
+        seg.assign(4 * H * W, e());
+      }
+      void set(int h, int w, const S &x) {
+        if(!built) { seg[id(h + H, w + W)] = x; }
+        else {
+          h += H, w += W;
+          seg[id(h, w)] = x;
+          for(int i = h >> 1; i; i >>= 1) { seg[id(i, w)] = op(seg[id(2 * i + 0, w)], seg[id(2 * i + 1, w)]); }
+          for(; h; h >>= 1) {
+            for(int j = w >> 1; j; j >>= 1) { seg[id(h, j)] = op(seg[id(h, 2 * j + 0)], seg[id(h, 2 * j + 1)]); }
+          }
+        }
+      }
+      void build() {
+        built = true;
+        for(int w = W; w < 2 * W; w++) {
+          for(int h = H - 1; h; h--) { seg[id(h, w)] = op(seg[id(2 * h + 0, w)], seg[id(2 * h + 1, w)]); }
+        }
+        for(int h = 0; h < 2 * H; h++) {
+          for(int w = W - 1; w; w--) { seg[id(h, w)] = op(seg[id(h, 2 * w + 0)], seg[id(h, 2 * w + 1)]); }
+        }
+      }
+      S get(int h, int w) const { return seg[id(h + H, w + W)]; }
+      S operator()(int h, int w) const { return seg[id(h + H, w + W)]; }
+      S prod(int h1, int w1, int h2, int w2) {
+        if(h1 >= h2 || w1 >= w2) { return e(); }
+        S res = e();
+        h1 += H, h2 += H, w1 += W, w2 += W;
+        for(; h1 < h2; h1 >>= 1, h2 >>= 1) {
+          if(h1 & 1) { res = op(res, inner_prod(h1, w1, w2)), h1++; }
+          if(h2 & 1) { --h2, res = op(res, inner_prod(h2, w1, w2)); }
+        }
+        return res;
+      }
+      S operator()(int h1, int w1, int h2, int w2) { return prod(h1, w1, h2, w2); }
+    };
+    """
+
+  'segtree2D':
+    'prefix':'segtree2D'
+    'body':'SegTree2D<S,op,e> seg(${1:h},${2:w});'
+
+  'BSGS':
+    'prefix':'BSGS'
+    'body':"""
+    template<typename T> ll BSGS(T s, T g, ll n, ll m, const auto &f, const auto &fm) {
+      unordered_map<T, int> mp;
+      for(int i = 1; i <= m; i++) {
+        g = f(g);
+        mp[g] = -i;
+      }
+      for(int i = 1;; i++) {
+        s = fm(s);
+        if(mp.count(s)) { return m * i + mp[s]; }
+        if(n <= m * i) { return -1; }
+      }
+    }
+    """
+
+  'C++17':
+    'prefix':'C++17'
+    'body':"""
+    #if __cplusplus <= 201703L
+    #define ssize(v) (int)(v).size()
+    namespace ranges {
+    template<typename T> void sort(vector<T> &v) { sort(v.begin(), v.end()); }
+    template<typename T> void stable_sort(vector<T> &v) { stable_sort(v.begin(), v.end()); }
+    template<typename T> void sort(vector<T> &v, const auto &f) { sort(v.begin(), v.end(), f); }
+    template<typename T> void reverse(vector<T> &v) { reverse(v.begin(), v.end()); }
+    template<typename T> T max(const vector<T> &v) { return *max_element(v.begin(), v.end()); }
+    template<typename T> T min(const vector<T> &v) { return *min_element(v.begin(), v.end()); }
+    template<typename T, typename U> bool binary_search(const vector<T> &v, U x) { return binary_search(v.begin(), v.end(), x); }
+    template<typename T> bool all_of(const vector<T> &v, const auto &f) { return all_of(v.begin(), v.end(), f); }
+    template<typename T> bool any_of(const vector<T> &v, const auto &f) { return any_of(v.begin(), v.end(), f); }
+    template<typename T> bool none_of(const vector<T> &v, const auto &f) { return none_of(v.begin(), v.end(), f); }
+    template<typename T> int count_if(const vector<T> &v, const auto &f) { return count_if(v.begin(), v.end(), f); }
+    template<typename T, typename U> auto lower_bound(const vector<T> &v, U x) { return lower_bound(v.begin(), v.end(), x); }
+    template<typename T, typename U> auto upper_bound(const vector<T> &v, U x) { return upper_bound(v.begin(), v.end(), x); }
+    template<typename T> auto max_element(const vector<T> &v) { return max_element(v.begin(), v.end()); }
+    template<typename T> auto min_element(const vector<T> &v) { return min_element(v.begin(), v.end()); }
+    template<typename T, typename U> void fill(vector<T> &v, U x) { fill(v.begin(), v.end(), x); }
+    }  // namespace ranges
+    #endif
+    """
+
+  'SubsetConvolution':
+    'prefix':'SubsetConvolution'
+    'body':"""
+    template<int S> struct SubsetConvolution {
+      using fps = array<mint, S + 1>;
+      static constexpr int s = S;
+      vector<int> pc;
+      SubsetConvolution(): pc(1 << s) {
+        for(int i = 1; i < (1 << s); i++) { pc[i] = pc[i - (i & -i)] + 1; }
+      }
+      void add(fps& l, const fps& r, int d) {
+        for(int i = 0; i < d; ++i) { l[i] += r[i]; }
+      }
+      void sub(fps& l, const fps& r, int d) {
+        for(int i = d; i <= s; ++i) { l[i] -= r[i]; }
+      }
+      void zeta(vector<fps>& a) {
+        int n = a.size();
+        for(int w = 1; w < n; w *= 2) {
+          for(int k = 0; k < n; k += w * 2) {
+            for(int i = 0; i < w; ++i) { add(a[k + w + i], a[k + i], pc[k + w + i]); }
+          }
+        }
+      }
+      void mobius(vector<fps>& a) {
+        int n = a.size();
+        for(int w = n >> 1; w; w >>= 1) {
+          for(int k = 0; k < n; k += w * 2) {
+            for(int i = 0; i < w; ++i) { sub(a[k + w + i], a[k + i], pc[k + w + i]); }
+          }
+        }
+      }
+      vector<fps> lift(const vector<mint>& a) {
+        vector<fps> A(a.size());
+        for(int i = 0; i < (int)a.size(); i++) {
+          ranges::fill(A[i], 0);
+          A[i][pc[i]] = a[i];
+        }
+        return A;
+      }
+      vector<mint> unlift(const vector<fps>& A) {
+        vector<mint> a(A.size());
+        for(int i = 0; i < (int)A.size(); i++) { a[i] = A[i][pc[i]]; }
+        return a;
+      }
+      void prod(vector<fps>& A, const vector<fps>& B) {
+        int n = A.size(), d = __builtin_ctz(n);
+        for(int i = 0; i < n; i++) {
+          fps c{};
+          for(int j = 0; j <= d; j++) {
+            for(int k = 0; k <= d - j; k++) { c[j + k] += A[i][j] * B[i][k]; }
+          }
+          A[i].swap(c);
+        }
+      }
+      vector<mint> multiply(const vector<mint>& a, const vector<mint>& b) {
+        vector<fps> A = lift(a), B = lift(b);
+        zeta(A), zeta(B);
+        prod(A, B);
+        mobius(A);
+        return unlift(A);
+      }
+    };
+    // https://nyaannyaan.github.io/library/set-function/subset-convolution.hpp.html
+    """
