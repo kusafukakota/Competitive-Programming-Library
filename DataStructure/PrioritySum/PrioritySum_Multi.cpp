@@ -10,15 +10,15 @@ struct PrioritySum {
   set<ll> s;
   map<ll, ll> comp;
   vector<ll> inv;
-  bool builded = false;
-  PrioritySum() {}
+  bool built;
+  PrioritySum() : built(false){}
   void use(ll x) {
-    assert(!builded);
+    assert(!built);
     s.insert(x);
   }
   void build() {
     assert(!builded);
-    builded = true;
+    built = true;
     n = ssize(s);
     seg = segtree<S, op, e>(n);
     ll idx = 0;
@@ -29,7 +29,7 @@ struct PrioritySum {
     }
   }
   void insert(ll x, ll c = 1) {
-    assert(builded);
+    assert(built);
     auto it = comp.find(x);
     assert(it != comp.end());
     ll idx = it->second;
@@ -38,7 +38,7 @@ struct PrioritySum {
   }
   void erase(ll x, ll c = 1) { insert(x, -c); }
   ll min(ll k) {
-    assert(builded);
+    assert(built);
     tar = k;
     ll idx = seg.max_right<F>(0);
     assert(idx <= n);
@@ -47,7 +47,7 @@ struct PrioritySum {
     return sum;
   }
   ll max(ll k) {
-    assert(builded);
+    assert(built);
     tar = k;
     ll idx = seg.min_left<F>(n) - 1;
     assert(idx >= 0);
