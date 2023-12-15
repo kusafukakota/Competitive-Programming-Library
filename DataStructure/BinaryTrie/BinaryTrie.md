@@ -1,4 +1,5 @@
 # Binary Trie
 ## 使い方
-- `bool  empty()` : 空かどうかを返す。$`O(1)`$
+- `bool empty()` : 空かどうかを返す。$`O(1)`$
 - `int size()` : 格納されている整数の個数（種類数ではない）を返す。$`O(1)`$
+- `void insert(T val)` : `val`を挿入する。$`O(\log w)`$  
