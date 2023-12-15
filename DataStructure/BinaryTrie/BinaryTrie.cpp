@@ -83,16 +83,16 @@ template<int MAX_LOG = 32, typename T = int> struct BinaryTrie {
     xor_all(xor_val);
     return r;
   }
-  int upper_bound(T val, T xor_val = 0) {
-    xor_all(xor_val);
-    int r = count_lower(root, val + 1);
-    xor_all(xor_val);
-    return r;
-  }
   T kth_smallest(int k, T xor_val = 0) {
     assert(0 <= k && k < size());
     xor_all(xor_val);
     T r = get(root, k);
+    xor_all(xor_val);
+    return r;
+  }
+  int upper_bound(T val, T xor_val = 0) {
+    xor_all(xor_val);
+    int r = count_lower(root, val + 1);
     xor_all(xor_val);
     return r;
   }
