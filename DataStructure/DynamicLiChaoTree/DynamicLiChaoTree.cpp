@@ -1,4 +1,5 @@
 template<typename T, T x_low, T x_high, T id> struct DynamicLiChaoTree {
+ private:
   struct Line {
     T a, b;
     Line(T a, T b): a(a), b(b) {}
@@ -10,7 +11,6 @@ template<typename T, T x_low, T x_high, T id> struct DynamicLiChaoTree {
     Node(const Line &x): x{x}, l{nullptr}, r{nullptr} {}
   };
   Node *root;
-  DynamicLiChaoTree(): root{nullptr} {}
   Node *add_line(Node *t, Line &x, const T &l, const T &r, const T &x_l, const T &x_r) {
     if(!t) return new Node(x);
     T t_l = t->x.get(l), t_r = t->x.get(r);
@@ -35,10 +35,6 @@ template<typename T, T x_low, T x_high, T id> struct DynamicLiChaoTree {
       return t;
     }
   }
-  void add_line(const T &a, const T &b) {
-    Line x(a, b);
-    root = add_line(root, x, x_low, x_high, x.get(x_low), x.get(x_high));
-  }
   Node *add_segment(Node *t, Line &x, const T &a, const T &b, const T &l, const T &r, const T &x_l, const T &x_r) {
     if(r < a || b < l) { return t; }
     if(a <= l && r <= b) {
@@ -57,10 +53,6 @@ template<typename T, T x_low, T x_high, T id> struct DynamicLiChaoTree {
     t->r = add_segment(t->r, x, a, b, m + 1, r, x_m + x.a, x_r);
     return t;
   }
-  void add_segment(const T &l, const T &r, const T &a, const T &b) {
-    Line x(a, b);
-    root = add_segment(root, x, l, r - 1, x_low, x_high, x.get(x_low), x.get(x_high));
-  }
   T query(const Node *t, const T &l, const T &r, const T &x) const {
     if(!t) { return id; }
     if(l == r) { return t->x.get(x); }
@@ -68,6 +60,17 @@ template<typename T, T x_low, T x_high, T id> struct DynamicLiChaoTree {
     if(m == r) { --m; }
     if(x <= m) { return min(t->x.get(x), query(t->l, l, m, x)); }
     else { return min(t->x.get(x), query(t->r, m + 1, r, x)); }
+  }
+
+ public:
+  DynamicLiChaoTree(): root{nullptr} {}
+  void add_line(const T &a, const T &b) {
+    Line x(a, b);
+    root = add_line(root, x, x_low, x_high, x.get(x_low), x.get(x_high));
+  }
+  void add_segment(const T &l, const T &r, const T &a, const T &b) {
+    Line x(a, b);
+    root = add_segment(root, x, l, r - 1, x_low, x_high, x.get(x_low), x.get(x_high));
   }
   T query(const T &x) const {
     return query(root, x_low, x_high, x);
