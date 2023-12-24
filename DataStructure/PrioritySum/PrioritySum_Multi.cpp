@@ -17,7 +17,7 @@ struct PrioritySum {
     s.insert(x);
   }
   void build() {
-    assert(!builded);
+    assert(!built);
     built = true;
     n = ssize(s);
     seg = segtree<S, op, e>(n);
