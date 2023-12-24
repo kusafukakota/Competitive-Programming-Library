@@ -1,9 +1,9 @@
 template<typename T, typename Compare = less<T>, typename RCompare = greater<T>> struct PrioritySum {
+ private:
   ll k;
   T sum;
   priority_queue<T, vector<T>, Compare> in, d_in;
   priority_queue<T, vector<T>, RCompare> out, d_out;
-  PrioritySum(int k): k(k), sum(0) {}
   void modify() {
     while(in.size() - d_in.size() < k && !out.empty()) {
       auto p = out.top();
@@ -28,6 +28,9 @@ template<typename T, typename Compare = less<T>, typename RCompare = greater<T>>
       d_in.pop();
     }
   }
+
+ public:
+  PrioritySum(int k): k(k), sum(0) {}
   T query() const { return sum; }
   void insert(T x) {
     in.emplace(x);
@@ -54,8 +57,6 @@ template<typename T, typename Compare = less<T>, typename RCompare = greater<T>>
   ll get() const { return k; }
   ll size() const { return in.size() + out.size() - d_in.size() - d_out.size(); }
   T operator()() { return query(); }
-  void operator>>(T x) { insert(x); }
-  void operator<<(T x) { erase(x); }
 };
 
 template<typename T> using MaxSum = PrioritySum<T, greater<T>, less<T>>;
