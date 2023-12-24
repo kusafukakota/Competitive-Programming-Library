@@ -72,7 +72,5 @@ template<typename T, T x_low, T x_high, T id> struct DynamicLiChaoTree {
     Line x(a, b);
     root = add_segment(root, x, l, r - 1, x_low, x_high, x.get(x_low), x.get(x_high));
   }
-  T query(const T &x) const {
-    return query(root, x_low, x_high, x);
-  }
+  T query(const T &x) const { return query(root, x_low, x_high, x); }
 };
