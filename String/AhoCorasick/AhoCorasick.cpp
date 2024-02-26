@@ -22,6 +22,8 @@ template<size_t X = 26, char margin = 'a'> struct Trie {
       st.emplace_back(s[i]);
       pos = npos;
     }
+    st[pos].idx = x;
+    st[pos].idxs.emplace_back(x);
   }
   int find(const string &s) {
     int pos = 0;
@@ -77,7 +79,7 @@ template<size_t X = 26, char margin = 'a'> struct AhoCorasick : Trie<X + 1, marg
         if(heavy) {
           auto &idx = st[nx].idxs, &idy = st[next(fail, i)].idxs;
           vector<int> idz;
-          ranges::set_union(idx, idy.back_inserter(idz));
+          ranges::set_union(idx, idy, back_inserter(idz));
           idx = idz;
         }
       }
