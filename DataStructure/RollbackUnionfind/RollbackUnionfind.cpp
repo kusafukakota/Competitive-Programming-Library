@@ -1,47 +1,50 @@
 template<typename S, auto op, auto e> struct RollbackUnionfind {
+ private:
   vector<int> par;
   vector<S> val;
   stack<tuple<int, int, S, int>> history;
   int snap, cnt;
+
+ public:
   RollbackUnionfind() = default;
   RollbackUnionfind(int n): RollbackUnionfind(vector<S>(n, e())) {}
   RollbackUnionfind(const vector<S> &v): par(v.size(), -1), val(v), snap(0), cnt(v.size()) {}
-  int root(int x) const {
-    if(par[x] < 0) { return x; }
-    return root(par[x]);
+  int root(int v) const {
+    if(par[v] < 0) { return v; }
+    return root(par[v]);
   }
-  void unite(int x, int y) {
-    x = root(x), y = root(y);
+  void unite(int u, int v) {
+    u = root(u), v = root(v);
     history.emplace(-1, 0, e(), cnt);
-    history.emplace(x, par[x], val[x], cnt);
-    history.emplace(y, par[y], val[y], cnt);
-    if(x == y) { return; }
-    if(par[x] > par[y]) { swap(x, y); }
-    par[x] += par[y];
-    par[y] = x;
-    val[x] = op(val[x], val[y]);
+    history.emplace(u, par[u], val[u], cnt);
+    history.emplace(v, par[v], val[v], cnt);
+    if(u == v) { return; }
+    if(par[u] > par[v]) { swap(u, v); }
+    par[u] += par[v];
+    par[v] = u;
+    val[u] = op(val[u], val[v]);
     cnt--;
   }
   void undo() {
     assert(!history.empty());
     while(true) {
-      auto [x, p, v, c] = history.top();
+      auto [v, p, x, c] = history.top();
       history.pop();
-      if(x == -1) { break; }
-      par[x] = p;
-      val[x] = v;
+      if(v == -1) { break; }
+      par[v] = p;
+      val[v] = x;
       cnt = c;
     }
   }
-  bool same(int x, int y) const { return root(x) == root(y); }
-  int size(int x) const { return -par[root(x)]; }
+  bool same(int u, int v) const { return root(u) == root(v); }
+  int size(int v) const { return -par[root(v)]; }
   int count() const { return cnt; }
-  S prod(int x) const { return val[root(x)]; }
-  void update(int x, const S &v) {
-    x = root(x);
+  S prod(int v) const { return val[root(v)]; }
+  void update(int v, const S &x) {
+    v = root(v);
     history.emplace(-1, 0, e(), cnt);
-    history.emplace(x, par[x], val[x], cnt);
-    val[x] = op(val[x], v);
+    history.emplace(v, par[v], val[v], cnt);
+    val[v] = op(val[x], x);
   }
   int state() const { return history.size(); }
   void snapshot() { snap = history.size(); }
