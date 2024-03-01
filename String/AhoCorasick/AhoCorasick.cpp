@@ -6,10 +6,19 @@ template<size_t X = 26, char margin = 'a'> struct Trie {
     char key;
     Node(char c): idx(-1), key(c) { ranges::fill(nxt, -1); }
   };
+  int c = 0;
   vector<Node> st;
-  Trie(char c = '$') { st.emplace_back(c); }
+  Trie() { st.emplace_back('$'); }
+  Trie(const vector<string> &v) {
+    st.emplace_back('$');
+    for(auto &i : v) { insert(i); }
+  }
+  void clear() {
+    st.clear();
+    st.emplace_back('$');
+  }
   inline int &next(int i, int j) { return st[i].nxt[j]; }
-  void add(const string &s, int x) {
+  void insert(const string &s) {
     int pos = 0;
     for(int i = 0; i < ssize(s); i++) {
       int k = s[i] - margin;
@@ -22,8 +31,9 @@ template<size_t X = 26, char margin = 'a'> struct Trie {
       st.emplace_back(s[i]);
       pos = npos;
     }
-    st[pos].idx = x;
-    st[pos].idxs.emplace_back(x);
+    st[pos].idx = c;
+    st[pos].idxs.emplace_back(c);
+    c++;
   }
   int find(const string &s) {
     int pos = 0;
@@ -44,11 +54,12 @@ template<size_t X = 26, char margin = 'a'> struct Trie {
 
 template<size_t X = 26, char margin = 'a'> struct AhoCorasick : Trie<X + 1, margin> {
   using TRIE = Trie<X + 1, margin>;
+  using TRIE::c;
   using TRIE::next;
   using TRIE::st;
   using TRIE::TRIE;
   vector<int> cnt;
-  void build(int heavy = true) {
+  void build(bool heavy = false) {
     int n = st.size();
     cnt.resize(n);
     for(int i = 0; i < n; i++) {
@@ -85,15 +96,20 @@ template<size_t X = 26, char margin = 'a'> struct AhoCorasick : Trie<X + 1, marg
       }
     }
   }
-  vector<int> match(string s, int heavy = true) {
-    vector<int> res(heavy ? TRIE::size() : 1);
-    int pos = 0;
+  ll match_count(string s) {
+    int res = 0, pos = 0;
     for(auto &c : s) {
       pos = next(pos, c - margin);
-      if(heavy) {
-        for(auto &x : st[pos].idxs) { res[x]++; }
-      }
-      else { res[0] += cnt[pos]; }
+      res += cnt[pos];
+    }
+    return res;
+  }
+  vector<vector<int>> match(string s) {
+    vector<vector<int>> res(c);
+    int pos = 0;
+    for(int i = 0; i < (int)s.size(); i++) {
+      pos = next(pos, s[i] - margin);
+      for(auto &x : st[pos].idxs) { res[x].emplace_back(i); }
     }
     return res;
   }
