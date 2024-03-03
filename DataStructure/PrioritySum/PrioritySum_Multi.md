@@ -1,6 +1,6 @@
 # PrioritySum_Multi
 整数の多重集合において，昇順/降順 $k$ 個の総和を求める．同じディレクトリにある PrioritySum より機能が多いが，総和取得のオーダーが悪い．
-# 使い方
+## 使い方
 $N$ を要素の種類数とする．  
 `use` $\longrightarrow$ `build` $\longrightarrow$ その他 の順番で使う．
 - `void use(ll x)` : `insert`クエリで追加される整数を入力する． $O(\log N)$
