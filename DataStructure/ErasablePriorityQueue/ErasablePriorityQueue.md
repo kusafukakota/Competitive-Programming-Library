@@ -3,8 +3,8 @@
 
 ## 使い方
 $T$ は型， $N$ は要素数．
-- `ErasablePrioirtyQueue<T, greater<T>>` : コンストラクタ．数を昇順で管理する．
-- `ErasablePrioirtyQueue<T, less<T>>` : コンストラクタ．数を降順で管理する．
+- `ErasablePriorityQueue<T, greater<T>>` : コンストラクタ．数を昇順で管理する．
+- `ErasablePriorityQueue<T, less<T>>` : コンストラクタ．数を降順で管理する．
 - `void push(T x)` : $x$ を追加する． $O(\log N)$
 - `void erase(T x)` : $x$ を削除する．入っている数より多く消すと壊れる． $O(\log N)$
 - `T top()` : 最大値/最小値を返す． $O(1)$
