@@ -13,14 +13,14 @@ vector<ll> PrimeEnum(ll n) {
 }
 
 struct DivisorTransform {
-  template<typename T> static void zeta_transform(vector<T> &v) {
-    ll n = ssize(v) - 1;
+  template<typename T> static void ZetaTransform(vector<T> &v) {
+    const int n = v.size() - 1;
     for(auto &p : PrimeEnum(n)) {
       for(ll i = 1; i * p <= n; i++) { v[i * p] += v[i]; }
     }
   }
-  template<typename T> static void mobius_transform(vector<T> &v) {
-    ll n = ssize(v) - 1;
+  template<typename T> static void MobiusTransform(vector<T> &v) {
+    const int n = v.size() - 1;
     for(auto &p : PrimeEnum(n)) {
       for(ll i = n / p; i > 0; i--) { v[i * p] -= v[i]; }
     }
@@ -28,11 +28,11 @@ struct DivisorTransform {
 };
 
 template<typename T> vector<T> LCM_convolution(const vector<T> &a, const vector<T> &b) {
-  assert(ssize(a) == ssize(b));
-  auto n = ssize(a) - 1, s = a, t = b, P = PrimeEnum(n);
-  DivisorTransform::zeta_transform(s);
-  DivisorTransform::zeta_transform(t);
-  for(ll i = 0; i <= n; i++) { s[i] *= t[i]; }
-  DivisorTransform::mobius_transform(s);
+  assert(a.size() == b.size());
+  auto s = a, t = b;
+  DivisorTransform::ZetaTransform(s);
+  DivisorTransform::ZetaTransform(t);
+  for(int i = 0; i < (int)a.size(); i++) { s[i] *= t[i]; }
+  DivisorTransform::MobiusTransform(s);
   return s;
 }
