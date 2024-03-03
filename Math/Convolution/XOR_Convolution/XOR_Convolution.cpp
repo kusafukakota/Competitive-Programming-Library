@@ -1,5 +1,5 @@
-template<typename T> void Walsh_Hadamard_Transform(vector<T> &v, bool inv) {
-  ll n = ssize(v);
+template<typename T> void WalshHadamardTransform(vector<T> &v, bool inv) {
+  const int n = v.size();
   for(int i = 1; i < n; i <<= 1) {
     for(int j = 0; j < n; j += i << 1) {
       for(int k = 0; k < i; k++) {
@@ -18,10 +18,10 @@ template<typename T> void Walsh_Hadamard_Transform(vector<T> &v, bool inv) {
 template<typename T> vector<T> XOR_convolution(vector<T> a, vector<T> b) {
   const int n = a.size();
   assert(a.size() == b.size());
-  assert((n & (n - 1)) == 0);
-  Walsh_Hadamard_Transform(a, false);
-  Walsh_Hadamard_Transform(b, false);
+  assert(!(n & (n - 1)));
+  WalshHadamardTransform(a, false);
+  WalshHadamardTransform(b, false);
   for(int i = 0; i < n; i++) { a[i] *= b[i]; }
-  Walsh_Hadamard_Transform(a, true);
+  WalshHadamardTransform(a, true);
   return a;
 }
