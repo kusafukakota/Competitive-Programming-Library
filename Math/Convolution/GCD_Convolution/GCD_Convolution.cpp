@@ -13,14 +13,14 @@ vector<ll> PrimeEnum(ll n) {
 }
 
 struct MultipleTransform {
-  template<typename T> static void zeta_transform(vector<T> &v) {
-    ll n = ssize(v) - 1;
+  template<typename T> static void ZetaTransform(vector<T> &v) {
+    const int n = v.size() - 1;
     for(auto &p : PrimeEnum(n)) {
       for(ll i = n / p; i > 0; i--) { v[i] += v[i * p]; }
     }
   }
-  template<typename T> static void mobius_transform(vector<T> &v) {
-    ll n = ssize(v) - 1;
+  template<typename T> static void MobiusTransform(vector<T> &v) {
+    const int n = v.size() - 1;
     for(auto &p : PrimeEnum(n)) {
       for(ll i = 1; i * p <= n; i++) { v[i] -= v[i * p]; }
     }
@@ -28,11 +28,11 @@ struct MultipleTransform {
 };
 
 template<typename T> vector<T> GCD_convolution(const vector<T> &a, const vector<T> &b) {
-  assert(ssize(a) == ssize(b));
-  auto n = ssize(a) - 1, s = a, t = b, P = PrimeEnum(n);
-  MultipleTransform::zeta_transform(s);
-  MultipleTransform::zeta_transform(t);
-  for(ll i = 0; i <= n; i++) { s[i] *= t[i]; }
-  MultipleTransform::mobius_transform(s);
+  assert(a.size() == b.size());
+  auto s = a, t = b;
+  MultipleTransform::ZetaTransform(s);
+  MultipleTransform::ZetaTransform(t);
+  for(int i = 0; i <= (int)a.size() - 1; i++) { s[i] *= t[i]; }
+  MultipleTransform::MobiusTransform(s);
   return s;
 }
