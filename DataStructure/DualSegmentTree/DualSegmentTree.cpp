@@ -10,7 +10,7 @@ template<typename S, auto op, auto e> struct DualSegTree {
   void set(int i, const S &x) {
     i += size;
     for(int h = bit_width((unsigned)i); h; h--) {
-      ll j = i >> h;
+      int j = i >> h;
       if(seg[j] != e()) {
         seg[j * 2] = op(seg[j * 2], seg[j]);
         seg[j * 2 + 1] = op(seg[j * 2 + 1], seg[j]);
