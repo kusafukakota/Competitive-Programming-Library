@@ -1,17 +1,17 @@
 struct SupersetTransform {
-  template<typename T> static void zeta_transform(vector<T> &v) {
-    ll n = ssize(v);
+  template<typename T> static void ZetaTransform(vector<T> &v) {
+    const int n = v.size();
     for(int i = 1; i < n; i <<= 1) {
-      for(int j = 0; j < n; j++) {
-        if((j & i) == 0) { v[j] += v[j | i]; }
+      for(int j = 0; j < n; j += i << 1) {
+        for(int k = 0; k < i; k++) { v[j + k] += v[j + k + i]; }
       }
     }
   }
-  template<typename T> static void mobius_transform(vector<T> &v) {
-    ll n = ssize(v);
+  template<typename T> static void MobiusTransform(vector<T> &v) {
+    const int n = v.size();
     for(int i = 1; i < n; i <<= 1) {
-      for(int j = 0; j < n; j++) {
-        if((j & i) == 0) { v[j] -= v[j | i]; }
+      for(int j = 0; j < n; j += i << 1) {
+        for(int k = 0; k < i; k++) { v[j + k] -= v[j + k + i]; }
       }
     }
   }
@@ -20,10 +20,10 @@ struct SupersetTransform {
 template<typename T> vector<T> AND_convolution(vector<T> a, vector<T> b) {
   const int n = a.size();
   assert(a.size() == b.size());
-  assert((n & (n - 1)) == 0);
-  SupersetTransform::zeta_transform(a);
-  SupersetTransform::zeta_transform(b);
+  assert(!(n & (n - 1)));
+  SupersetTransform::ZetaTransform(a);
+  SupersetTransform::ZetaTransform(b);
   for(int i = 0; i < n; i++) { a[i] *= b[i]; }
-  SupersetTransform::mobius_transform(a);
+  SupersetTransform::MobiusTransform(a);
   return a;
 }
