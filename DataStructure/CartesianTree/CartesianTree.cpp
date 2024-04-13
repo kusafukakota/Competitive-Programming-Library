@@ -1,7 +1,8 @@
 template<typename T> pair<vector<vector<int>>, int> CartesianTree(vector<T> &v) {
   int N = ssize(v);
   vector<vector<int>> g(N);
-  vector<int> p(N, -1), st(N);
+  vector<int> p(N, -1), st;
+  st.reserve(N);
   for(int i = 0; i < N; i++) {
     int pre = -1;
     while(!st.empty() && v[i] < v[st.back()]) {
