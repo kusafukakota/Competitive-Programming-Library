@@ -2,6 +2,7 @@ struct ProjectSelectionProblem {
   int N, S, G;
   ll offset;
   vector<tuple<int, int, ll>> e;
+  mf_graph<ll> g;
   ProjectSelectionProblem(int n): N(n + 2), S(n), G(n + 1), offset(0) {}
   void cost0(int i, ll c) { e.emplace_back(i, G, c); }
   void cost1(int i, ll c) { e.emplace_back(S, i, c); }
@@ -42,8 +43,13 @@ struct ProjectSelectionProblem {
     N++;
   }
   ll build() {
-    mf_graph<ll> g(N);
+    g = mf_graph<ll>(N);
     for(auto &[s, t, c] : e) { g.add_edge(s, t, c); }
     return g.flow(S, G) - offset;
+  }
+  vector<bool> restore() {
+    auto r = g.min_cut(S);
+    for(int i = 0; i < N; i++) { r[i] = !r[i]; }
+    return r;
   }
 };
