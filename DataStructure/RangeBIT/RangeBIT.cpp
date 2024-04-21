@@ -35,16 +35,16 @@ template<typename S, typename T> struct RangeBIT {
     for(int a = id(x); a; a -= a & -a) { r += bit[a].sum(0, id(a, y)); }
     return r;
   }
-  T sum(S xl, S yl, S xr, S yr) {
+  T sum(S lx, S ly, S rx, S ry) {
     T r = T();
-    int a = id(xl), b = id(xr);
+    int a = id(lx), b = id(rx);
     while(a != b) {
       if(a < b) {
-        r += bit[b].sum(id(b, yl), id(b, yr));
+        r += bit[b].sum(id(b, ly), id(b, ry));
         b -= b & -b;
       }
       else {
-        r -= bit[a].sum(id(a, yl), id(a, yr));
+        r -= bit[a].sum(id(a, ly), id(a, ry));
         a -= a & -a;
       }
     }
