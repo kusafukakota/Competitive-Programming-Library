@@ -48,12 +48,9 @@ template<typename S, typename T> struct StaticCompressedDualBIT2D {
     vector<S> ys;
     vector<tuple<S, S, T>> add;
     for(const auto &[lx, rx, ly, ry, w] : Add) {
-      ys.emplace_back(ly);
-      ys.emplace_back(ry);
-      add.emplace_back(lx, ly, w);
-      add.emplace_back(rx, ly, -w);
-      add.emplace_back(lx, ry, -w);
-      add.emplace_back(rx, ry, w);
+      ys.emplace_back(ly), ys.emplace_back(ry);
+      add.emplace_back(lx, ly, w), add.emplace_back(rx, ly, -w);
+      add.emplace_back(lx, ry, -w), add.emplace_back(rx, ry, w);
     }
     ranges::sort(ys);
     ys.erase(unique(ys.begin(), ys.end()), ys.end());
@@ -61,10 +58,8 @@ template<typename S, typename T> struct StaticCompressedDualBIT2D {
     vector<tuple<S, S, int, bool>> sum;
     for(int i = 0; i < (int)Sum.size(); i++) {
       const auto &[lx, rx, ly, ry] = Sum[i];
-      sum.emplace_back(lx, ly, i, true);
-      sum.emplace_back(rx, ly, i, false);
-      sum.emplace_back(lx, ry, i, false);
-      sum.emplace_back(rx, ry, i, true);
+      sum.emplace_back(lx, ly, i, true), sum.emplace_back(rx, ly, i, false);
+      sum.emplace_back(lx, ry, i, false), sum.emplace_back(rx, ry, i, true);
     }
     static constexpr auto comp = [](const auto &q1, const auto &q2) { return get<0>(q1) < get<0>(q2); };
     ranges::sort(add, comp);
