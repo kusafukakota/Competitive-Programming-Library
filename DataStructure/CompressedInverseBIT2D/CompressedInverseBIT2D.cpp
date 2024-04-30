@@ -73,17 +73,17 @@ template<typename S, typename T> struct CompressedInverseBIT2D {
         }
         ny++;
       }
-      fenwick_tree<T> ft(ny);
+      fenwick_tree<T> f(ny);
       for(int j = 0, i = 2 * l; j < n; j++) {
         const auto &[px, pid] = psx[r - 1][j];
         for(; i < 2 * r; i++) {
           const auto &[ex, eid] = esx[i];
           if(px < ex) { break; }
           const T &w = ws[eid >> 1];
-          ft.add(escy[eid & ~1], (eid & 1) ? -w : +w);
-          ft.add(escy[eid | 1], (eid & 1) ? +w : -w);
+          f.add(escy[eid & ~1], (eid & 1) ? -w : +w);
+          f.add(escy[eid | 1], (eid & 1) ? +w : -w);
         }
-        ans[pid] += ft.sum(0, pscy[pid] + 1);
+        ans[pid] += f.sum(0, pscy[pid] + 1);
       }
       for(Key &key : psx[r - 1]) {
         if(int d = ts[key.second] - r) { psx[r + p2(d) - 1].push_back(move(key)); }
