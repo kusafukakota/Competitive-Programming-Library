@@ -1,15 +1,17 @@
 template<typename T, typename S, auto op, auto e, typename F, auto fx, auto fg, auto id> struct CompressedLazySegTree {
  private:
   lazy_segtree<S, op, e, F, fx, fg, id> seg;
-  vector<T> s;
-  int idx(T x) { return ranges::lower_bound(s, x) - s.begin(); }
+  vector<T> p;
+  int idx(T x) { return ranges::lower_bound(p, x) - p.begin(); }
 
  public:
-  void use(T x) { s.emplace_back(x); }
+  CompressedLazySegTree() = default;
+  CompressedLazySegTree(int N) { p.reserve(N); }
+  void use(T x) { p.emplace_back(x); }
   void build() {
-    ranges::sort(s);
-    s.erase(unique(s.begin(), s.end()), s.end());
-    seg = lazy_segtree<S, op, e, F, fx, fg, id>(s.size());
+    ranges::sort(p);
+    p.erase(unique(p.begin(), p.end()), p.end());
+    seg = lazy_segtree<S, op, e, F, fx, fg, id>(p.size());
   }
   void set(T i, S x) { seg.set(idx(i), x); }
   S get(T i) { return seg.get(idx(i)); }
