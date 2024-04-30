@@ -1,8 +1,8 @@
-template<typename T> struct Sum2D {
+template<typename T> struct RectangleSum {
   int H, W;
   vector<vector<T>> v;
-  Sum2D(int h, int w): H(h), W(w), v(H + 3, vector<T>(W + 3, 0)) {}
-  Sum2D(vector<vector<T>> &ini): H(ini.size()), W(ini[0].size()), v(H + 3, vector<T>(W + 3, 0)) {
+  RectangleSum(int h, int w): H(h), W(w), v(H + 3, vector<T>(W + 3, 0)) {}
+  RectangleSum(vector<vector<T>> &ini): H(ini.size()), W(ini[0].size()), v(H + 3, vector<T>(W + 3, 0)) {
     for(int i = 0; i < H; i++) {
       for(int j = 0; j < W; j++) { v[i + 1][j + 1] += ini[i][j]; }
     }
