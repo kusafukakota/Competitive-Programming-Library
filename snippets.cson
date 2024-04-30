@@ -30,7 +30,7 @@
 
     int main(){
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       $1
     }
     """
@@ -48,12 +48,10 @@
 
     int main(){
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       ll t;
       cin>>t;
-      while(t--){
-        solve();
-      }
+      while(t--){ solve(); }
     }
     """
 
@@ -70,12 +68,10 @@
 
     int main(){
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       ll t;
       cin>>t;
-      while(t--){
-        cout << (solve() ? "Yes" : "No") << "\\\\n";
-      }
+      while(t--){ cout << (solve() ? "Yes" : "No") << "\\\\n"; }
     }
     """
 
@@ -91,7 +87,7 @@
 
     int main(){
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       $1
     }
     """
@@ -108,7 +104,7 @@
 
     int main(){
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       $1
     }
     """
@@ -125,7 +121,7 @@
 
     int main(){
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       $1
       modint::set_mod();
     }
@@ -143,7 +139,7 @@
     'body':"""
     int main() {
       ios::sync_with_stdio(false);
-      cin.tie(0);
+      cin.tie(nullptr);
       $1
     }
     """
@@ -478,6 +474,10 @@
     'prefix':'lp'
     'body':'for(ll ${1:i}=0;${1:i}<${2:N};${1:i}++){$3}'
 
+  'lpi':
+    'prefix':'lpi'
+    'body':'for(int ${1:i}=0;${1:i}<${2:N};${1:i}++){$3}'
+
   'lp_':
     'prefix':'lp_'
     'body':'for(ll ${1:i}=1;${1:i}<=${2:N};${1:i}++){$3}'
@@ -557,7 +557,7 @@
 
   'vvi':
     'prefix':'vvi'
-    'body':'vector<vector<ll>> ${1:v}(${2:h},vector<ll>(${3:w}))$4'
+    'body':'vector<vector<ll>> ${1:v}(${2:H},vector<ll>(${3:W}))$4'
 
   'vd':
     'prefix':'vd'
@@ -589,7 +589,7 @@
 
   'vvm':
     'prefix':'vvm'
-    'body':'vector<vector<mint>> ${1:v}(${2:h},vector<mint>(${3:w}))$4'
+    'body':'vector<vector<mint>> ${1:v}(${2:H},vector<mint>(${3:W}))$4'
 
   'vp':
     'prefix':'vp'
@@ -618,7 +618,7 @@
   'V':
     'prefix':'V'
     'body':"""
-    vector<${1:ll}> ${2:v}(${3:n});
+    vector<${1:ll}> ${2:v}(${3:N});
     for(auto &i:${2:v}) {cin>>i;}$4
     """
 
@@ -653,7 +653,7 @@
   'VS':
     'prefix':'VS'
     'body':"""
-    vector<string> ${1:v}(${2:N});
+    vector<string> ${1:v}(${2:H});
     for(auto &i:${1:v}) {cin>>i;}$3
     """
 
@@ -667,42 +667,42 @@
   'VV':
     'prefix':'VV'
     'body':"""
-    vector<vector<${1:ll}>> ${2:v}(${3:h},vector<${1:ll}>(${4:w}));
+    vector<vector<${1:ll}>> ${2:v}(${3:H},vector<${1:ll}>(${4:W}));
     for(auto &i:${2:v}){for(auto &j:i){cin>>j;}}$5
     """
 
   'VVI':
     'prefix':'VVI'
     'body':"""
-    vector<vector<ll>> ${1:v}(${2:h},vector<ll>(${3:w}));
+    vector<vector<ll>> ${1:v}(${2:H},vector<ll>(${3:W}));
     for(auto &i:${1:v}){for(auto &j:i){cin>>j;}}$4
     """
 
   'VVD':
     'prefix':'VVD'
     'body':"""
-    vector<vector<long double>> ${1:v}(${2:h},vector<long double>(${3:w}));
+    vector<vector<long double>> ${1:v}(${2:H},vector<long double>(${3:W}));
     for(auto &i:${1:v}){for(auto &j:i){cin>>j;}}$4
     """
 
   'VVC':
     'prefix':'VVC'
     'body':"""
-    vector<vector<char>> ${1:v}(${2:h},vector<char>(${3:w}));
+    vector<vector<char>> ${1:v}(${2:H},vector<char>(${3:W}));
     for(auto &i:${1:v}){for(auto &j:i){cin>>j;}}$4
     """
 
   'VVS':
     'prefix':'VVS'
     'body':"""
-    vector<vector<string>> ${1:v}(${2:h},vector<string>(${3:w}));
+    vector<vector<string>> ${1:v}(${2:H},vector<string>(${3:W}));
     for(auto &i:${1:v}){for(auto &j:i){cin>>j;}}$4
     """
 
   'VVM':
     'prefix':'VVM'
     'body':"""
-    vector<vector<mint>> ${1:v}(${2:h},vector<mint>(${3:w}));
+    vector<vector<mint>> ${1:v}(${2:H},vector<mint>(${3:W}));
     for(auto &i:${1:v}){for(auto &j:i){cin>>j;}}$4
     """
 
@@ -710,8 +710,8 @@
     'prefix':'lvi'
     'body':"""
     ll ${1:N}; cin>>${1:N};
-    vector<ll> ${2:v}(${1:N});
-    for(auto &i:${2:v}) {cin>>i;}
+    vector<ll> ${2:A}(${1:N});
+    for(auto &i:${2:A}) {cin>>i;}
     $3
     """
 
@@ -844,9 +844,9 @@
     'prefix':'RLE_vec'
     'body':"""
     template<typename T> vector<pair<T, ll>> RLE(const vector<T> &v) {
-      ll p = -1, n = v.size();
+      int p = -1, n = v.size();
       vector<pair<T, ll>> r;
-      for(ll i = 0; i < n - 1; i++) {
+      for(int i = 0; i < n - 1; i++) {
         if(v[i] != v[i + 1]) {
           r.emplace_back(v[i], i - p);
           p = i;
@@ -861,9 +861,9 @@
     'prefix':'RLE_str'
     'body':"""
     vector<pair<char, ll>> RLE(const string &s) {
-      ll p = -1, n = s.size();
+      int p = -1, n = s.size();
       vector<pair<char, ll>> r;
-      for(ll i = 0; i < n - 1; i++) {
+      for(int i = 0; i < n - 1; i++) {
         if(s[i] != s[i + 1]) {
           r.emplace_back(s[i], i - p);
           p = i;
@@ -1029,10 +1029,10 @@
   'COMTable':
     'prefix':'COMTable'
     'body':"""
-    template<typename T> vector<vector<T>> COMTable(ll n) {  // If n is small
+    template<typename T> vector<vector<T>> COMTable(int n) {  // If n is small
       vector<vector<T>> r(n + 1, vector<T>(n + 1, 0));
-      for(ll i = 0; i <= n; i++) {
-        for(ll j = 0; j <= i; j++) {
+      for(int i = 0; i <= n; i++) {
+        for(int j = 0; j <= i; j++) {
           if(j == 0 || j == i) { r[i][j] = 1; }
           else { r[i][j] = r[i - 1][j - 1] + r[i - 1][j]; }
         }
@@ -1048,11 +1048,11 @@
   'Stirling_number_2_Table':
     'prefix':'Stirling_number_2_Table'
     'body':"""
-    template<typename T> vector<vector<T>> StirlingTable(ll n) {
+    template<typename T> vector<vector<T>> StirlingTable(int n) {
       vector<vector<T>> r(n + 1, vector<T>(n + 1, 0));
       r[0][0] = 1;
-      for(ll i = 1; i <= n; i++) {
-        for(ll j = 1; j <= i; j++) {
+      for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= i; j++) {
           r[i][j] = r[i - 1][j - 1] + r[i - 1][j] * j;
         }
       }
@@ -1063,11 +1063,11 @@
   'Partition_number':
     'prefix':'Partition_number'
     'body':"""
-    template<typename T> vector<vector<T>> Partition(ll n) {
+    template<typename T> vector<vector<T>> Partition(int n) {
       vector<vector<T>> r(n + 1, vector<T>(n + 1, 0));
-      for(ll i = 0; i <= n; i++) { r[0][i] = 1; }
-      for(ll i = 1; i <= n; i++) {
-        for(ll j = 1; j <= n; j++) {
+      for(int i = 0; i <= n; i++) { r[0][i] = 1; }
+      for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= n; j++) {
           r[i][j] = r[i][j - 1] + (i - j >= 0 ? r[i - j][j] : 0);
         }
       }
@@ -1080,9 +1080,9 @@
     'body':"""
     vector<ll> Base(ll x, ll n, bool re = false) {
       vector<ll> r;
-      while(x != 0) {
+      while(x) {
         r.emplace_back(x % n);
-        (x -= (x % n)) /= n;
+        x /= n;
       }
       if(re) {ranges::reverse(r);}
       return r;
@@ -1133,7 +1133,7 @@
   'Divisor':
     'prefix':'Div'
     'body':"""
-    vector<ll> Div(ll n) {
+    vector<ll> Divisor(ll n) {
       vector<ll> r;
       for(ll i = 1; i *i<= n; i++) {
         if(n % i == 0) {
@@ -1148,7 +1148,7 @@
 
   'divisor':
     'prefix':'div'
-    'body':'Div($1)'
+    'body':'Divisor($1)'
 
   'Divcnt':
     'prefix':'Divcnt'
@@ -1260,11 +1260,11 @@
 
   'DXDY4':
     'prefix':'DXDY4'
-    'body':'constexpr ll dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};'
+    'body':'constexpr int dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};'
 
   'DXDY8':
     'prefix':'DXDY8'
-    'body':'constexpr ll dx[8] = {1, 1, 0, -1, -1, -1, 0, 1}, dy[8] = {0, 1, 1, 1, 0, -1, -1, -1};'
+    'body':'constexpr int dx[8] = {1, 1, 0, -1, -1, -1, 0, 1}, dy[8] = {0, 1, 1, 1, 0, -1, -1, -1};'
 
   'chmin_func':
     'prefix':'chmin_func'
@@ -1310,7 +1310,7 @@
         cout << L << "\\\\n";
         break;
       }
-      ll M = (L + R) / 2;
+      ll M = (L + R)/2;
       bool flag = [&]() -> bool {
         $3
       }();
@@ -1324,7 +1324,7 @@
     function<void(ll, ll)> f = [&](ll L, ll R) {
       if(R - L <= 1) cout << L << "\\\\n";
       else {
-        ll M = (L + R) / 2;
+        ll M = (L + R)/2;
         bool flag = 0;
         $1
         flag ? f(M, R) : f(L, M);
@@ -1340,7 +1340,7 @@
         cout << R << "\\\\n";
         break;
       }
-      ll M = (L + R) / 2;
+      ll M = (L + R)/2;
       bool flag = [&]() -> bool {
         $3
       }();
@@ -1354,7 +1354,7 @@
     function<void(ll, ll)> f = [&](ll L, ll R) {
       if(R - L <= 1) cout << R << "\\\\n";
       else {
-        ll M = (L + R) / 2;
+        ll M = (L + R) /2;
         bool flag = 0;
         $1
         flag ? f(L, M) : f(M, R);
@@ -1740,7 +1740,7 @@
       if(d[t] != 1e18) {
         for(ll p = t; p != s; p = pre[p]) {re.emplace_back(p);}
         re.emplace_back(s);
-        ramge::reverse(re);
+        ranges::reverse(re);
       }
       return re;
     }
@@ -1957,7 +1957,7 @@
   'LagrangePolynomial':
     'prefix':'Lagrange'
     'body':"""
-    mint LagrangePolynomial(vector<ll> &v, ll x) {
+    template<typename T> mint LagrangePolynomial(vector<T> &v, ll x) {
       ll N = v.size() - 1;
       mint r = 0;
       if(x <= N) { return v[x]; }
@@ -2107,48 +2107,66 @@
   'Rollback_Unionfind':
     'prefix':'Rollback_Unionfind'
     'body':"""
-    struct Rollback_Unionfind {
-      vector<ll> par;
-      stack<pair<ll, ll>> history;
-      Rollback_Unionfind(ll n): par(n, -1) {}
-      ll root(ll x) {
-        if(par[x] < 0) {return x;}
-        else {return root(par[x]);}
+    template<typename S, auto op, auto e> struct RollbackUnionfind {
+     private:
+      vector<int> par;
+      vector<S> val;
+      stack<tuple<int, int, S, int>> history;
+      int snap, cnt;
+
+     public:
+      RollbackUnionfind() = default;
+      RollbackUnionfind(int n): RollbackUnionfind(vector<S>(n, e())) {}
+      RollbackUnionfind(const vector<S> &v): par(v.size(), -1), val(v), snap(0), cnt(v.size()) {}
+      int root(int v) const {
+        if(par[v] < 0) { return v; }
+        return root(par[v]);
       }
-      void unite(ll x, ll y) {
-        x = root(x), y = root(y);
-        history.emplace(x, par[x]);
-        history.emplace(y, par[y]);
-        if(x == y) {return;}
-        if(par[x] > par[y]) {swap(x, y);}
-        par[x] += par[y];
-        par[y] = x;
+      void unite(int u, int v) {
+        u = root(u), v = root(v);
+        history.emplace(-1, 0, e(), cnt);
+        history.emplace(u, par[u], val[u], cnt);
+        history.emplace(v, par[v], val[v], cnt);
+        if(u == v) { return; }
+        if(par[u] > par[v]) { swap(u, v); }
+        par[u] += par[v];
+        par[v] = u;
+        val[u] = op(val[u], val[v]);
+        cnt--;
       }
-      void unite(pair<ll, ll> x) { unite(x.first, x.second); }
-      bool same(ll x, ll y) { return root(x) == root(y); }
-      bool same(pair<ll, ll> x) { return same(x.first, x.second); }
-      ll size(ll x) { return -par[root(x)]; }
       void undo() {
-        for(ll i = 0; i < 2; i++) {
-          par[history.top().first] = history.top().second;
+        assert(!history.empty());
+        while(true) {
+          auto [v, p, x, c] = history.top();
           history.pop();
+          if(v == -1) { break; }
+          par[v] = p;
+          val[v] = x;
+          cnt = c;
         }
       }
-      void snapshot() {
-        while(!history.empty()) {history.pop();}
+      bool same(int u, int v) const { return root(u) == root(v); }
+      int size(int v) const { return -par[root(v)]; }
+      int count() const { return cnt; }
+      S prod(int v) const { return val[root(v)]; }
+      void update(int v, const S &x) {
+        v = root(v);
+        history.emplace(-1, 0, e(), cnt);
+        history.emplace(v, par[v], val[v], cnt);
+        val[v] = op(val[x], x);
       }
-      void rollback() {
-        while(!history.empty()) {undo();}
+      int state() const { return history.size(); }
+      void snapshot() { snap = history.size(); }
+      void rollback(int p = -1) {
+        if(p == -1) { p = snap; }
+        while(p < (int)history.size()) { undo(); }
       }
-      ll operator[](ll i) { return root(i); }
-      void operator()(ll x, ll y) { unite(x, y); }
-      void operator()(pair<ll, ll> x) { unite(x); }
     };
     """
 
   'rollback_unionfind':
     'prefix':'rollback_unionfind'
-    'body':'Rollback_Unionfind u(n);'
+    'body':'RollbackUnionfind<S,op,e> u(N);'
 
   'WeightedUnionfind':
     'prefix':'WeightedUnionfind'
@@ -2295,39 +2313,38 @@
 
     """
 
-  'Sum2D':
-    'prefix':'Sum2D'
+  'RectangleSum':
+    'prefix':'RectangleSum'
     'body':"""
-    template<typename T> struct Sum2D {
+    template<typename T> struct RectangleSum {
       int H, W;
       vector<vector<T>> v;
-      Sum2D(int h, int w): H(h), W(w), v(H + 3, vector<T>(W + 3, 0)) {}
-      Sum2D(vector<vector<T>> &ini): H(ini.size()), W(ini[0].size()), v(H + 3, vector<T>(W + 3, 0)) {
+      RectangleSum(int h, int w): H(h), W(w), v(H + 3, vector<T>(W + 3, 0)) {}
+      RectangleSum(vector<vector<T>> &ini): H(ini.size()), W(ini[0].size()), v(H + 3, vector<T>(W + 3, 0)) {
         for(int i = 0; i < H; i++) {
           for(int j = 0; j < W; j++) { v[i + 1][j + 1] += ini[i][j]; }
         }
         build();
       }
-      void add(int h, int w, T z = 1) { v[h + 1][w + 1] += z; }
-      void imos_add(int h1, int w1, int h2, int w2, T z = 1) { add(h1, w1, z), add(h1, w2, -z), add(h2, w1, -z), add(h2, w2, z); }
+      void add(int x, int y, T a = 1) { v[x + 1][y + 1] += a; }
+      void imos_add(int lx, int rx, int ly, int ry, T a = 1) { add(lx, ly, a), add(lx, ry, -a), add(rx, ly, -a), add(rx, ry, a); }
       void build() {
         for(int i = 1; i < (int)v.size(); i++) {
           for(int j = 1; j < (int)v[i].size(); j++) { v[i][j] += v[i][j - 1] + v[i - 1][j] - v[i - 1][j - 1]; }
         }
       }
-      T sum(int h1, int w1, int h2, int w2) const { return v[h2][w2] - v[h1][w2] - v[h2][w1] + v[h1][w1]; }
-      T operator()(int h, int w) const { return v[h][w]; }
-      T operator()(int h1, int w1, int h2, int w2) const { return v[h2][w2] - v[h1][w2] - v[h2][w1] + v[h1][w1]; }
-      T imos_get(int h, int w) { return v[h + 1][w + 1]; }
+      T sum(int lx, int rx, int ly, int ry) const { return v[rx][ry] - v[lx][ry] - v[rx][ly] + v[lx][ly]; }
+      T operator()(int lx, int rx, int ly, int ry) const { return v[rx][ry] - v[lx][ry] - v[rx][ly] + v[lx][ly]; }
+      T imos_get(int x, int y) { return v[x + 1][y + 1]; }
       vector<vector<T>> imos() const { return v; }
     };
     // 0-indexed, 半開区間
     // add / imos_add -> build -> sum / get , 併用不可
     """
 
-  'sum2D':
-    'prefix':'sum2D'
-    'body':'Sum2D<ll> s($1);'
+  'rectanglesum':
+    'prefix':'rectanglesum'
+    'body':'RectangleSum<ll> S($1);'
 
   'BIT':
     'prefix':'BIT'
@@ -2393,51 +2410,33 @@
     'prefix':'BIT2D'
     'body':"""
     template<typename T> struct BIT2D {
-      ll H, W;
+      int H, W;
       vector<vector<T>> bit;
-      bool imos;
-      BIT2D(ll h, ll w, bool imos_ = 0): H(h + 1), W(w + 1), imos(imos_) { bit.resize(H + 3, vector<T>(W + 3, T(0))); };
-      BIT2D(vector<vector<T>> v, bool imos_ = 0): H(v.size()), W(v[0].size()), imos(imos_) {
+      BIT2D(int h, int w): H(h + 1), W(w + 1) { bit.resize(H + 3, vector<T>(W + 3, T(0))); };
+      BIT2D(vector<vector<T>> v): H(v.size()), W(v[0].size()) {
         bit.resize(H + 3, vector<T>(W + 3, T(0)));
-        if(!imos) {
-          for(ll i = 0; i < H; i++) {
-            for(ll j = 0; j < W; j++) {add(i, j, v[i][j]);}
-          }
-        }
-        else {
-          for(ll i = 0; i < H; i++) {
-            for(ll j = 0; j < W; j++) {imos_add(i, j, v[i][j]);}
-          }
+        for(int i = 0; i < H; i++) {
+          for(int j = 0; j < W; j++) { add(i, j, v[i][j]); }
         }
       };
-      void add(ll x, ll y, T w) {
-        if(x < 0 || y < 0 || x >= H || y >= W) {return;}
-        for(ll a = (++y, ++x); a <= H; a += a & -a) {
-          for(ll b = y; b <= W; b += b & -b) {bit[a][b] += w;}
+      void add(int x, int y, T w) {
+        if(x < 0 || y < 0 || x >= H || y >= W) { return; }
+        for(int a = (++y, ++x); a <= H; a += a & -a) {
+          for(int b = y; b <= W; b += b & -b) { bit[a][b] += w; }
         }
       }
-      void imos_add(ll x1, ll y1, ll x2, ll y2, T w) {
-        imos = 1;
-        x2++, y2++;
-        add(x1, y1, w), add(x1, y2, -w), add(x2, y1, -w), add(x2, y2, w);
-      }
-      void imos_add(ll x, ll y, T w) { imos_add(x, y, x, y, w); }
-      T sum(ll x, ll y) {  // sum[(0,0),(x,y)] imos:(x,y)
-        if(x < 0 || y < 0) {return T(0);}
-        if(x >= H) {x = H - 1;}
-        if(y >= W) {y = W - 1;}
+      void imos_add(int lx, int rx, int ly, int ry, T w) { add(lx, ly, w), add(lx, ry, -w), add(rx, ly, -w), add(rx, ry, w); }
+      void imos_add(int x, int y, T w) { imos_add(x, y, x, y, w); }
+      T sum(int x, int y) {
+        x--, y--;
         T r = 0;
-        for(ll a = (++y, ++x); a > 0; a -= a & -a) {
-          for(ll b = y; b > 0; b -= b & -b) {r += bit[a][b];}
+        for(int a = (++y, ++x); a > 0; a -= a & -a) {
+          for(int b = y; b > 0; b -= b & -b) { r += bit[a][b]; }
         }
         return r;
       }
-      T sum(ll x1, ll y1, ll x2, ll y2) {
-        if(x1 > x2 || y1 > y2) {return T(0);}
-        x1--, y1--;
-        return sum(x2, y2) - sum(x2, y1) - sum(x1, y2) + sum(x1, y1);
-      }
-      // 0-indexed
+      T sum(int lx, int rx, int ly, int ry) { return sum(rx, ry) - sum(rx, ly) - sum(lx, ry) + sum(lx, ly); }
+      T imos_get(int x, int y) { return sum(++x, ++y); }
     };
     """
 
@@ -2787,35 +2786,299 @@
   'Geometry':
     'prefix':'Geometry'
     'body':"""
-    constexpr long double EPS = 1e-10, PI = acos(-1);
-    template<typename T> ll sign(const T &r) { return r <= -EPS ? -1 : r >= EPS ? 1
-                                                                                : 0; }
-    bool EQ(const long double &a, const long double &b = 0.0) { return sign(a - b) == 0; }
     using Real = long double;
+    constexpr Real EPS = 1e-10, PI = 3.141592653589793238462643383279L;
+    bool eq(Real a, Real b = 0) { return fabs(b - a) < EPS; }
+    int sign(Real a) { return !eq(a) ? a > 0 ? 1 : -1 : 0; }
     Real rtod(Real r) { return r * 180.0 / PI; }
     Real dtor(Real d) { return d * PI / 180.0; }
-    using Point = complex<Real>;
+
+    struct Point {
+      Real x, y;
+      Point(): x(0), y(0) {}
+      Point(Real x, Real y): x(x), y(y) {}
+      template<typename T, typename U> Point(const pair<T, U> &p): x(p.first), y(p.second) {}
+      Point operator+(const Point &p) const { return {x + p.x, y + p.y}; }
+      Point operator-(const Point &p) const { return {x - p.x, y - p.y}; }
+      Point operator*(Real r) const { return {x * r, y * r}; }
+      Point operator/(Real r) const { return {x / r, y / r}; }
+      Point &operator+=(const Point &p) { return (*this) = (*this) + p; }
+      Point &operator-=(const Point &p) { return (*this) = (*this) - p; }
+      Point &operator*=(Real r) { return (*this) = (*this) * r; }
+      Point &operator/=(Real r) { return (*this) = (*this) / r; }
+      bool operator<(const Point &p) const { return x != p.x ? x < p.x : y < p.y; }
+      bool operator==(const Point &p) const { return x == p.x && y == p.y; }
+      bool operator!=(const Point &p) const { return !((*this) == p); }
+      Point rotate(Real t) const { return {x * cos(t) - y * sin(t), x * sin(t) + y * cos(t)}; }
+      Real real() const { return x; }
+      Real imag() const { return y; }
+      friend Real real(const Point &p) { return p.x; }
+      friend Real imag(const Point &p) { return p.y; }
+      friend Real dot(const Point &l, const Point &r) { return l.x * r.x + l.y * r.y; }
+      friend Real cross(const Point &l, const Point &r) { return l.x * r.y - l.y * r.x; }
+      friend Real abs(const Point &p) { return sqrt(p.x * p.x + p.y * p.y); }
+      friend Real norm(const Point &p) { return p.x * p.x + p.y * p.y; }
+      friend Real distance(const Point &l, const Point &r) { return abs(l - r); }
+      friend Real arg(const Point &p) { return atan2(p.y, p.x); }
+      friend istream &operator>>(istream &is, Point &p) {
+        Real a, b;
+        is >> a >> b;
+        p = Point{a, b};
+        return is;
+      }
+      friend ostream &operator<<(ostream &os, const Point &p) { return os << p.x << " " << p.y; }
+    };
+    using Points = vector<Point>;
+
+    Real angle(const Point &a, const Point &b, const Point &c) {  // ∠ABC (acute)
+      const Point v = a - b, w = c - b;
+      Real t1 = arg(v), t2 = arg(w);
+      if(t1 > t2) { swap(t1, t2); }
+      Real t = t2 - t1;
+      return min(t, 2 * PI - t);
+    }
+
+    int ccw(const Point &a, const Point &b, const Point &c) {
+      const Point x = b - a, y = c - a;
+      if(cross(x, y) > EPS) { return +1; }  // a,b,c counterclockwise
+      if(cross(x, y) < -EPS) { return -1; }  // a,b,c clockwise
+      if(min(norm(x), norm(y)) < EPS * EPS) { return 0; }  // c=a or c=b
+      if(dot(x, y) < EPS) { return +2; }  // c-a-b
+      if(norm(x) < norm(y)) { return -2; }  // a-b-c
+      return 0;  // a-c-b
+    }
+
+    using Polygon = vector<Point>;
+    using Polygons = vector<Polygon>;
+
+    int Contains(const Polygon &P, const Point &p) {  // 0:out, 1:on, 2:in
+      bool in = false;
+      const int N = P.size();
+      for(int i = 0; i < N; i++) {
+        Point a = P[i] - p, b = P[(i + 1) % N] - p;
+        if(a.y > b.y) { swap(a, b); }
+        if(a.y < EPS && b.y > EPS && cross(a, b) < -EPS) { in = !in; }
+        if(eq(cross(a, b)) && dot(a, b) < EPS) { return 1; }
+      }
+      return in ? 2 : 0;
+    }
+
+    int ConvexContains(const Polygon &C, const Point &p) {  // 0:out, 1:on, 2:in
+      const int N = C.size();
+      if(N == 0) { return 0; }
+      if(N == 1) { return C[0] == p; }
+      Real b1 = cross(C[1] - C[0], p - C[0]), b2 = cross(C[N - 1] - C[0], p - C[0]);
+      if(b1 < -EPS || b2 > EPS) { return 0; }
+      int L = 1, R = N - 1;
+      while(R - L > 1) {
+        int M = (L + R) >> 1;
+        (cross(p - C[0], C[M] - C[0]) >= 0 ? R : L) = M;
+      }
+      Real v = cross(C[L] - p, C[R] - p);
+      if(eq(v)) { return 1; }
+      else if(v > 0) { return eq(b1) || eq(b2) ? 1 : 2; }
+      else { return 0; }
+    }
+
+    bool isConvex(const Polygon &P) {
+      const int N = P.size();
+      for(int i = 0; i < N; i++) {
+        if(ccw(P[(i + N - 1) % N], P[i], P[(i + 1) % N]) == -1) { return false; }
+      }
+      return true;
+    }
+
+    template<bool boundary = false> Polygon ConvexHull(Polygon P, bool sorted = false) {
+      const int N = P.size();
+      int k = 0;
+      if(N <= 2) { return P; }
+      if(!sorted) { sort(P.begin(), P.end()); }
+      Polygon C(2 * N);
+      Real e = boundary ? -EPS : EPS;
+      for(int i = 0; i < N; C[k++] = P[i++]) {
+        while(k >= 2 && cross(C[k - 1] - C[k - 2], P[i] - C[k - 1]) < e) { k--; }
+      }
+      for(int i = N - 2, t = k + 1; i >= 0; C[k++] = P[i--]) {
+        while(k >= t && cross(C[k - 1] - C[k - 2], P[i] - C[k - 1]) < e) { k--; }
+      }
+      C.resize(k - 1);
+      return C;
+    }
+
+    Real Area(const Polygon &P) {
+      const int N = P.size();
+      Real A = 0;
+      for(int i = 0; i < N; i++) { A += cross(P[i], P[(i + 1) % N]); }
+      return A * 0.5;
+    }
+
+    pair<int, int> ConvexDiameter(const Polygon &P) {
+      const int N = P.size();
+      int is = 0, js = 0;
+      for(int i = 1; i < N; i++) {
+        if(P[i].y > P[is].y) { is = i; }
+        if(P[i].y < P[js].y) { js = i; }
+      }
+      Real maxdis = norm(P[is] - P[js]);
+      int maxi = is, maxj = js, i = is, j = js;
+      do {
+        if(cross(P[(i + 1) % N] - P[i], P[(j + 1) % N] - P[j]) >= 0) { j = (j + 1) % N; }
+        else { i = (i + 1) % N; }
+        if(norm(P[i] - P[j]) > maxdis) {
+          maxdis = norm(P[i] - P[j]);
+          maxi = i, maxj = j;
+        }
+      } while(i != is || j != js);
+      return minmax(maxi, maxj);
+    }
+
+    pair<Point, Point> ClosestPair(Points P) {
+      const int N = P.size();
+      assert(N >= 2);
+      sort(P.begin(), P.end());
+      Real d = 9e18;
+      Point a, b;
+      auto f = [&](auto &&f, int l, int r) -> void {
+        const int m = (l + r) >> 1;
+        if(r - l <= 1) { return; }
+        const Real x = P[m].x;
+        f(f, l, m);
+        f(f, m, r);
+        inplace_merge(P.begin() + l, P.begin() + m, P.begin() + r, [](const auto &a, const auto &b) { return a.y < b.y; });
+        vector<int> B;
+        for(int i = l; i < r; i++) {
+          if(sign(abs(P[i].x - x) - d) > 0) { continue; }
+          for(int j = (int)B.size() - 1; j >= 0; j--) {
+            if(sign(P[i].y - P[B[j]].y - d) > 0) { break; }
+            if(sign(d - distance(P[i], P[B[j]])) > 0) {
+              d = distance(P[i], P[B[j]]);
+              a = P[i], b = P[B[j]];
+            }
+          }
+          B.emplace_back(i);
+        }
+      };
+      f(f, 0, N);
+      return {a, b};
+    }
+    """
+
+  'Geometry_Line':
+    'prefix':'Geometry_Line'
+    'body':"""
     struct Line {
       Point a, b;
       Line() = default;
       Line(const Point &a, const Point &b): a(a), b(b) {}
-      Line(const Real &A, const Real &B, const Real &C) {  // Ax+By=C
-        if(EQ(A)) {
-          assert(!EQ(B));
-          a = Point(0, C / B);
-          b = Point(1, C / B);
+      Line(const Real &A, const Real &B, const Real &C) {  // Ax + By = C
+        if(eq(A)) {
+          assert(!eq(B));
+          a = Point(0, C / B), b = Point(1, C / B);
         }
-        else if(EQ(B)) { a = Point(C / A, 0), b = Point(C / A, 1); }
+        else if(eq(B)) { a = Point(C / A, 0), b = Point(C / A, 1); }
         else { a = Point(0, C / B), b = Point(C / A, 0); }
       }
-      Point operator()() const { return b - a; }  // 方向ベクトル
       friend istream &operator>>(istream &is, Line &l) { return is >> l.a >> l.b; }
-      friend ostream &operator<<(ostream &os, Line &l) { return os << l.a << " to " << l.b; }
+      friend ostream &operator<<(ostream &os, const Line &l) { return os << l.a << " to " << l.b; }
     };
+    using Lines = vector<Line>;
+
+    bool parallel(const Line &l, const Line &r) { return eq(cross(l.b - l.a, r.b - r.a)); }
+    bool orthogonal(const Line &l, const Line &r) { return eq(dot(l.a - l.b, r.a - r.b)); }
+    Point projection(const Line &l, const Point &p) { return l.a + (l.a - l.b) * (dot(p - l.a, l.a - l.b) / norm(l.a - l.b)); }
+    Point reflection(const Line &l, const Point &p) { return projection(l, p) * 2 - p; }
+    bool intersect(const Line &l, const Point &p) { return abs(ccw(l.a, l.b, p)) != 1; }
+    int intersect(const Line &l, const Line &r) { return parallel(l, r) ? intersect(l, r.a) ? 2 : 0 : 1; }  // 0:parallel, 1:intersect 2:l=r
+    Real distance(const Line &l, const Point &p) { return distance(p, projection(l, p)); }
+    Real distance(const Line &l, const Line &r) { return intersect(l, r) ? 0 : distance(l, r.a); }
+    Point crosspoint(const Line &l, const Line &r) {
+      Real A = cross(l.b - l.a, r.b - r.a), B = cross(l.b - l.a, l.b - r.a);
+      return eq(A) && eq(B) ? r.a : r.a + (r.b - r.a) * B / A;
+    }
+
+    Polygon ConvexCut(const Polygon &P, const Line &l) {
+      const int N = P.size();
+      Polygon r;
+      for(int i = 0; i < N; i++) {
+        const Point &now = P[i], &nxt = P[(i + 1) % N];
+        Real cf = cross(l.a - now, l.b - now), cs = cross(l.a - nxt, l.b - nxt);
+        if(sign(cf) >= 0) { r.emplace_back(now); }
+        if(sign(cf) * sign(cs) < 0) { r.emplace_back(crosspoint(Line(now, nxt), l)); }
+      }
+      return r;
+    }
+    """
+
+  'Geometry_Segment':
+    'prefix':'Geometry_Segment'
+    'body':"""
     struct Segment : Line {
       Segment() = default;
       using Line::Line;
     };
+    using Segments = vector<Segment>;
+
+    bool intersect(const Segment &s, const Point &p) { return ccw(s.a, s.b, p) == 0; }
+    bool intersect(const Line &l, const Segment &s) { return sign(cross(l.b - l.a, s.a - l.a)) * sign(cross(l.b - l.a, s.b - l.a)) <= 0; }
+    bool intersect(const Segment &l, const Segment &r) { return ccw(l.a, l.b, r.a) * ccw(l.a, l.b, r.b) <= 0 && ccw(r.a, r.b, l.a) * ccw(r.a, r.b, l.b) <= 0; }
+    Real distance(const Segment &s, const Point &p) { return intersect(s, projection(s, p)) ? distance(p, projection(s, p)) : min(distance(s.a, p), distance(s.b, p)); }
+    Real distance(const Line &l, const Segment &s) { return intersect(l, s) ? 0 : min(distance(l, s.a), distance(l, s.b)); }
+    Real distance(const Segment &l, const Segment &r) { return intersect(l, r) ? 0 : min({distance(l, r.a), distance(l, r.b), distance(r, l.a), distance(r, l.b)}); }
+
+    void MergeSegments(Segments &S) {
+      auto merge_if_able = [](Segment &s1, const Segment &s2) {
+        if(sign(cross(s1.b - s1.a, s2.b - s2.a)) == 1) { return 0; }
+        if(ccw(s1.a, s2.a, s1.b) == 1 || ccw(s1.a, s2.a, s1.b) == -1) { return 0; }
+        if(ccw(s1.a, s1.b, s2.a) == -2 || ccw(s2.a, s2.b, s1.a) == -2) { return 0; }
+        s1 = Segment(min(s1.a, s2.a), max(s1.b, s2.b));
+        return 1;
+      };
+      for(int i = 0; i < (int)S.size(); i++) {
+        if(S[i].b < S[i].a) { swap(S[i].a, S[i].b); }
+      }
+      for(int i = 0; i < (int)S.size(); i++) {
+        for(int j = i + 1; j < (int)S.size(); j++) {
+          if(merge_if_able(S[i], S[j])) {
+            S[j--] = S.back();
+            S.pop_back();
+          }
+        }
+      }
+    }
+
+    vector<vector<int>> SegmentArrangement(Segments &S, Points &P) {
+      vector<vector<int>> g;
+      const int N = S.size();
+      for(int i = 0; i < N; i++) {
+        P.push_back(S[i].a);
+        P.push_back(S[i].b);
+        for(int j = i + 1; j < N; j++) {
+          const Point p1 = S[i].b - S[i].a, p2 = S[j].b - S[j].a;
+          if(eq(cross(p1, p2))) { continue; }
+          if(intersect(S[i], S[j])) { P.push_back(crosspoint(S[i], S[j])); }
+        }
+      }
+      sort(P.begin(), P.end());
+      P.erase(unique(P.begin(), P.end()), P.end());
+      const int M = P.size();
+      g.resize(M);
+      for(int i = 0; i < N; i++) {
+        vector<int> v;
+        for(int j = 0; j < M; j++) {
+          if(intersect(S[i], P[j])) { v.push_back(j); }
+        }
+        for(int j = 1; j < (int)v.size(); j++) {
+          g[v[j - 1]].push_back(v[j]);
+          g[v[j]].push_back(v[j - 1]);
+        }
+      }
+      return g;
+    }
+    """
+
+  'Geometry_Circle':
+    'prefix':'Geometry_Circle'
+    'body':"""
     struct Circle {
       Point p;
       Real r{};
@@ -2824,316 +3087,97 @@
       friend istream &operator>>(istream &is, Circle &c) { return is >> c.p >> c.r; }
       friend ostream &operator<<(ostream &os, Circle &c) { return os << c.p << " ," << c.r; }
     };
-    using Points = vector<Point>;
-    using Polygon = vector<Point>;
-    using Polygons = vector<Polygon>;
-    using Lines = vector<Line>;
-    using Segments = vector<Segment>;
     using Circles = vector<Circle>;
-    istream &operator>>(istream &is, Point &p) {
-      long double a, b;
-      cin >> a >> b;
-      p = Point(a, b);
-      return is;
-    }
-    ostream &operator<<(ostream &os, const Point &p) { return os << real(p) << " " << imag(p); }
-    Point operator*(const Point &p, const Real &d) { return Point(real(p) * d, imag(p) * d); }
-    Point operator/(const Point &p, const Real &d) { return Point(real(p) / d, imag(p) / d); }
-    Point operator*=(Point &p, const Real &d) { return p = p * d; }
-    Point operator/=(Point &p, const Real &d) { return p = p / d; }
-    Point rotate(const Point &p, Real theta) { return Point(cos(theta) * real(p) - sin(theta) * imag(p), sin(theta) * real(p) + cos(theta) * imag(p)); }
-    Real angle(const Point &a, const Point &b, const Point &c) {  // ∠ABC（鋭角）
-      const Point v(a - b), w(c - b);
-      auto t1 = atan2(imag(v), real(v)), t2 = atan2(imag(w), real(w));
-      if(t1 > t2) { swap(t1, t2); }
-      Real theta = t2 - t1;
-      return min(theta, 2 * PI - theta);
-    }
-    Real cross(const Point &a, const Point &b) { return real(a) * imag(b) - imag(a) * real(b); }  // 外積 |a||b|sinθ
-    Real dot(const Point &a, const Point &b) { return real(a) * real(b) + imag(a) * imag(b); }  // 内積 |a||b|cosθ
-    Real operator^(const Point &a, const Point &b) { return cross(a, b); }
-    Real operator*(const Point &a, const Point &b) { return dot(a, b); }
-    Point unit(const Point &p) { return p / abs(p); }  // 単位ベクトル
-    bool compare_x(const Point &a, const Point &b) { return EQ(real(a), real(b)) ? imag(a) < imag(b) : real(a) < real(b); }
-    bool compare_y(const Point &a, const Point &b) { return EQ(imag(a), imag(b)) ? real(a) < real(b) : imag(a) < imag(b); }
-    namespace std {
-    bool operator<(const Point &a, const Point &b) { return compare_x(a, b); }
-    }  // namespace std
-    ll ccw(const Point &a, Point b, Point c) {
-      b = b - a, c = c - a;
-      if(sign(b ^ c) == +1) { return +1; }  // a,b,c がこの順で反時計回り
-      if(sign(b ^ c) == -1) { return -1; }  // a,b,c がこの順で時計回り
-      if(sign(b * c) == -1) { return +2; }  // c-a-b
-      if(norm(b) < norm(c)) { return -2; }  // a-b-c
-      return 0;  // a-c-b
-    }
-    bool parallel(const Line &a, const Line &b) { return EQ(a() ^ b()); }
-    bool orthogonal(const Line &a, const Line &b) { return EQ(a() * b()); }
-    bool operator|(const Line &a, const Line &b) { return parallel(a, b); }
-    bool operator+(const Line &a, const Line &b) { return orthogonal(a, b); }
-    Point projection(const Line &l, const Point &p) {  // pからlに下した垂線の足
-      auto t = (p - l.a) * (l.a - l.b) / norm(l.a - l.b);
-      return l.a + (l.a - l.b) * t;
-    }
-    Point reflection(const Line &l, const Point &p) { return projection(l, p) * 2 - p; }  // lに関してpと対称な点
-    ll intersect(const Line &l, const Point &p) { return abs(ccw(l.a, l.b, p)) != 1 ? 1 : 0; }
-    ll intersect(const Segment &s, const Point &p) { return ccw(s.a, s.b, p) == 0 ? 1 : 0; }
-    ll intersect(const Circle &c, const Point &p) { return EQ(abs(p - c.p), c.r) ? 1 : 0; }
-    ll intersect(const Line &a, const Line &b) { return a | b ? abs(ccw(a.a, a.b, b.a)) == 1 ? 0 : 2 : 1; }  // 0:平行 1:交差 2:一致
-    ll intersect(const Line &l, const Segment &s) { return sign(l() ^ (s.a - l.a)) * sign(l() ^ (s.b - l.a)) <= 0 ? 1 : 0; }
-    ll intersect(const Segment &a, const Segment &b) { return ccw(a.a, a.b, b.a) * ccw(a.a, a.b, b.b) <= 0 && ccw(b.a, b.b, a.a) * ccw(b.a, b.b, a.b) <= 0 ? 1 : 0; }
-    ll intersect(const Circle &c, const Line &l) { return sign(c.r - abs(c.p - projection(l, c.p))) + 1; }
-    ll intersect(const Circle &c, const Segment &s) {
-      ll r = intersect(c, Line(s)), f = ccw(s.a, s.b, projection(s, c.p));
+
+    int contains(const Circle &c, const Point &p) { return sign(c.r - distance(c.p, p)) + 1; }  // 0:out, 1:on, 2:in
+    bool intersect(const Circle &c, const Point &p) { return eq(c.r, distance(c.p, p)); }
+    int intersect(const Circle &c, const Line &l) { return contains(c, projection(l, c.p)); }
+    int intersect(const Circle &c, const Segment &s) {
+      int r = intersect(c, Line(s)), f = ccw(s.a, s.b, projection(s, c.p));
       if(r == 0) { return 0; }
       if(r == 1) { return f == 0 ? 1 : 0; }
-      ll f1 = sign(abs(c.p - s.a) - c.r), f2 = sign(abs(c.p - s.b) - c.r);
+      int f1 = sign(abs(c.p - s.a) - c.r), f2 = sign(abs(c.p - s.b) - c.r);
       if(f1 < 0 && f2 < 0) { return 0; }
       if(f1 < 0 || f2 < 0) { return 1; }
       if(f1 == 0 && f2 == 0) { return 2; }
       if(f1 == 0 || f2 == 0) { return f == 0 ? 2 : 1; }
       return f == 0 ? 2 : 0;
     }
-    ll intersect(const Circle &a, const Circle &b) {  // +2:外部 -2:内部 +1:外接 -1:内接 0:2点で交わる
-      Real d = abs(a.p - b.p), R = a.r + b.r, r = fabs(a.r - b.r);
+    int intersect(const Circle &a, const Circle &b) {  // +2:外部 -2:内部 +1:外接 -1:内接 0:2点で交わる
+      Real d = distance(a.p, b.p), R = a.r + b.r, r = fabs(a.r - b.r);
       if(sign(d - R) > 0) { return +2; }
       if(sign(d - r) < 0) { return -2; }
-      if(EQ(d, R)) { return +1; }
-      if(EQ(d, r)) { return -1; }
+      if(eq(d, R)) { return +1; }
+      if(eq(d, r)) { return -1; }
       return 0;
     }
-    template<typename T, typename U> ll operator&(const T &a, const U &b) { return intersect(a, b); }
-    Real distance(const Point &a, const Point &b) { return abs(a - b); }
-    Real distance(const Line &l, const Point &p) { return abs(p - projection(l, p)); }
-    Real distance(const Line &a, const Line &b) { return a & b ? 0 : distance(a, b.a); }
-    Real distance(const Line &l, const Segment &s) { return l & s ? 0 : min(distance(l, s.a), distance(l, s.b)); }
-    Real distance(const Segment &s, const Point &p) { return s & projection(s, p) ? abs(projection(s, p) - p) : min(abs(s.a - p), abs(s.b - p)); }
-    Real distance(const Segment &a, const Segment &b) { return a & b ? 0 : min({distance(a, b.a), distance(a, b.b), distance(b, a.a), distance(b, a.b)}); }
-    template<typename T, typename U> Real operator%(const T &a, const U &b) { return distance(a, b); }
-    Point crosspoint(const Line &l, const Line &m) {
-      Real A = cross(l.b - l.a, m.b - m.a);
-      Real B = cross(l.b - l.a, l.b - m.a);
-      if(EQ(abs(A), 0) && EQ(abs(B), 0)) { return m.a; }
-      return m.a + (m.b - m.a) * B / A;
-    }
     Points crosspoint(const Circle &c, const Line &l) {
-      Point h = projection(l, c.p), e = unit(l());
-      if((c & l) == 0) { return {}; }
-      if((c & l) == 1) { return {h}; }
-      auto k = sqrt(norm(c.r) - norm(h - c.p));
-      return {h - e * k, h + e * k};
+      Point h = projection(l, c.p);
+      if(intersect(c, l) == 0) { return {}; }
+      if(intersect(c, l) == 1) { return {h}; }
+      Point e = (l.b - l.a) / distance(l.a, l.b) * sqrt(norm(c.r) - norm(h - c.p));
+      return {h + e, h - e};
     }
     Points crosspoint(const Circle &c, const Segment &s) {
-      if((c & s) == 0) { return {}; }
-      auto r = crosspoint(c, Line(s));
-      if((c & s) == 2) { return r; }
-      if((s.a - r[0]) * (s.b - r[0]) > 0) { swap(r[0], r[1]); }
+      if(intersect(c, s) == 0) { return {}; }
+      Points r = crosspoint(c, Line(s));
+      if(intersect(c, s) == 2) { return r; }
+      if(dot(s.a - r[0], s.b - r[0]) > 0) { swap(r[0], r[1]); }
       return {r[0]};
     }
-    Points crosspoint(const Circle &a, const Circle &b) {
-      if(abs(a & b) == 2) { return {}; }
-      Real d = abs(a.p - b.p), t = acos((a.r * a.r - b.r * b.r + d * d) / (2 * a.r * d)), s = arg(b.p - a.p);
-      Point p = a.p + polar(a.r, s + t), q = a.p + polar(a.r, s - t);
-      if(abs(a & b) == 1) { return {p}; }
+    Points crosspoint(const Circle &l, const Circle &r) {
+      const int i = intersect(l, r);
+      if(abs(i) == 2) { return {}; }
+      Real d = distance(l.p, r.p), t = acos((l.r * l.r - r.r * r.r + d * d) / (2 * l.r * d)), s = arg(r.p - l.p);
+      Point e(l.r, 0), p = l.p + e.rotate(s + t), q = l.p + e.rotate(s - t);
+      if(abs(i) == 1) { return {p}; }
       return {p, q};
     }
-    Point operator*(const Line &a, const Line &b) { return crosspoint(a, b); }
-    template<typename T> Points operator*(const Circle &c, const T &x) { return crosspoint(c, x); }
     Points tangent(const Circle &c, const Point &p) {
-      if(sign(abs(p - c.p) - c.r) < 0) { return {}; }
-      if(EQ(abs(p - c.p), c.r)) { return {p}; }
-      return c * Circle(p, sqrt(norm(p - c.p) - c.r * c.r));
+      const int i = contains(c, p);
+      if(i == 2) { return {}; }
+      if(i == 1) { return {p}; }
+      return crosspoint(c, Circle(p, sqrt(norm(p - c.p) - c.r * c.r)));
     }
-    Lines tangent(Circle &a, Circle &b) {
+    Lines tangent(Circle &l, Circle &r) {
       Lines ret;
-      if(sign(a.r - b.r) < 0) { swap(a, b); }
-      Real g = norm(a.p - b.p);
-      if(EQ(g)) { return ret; }
-      Point u = (b.p - a.p) / sqrt(g), v = rotate(u, PI * 0.5);
-      for(ll s : {-1, 1}) {
-        Real h = (a.r + s * b.r) / sqrt(g);
-        if(EQ(1 - h * h)) { ret.push_back(Line(a.p + u * a.r, a.p + (u + v) * a.r)); }
+      if(sign(l.r - r.r) < 0) { swap(l, r); }
+      Real g = norm(l.p - r.p);
+      if(eq(g)) { return ret; }
+      Point u = (r.p - l.p) / sqrt(g), v = u.rotate(PI * 0.5);
+      for(int s : {-1, 1}) {
+        Real h = (l.r + s * r.r) / sqrt(g);
+        if(eq(1 - h * h)) { ret.emplace_back(Line(l.p + u * l.r, l.p + (u + v) * l.r)); }
         else if(sign(1 - h * h) > 0) {
           Point uu = u * h, vv = v * sqrt(1 - h * h);
-          ret.push_back(Line(a.p + (uu + vv) * a.r, b.p - (uu + vv) * b.r * s));
-          ret.push_back(Line(a.p + (uu - vv) * a.r, b.p - (uu - vv) * b.r * s));
+          ret.emplace_back(Line(l.p + (uu + vv) * l.r, r.p - (uu + vv) * r.r * s));
+          ret.emplace_back(Line(l.p + (uu - vv) * l.r, r.p - (uu - vv) * r.r * s));
         }
       }
       return ret;
     }
-    bool is_convex(const Polygon &p) {
-      ll n = p.size();
-      for(ll i = 0; i < n; i++) {
-        if(ccw(p[(i + n - 1) % n], p[i], p[(i + 1) % n]) == -1) { return false; }
-      }
-      return true;
-    }
-    Polygon convex_hull(Polygon &p, bool strict = 1) {
-      ll n = p.size(), k = 0;
-      if(n <= 2) return p;
-      sort(begin(p), end(p), compare_x);
-      Points ch(2 * n);
-      auto check = [&](ll i) { return sign((ch[k - 1] - ch[k - 2]) ^ (p[i] - ch[k - 1])) <= -1 + strict; };
-      for(ll i = 0; i < n; ch[k++] = p[i++]) {
-        while(k >= 2 && check(i)) { --k; }
-      }
-      for(ll i = n - 2, t = k + 1; i >= 0; ch[k++] = p[i--]) {
-        while(k >= t && check(i)) { --k; }
-      }
-      ch.resize(k - 1);
-      return ch;
-    }
-    ll contains(const Polygon &Q, const Point &p) {  // 0:OUT 1:ON 2:IN
-      bool in = 0;
-      for(ll i = 0; i < (ll)Q.size(); i++) {
-        Point a = Q[i] - p, b = Q[(i + 1) % Q.size()] - p;
-        if(imag(a) > imag(b)) { swap(a, b); }
-        if(sign(imag(a)) <= 0 && 0 < sign(imag(b)) && sign(a ^ b) < 0) { in = !in; }
-        if(EQ(a ^ b) && sign(a * b) <= 0) { return 1; }
-      }
-      return in ? 2 : 0;
-    }
-    ll convex_contains(const Polygon &Q, const Point &p) {  // 0:OUT 1:ON 2:IN
-      ll N = Q.size();
-      Point g = (Q[0] + Q[N / 3] + Q[N * 2 / 3]) / 3.0;
-      if(EQ(imag(g), imag(p)) && EQ(real(g), real(p))) { return 2; }
-      Point gp = p - g;
-      ll l = 0, r = N;
-      while(r - l > 1) {
-        ll mid = (l + r) / 2;
-        Point gl = Q[l] - g, gm = Q[mid] - g;
-        if((gl ^ gm) > 0) { (gl ^ gp) >= 0 && (gm ^ gp) <= 0 ? r = mid : l = mid; }
-        else { (gl ^ gp) <= 0 && (gm ^ gp) >= 0 ? l = mid : r = mid; }
-      }
-      r %= N;
-      Real v = (Q[l] - p) ^ (Q[r] - p);
-      return sign(v) == 0 ? 1 : sign(v) == -1 ? 0
-                                              : 2;
-    }
-    void merge_segments(Segments &segs) {
-      auto merge_if_able = [](Segment &s1, const Segment &s2) {
-        if(sign((s1.b - s1.a) ^ (s2.b - s2.a)) == 1) { return 0; }
-        if(ccw(s1.a, s2.a, s1.b) == 1 || ccw(s1.a, s2.a, s1.b) == -1) { return 0; }
-        if(ccw(s1.a, s1.b, s2.a) == -2 || ccw(s2.a, s2.b, s1.a) == -2) { return 0; }
-        s1 = Segment(min(s1.a, s2.a), max(s1.b, s2.b));
-        return 1;
-      };
-      for(ll i = 0; i < (ll)segs.size(); i++) {
-        if(segs[i].b < segs[i].a) { swap(segs[i].a, segs[i].b); }
-      }
-      for(ll i = 0; i < (ll)segs.size(); i++) {
-        for(ll j = i + 1; j < (ll)segs.size(); j++) {
-          if(merge_if_able(segs[i], segs[j])) { segs[j--] = segs.back(), segs.pop_back(); }
+
+    Real Area(const Circle &c, const Polygon &P) {
+      auto calc = [&](auto &&calc, const Point &a, const Point &b) -> Real {
+        auto va = c.p - a, vb = c.p - b;
+        Real f = cross(va, vb), ret = 0;
+        if(eq(f)) { return ret; }
+        if(max(abs(va), abs(vb)) < c.r + EPS) { return f; }
+        if(distance(Segment(a, b), c.p) > c.r - EPS) {
+          Point t(va.x * vb.x + va.y * vb.y, va.x * vb.y - va.y * vb.x);
+          return norm(c.r) * arg(t);
         }
-      }
-    }
-    vector<vector<ll>> segment_arrangement(Segments &segs, Points &ps) {
-      vector<vector<ll>> g;
-      ll N = segs.size();
-      for(ll i = 0; i < N; i++) {
-        ps.push_back(segs[i].a);
-        ps.push_back(segs[i].b);
-        for(ll j = i + 1; j < N; j++) {
-          const Point p1 = segs[i].b - segs[i].a, p2 = segs[j].b - segs[j].a;
-          if((p1 ^ p2) == 0) { continue; }
-          if(intersect(segs[i], segs[j])) { ps.push_back(crosspoint(segs[i], segs[j])); }
-        }
-      }
-      sort(ps.begin(), ps.end());
-      ps.erase(unique(ps.begin(), ps.end()), ps.end());
-      ll M = ps.size();
-      g.resize(M);
-      for(ll i = 0; i < N; i++) {
-        vector<ll> v;
-        for(ll j = 0; j < M; j++) {
-          if(intersect(segs[i], ps[j])) { v.push_back(j); }
-        }
-        for(ll j = 1; j < (ll)v.size(); j++) { g[v[j - 1]].push_back(v[j]), g[v[j]].push_back(v[j - 1]); }
-      }
-      return g;
-    }
-    Polygon convex_cut(const Polygon &U, const Line &l) {
-      Polygon ret;
-      for(ll i = 0; i < (ll)U.size(); i++) {
-        const Point &now = U[i], &nxt = U[(i + 1) % U.size()];
-        auto cf = (l.a - now) ^ (l.b - now), cs = (l.a - nxt) ^ (l.b - nxt);
-        if(sign(cf) >= 0) { ret.push_back(now); }
-        if(sign(cf) * sign(cs) < 0) { ret.push_back(Line(now, nxt) * l); }
-      }
-      return ret;
-    }
-    pair<ll, ll> convex_diameter(const Polygon &p) {
-      ll N = p.size(), is = 0, js = 0;
-      for(ll i = 1; i < N; i++) {
-        if(imag(p[i]) > imag(p[is])) { is = i; }
-        if(imag(p[i]) < imag(p[js])) { js = i; }
-      }
-      Real maxdis = norm(p[is] - p[js]);
-      ll maxi, maxj, i, j;
-      i = maxi = is;
-      j = maxj = js;
-      do {
-        ((p[(i + 1) % N] - p[i]) ^ (p[(j + 1) % N] - p[j])) >= 0 ? j = (j + 1) % N : i = (i + 1) % N;
-        if(norm(p[i] - p[j]) > maxdis) {
-          maxdis = norm(p[i] - p[j]);
-          maxi = i;
-          maxj = j;
-        }
-      } while(i != is || j != js);
-      return minmax(maxi, maxj);
-    }
-    Real area(const Polygon &p) {
-      ll n = p.size();
-      Real A = 0;
-      for(ll i = 0; i < n; i++) {
-        { A += (p[i] ^ p[(i + 1) % n]); }
-      }
-      return abs(A * 0.5);
-    }
-    Real ca_cp_impl(const Circle &c, const Point &a, const Point &b) {
-      auto va = c.p - a, vb = c.p - b;
-      Real f = va ^ vb, ret = 0;
-      if(sign(f) == 0) { return ret; }
-      if(sign(max(abs(va), abs(vb)) - c.r) <= 0) { return f; }
-      if(sign((Segment(a, b) % c.p) - c.r) >= 0) { return norm(c.r) * arg(vb * conj(va)); }
-      auto tot = c * Line(a, b);
-      if((c & Segment(a, b)) != 2 && (a - tot[0]) * (b - tot[0]) < 0) { swap(tot[0], tot[1]); }
-      tot.emplace(begin(tot), a);
-      tot.emplace_back(b);
-      for(ll i = 1; i < (ll)tot.size(); i++) { ret += ca_cp_impl(c, tot[i - 1], tot[i]); }
-      return ret;
-    }
-    Real area(const Circle &c, const Polygon &p) {
-      if(p.size() < 3) { return 0; }
-      Real A = 0;
-      for(ll i = 0; i < (ll)p.size(); i++) { A += ca_cp_impl(c, p[i], p[(i + 1) % p.size()]); }
-      return A * 0.5;
-    }
-    Real closest_pair(Points ps) {
-      if(ps.size() <= 1) throw(0);
-      sort(ps.begin(), ps.end());
-      auto compare_Y = [&](const Point &a, const Point &b) { return imag(a) < imag(b); };
-      Points beet(ps.size());
-      const Real Inf = 1e18;
-      function<Real(ll, ll)> rec = [&](ll left, ll right) {
-        if(right - left <= 1) { return Inf; }
-        ll mid = (left + right) >> 1;
-        auto x = real(ps[mid]);
-        auto ret = min(rec(left, mid), rec(mid, right));
-        inplace_merge(begin(ps) + left, begin(ps) + mid, begin(ps) + right, compare_Y);
-        ll ptr = 0;
-        for(ll i = left; i < right; i++) {
-          if(abs(real(ps[i]) - x) >= ret) { continue; }
-          for(ll j = 0; j < ptr; j++) {
-            auto luz = ps[i] - beet[ptr - j - 1];
-            if(imag(luz) >= ret) { break; }
-            ret = min(ret, abs(luz));
-          }
-          beet[ptr++] = ps[i];
-        }
+        auto u = crosspoint(c, Segment(a, b));
+        if((int)u.size() == 1) { u.emplace_back(u[0]); }
+        vector<Point> tot = {a, u[0], u[1], b};
+        for(int i = 0; i < 3; i++) { ret += calc(calc, tot[i], tot[i + 1]); }
         return ret;
       };
-      return rec(0, ps.size());
+      const int N = P.size();
+      if(N < 3) { return 0; }
+      Real A = 0;
+      for(int i = 0; i < N; i++) { A += calc(calc, P[i], P[(i + 1) % N]); }
+      return A * 0.5;
     }
     """
 
@@ -3349,6 +3393,7 @@
     template<typename T = ll, ll MAXLOG = 20> struct CompressedWaveletMatrix {
       WaveletMatrix<ll, MAXLOG> mat;
       vector<T> ys;
+      CompressedWaveletMatrix(){}
       CompressedWaveletMatrix(const vector<T> &v): ys(v) {
         ranges::sort(ys);
         ys.erase(unique(ys.begin(), ys.end()), ys.end());
@@ -3456,18 +3501,15 @@
       ll size() const { return in.size() + out.size() - d_in.size() - d_out.size(); }
       T operator()() { return query(); }
     };
-
-    template<typename T> using MaxSum = PrioritySum<T, greater<T>, less<T>>;
-    template<typename T> using MinSum = PrioritySum<T, less<T>, greater<T>>;
     """
 
   'MaxSum':
     'prefix':'MaxSum'
-    'body':'MaxSum<ll> s($1);'
+    'body':'PrioritySum<ll, greater<ll>, less<ll>> $1'
 
   'MinSum':
     'prefix':'MinSum'
-    'body':'MinSum<ll> s($1);'
+    'body':'PrioritySum<ll, less<ll>, greater<ll>> $1'
 
   'Matrix':
     'prefix':'Matrix'
@@ -3615,11 +3657,11 @@
     template<typename T = mint> struct FPS : vector<T> {
       using vector<T>::vector;
       using vector<T>::operator=;
-      FPS pre(ll deg) const { return FPS(begin(*this), begin(*this) + min((ll)this->size(), deg)); }
-      FPS rev(ll deg = -1) const {
+      FPS pre(int deg) const { return FPS(begin(*this), begin(*this) + min((int)this->size(), deg)); }
+      FPS rev(int deg = -1) const {
         FPS r(*this);
         if(deg != -1) { r.resize(deg, T(0)); }
-        reverse(r.begin(), r.end());
+        ranges::reverse(r);
         return r;
       }
       void shrink() {
@@ -3630,32 +3672,36 @@
       FPS operator-(const FPS &f) const { return FPS(*this) -= f; }
       FPS operator-(const T &x) const { return FPS(*this) -= x; }
       FPS operator*(const FPS &f) const { return FPS(*this) *= f; }
+      template<typename I> FPS operator*(const vector<pair<I, T>> &f) const { return FPS(*this) *= f; }
+      template<typename I> FPS operator*(const pair<I, T> &f) const { return FPS(*this) *= f; }
       FPS operator*(const T &x) const { return FPS(*this) *= x; }
       FPS operator/(const FPS &f) const { return FPS(*this) /= f; }
+      template<typename I> FPS operator/(vector<pair<I, T>> &f) const { return FPS(*this) /= f; }
+      template<typename I> FPS operator/(const pair<I, T> &f) const { return FPS(*this) /= f; }
       FPS operator/(const T &x) const { return FPS(*this) /= x; }
       FPS operator%(const FPS &f) const { return FPS(*this) %= f; }
       FPS &operator+=(const FPS &f) {
         if(f.size() > this->size()) { this->resize(f.size()); }
-        for(ll i = 0; i < (ll)f.size(); i++) { (*this)[i] += f[i]; }
+        for(int i = 0; i < (int)f.size(); i++) { (*this)[i] += f[i]; }
         return *this;
       }
       FPS &operator-=(const FPS &f) {
         if(f.size() > this->size()) { this->resize(f.size()); }
-        for(ll i = 0; i < (ll)f.size(); i++) { (*this)[i] -= f[i]; }
+        for(int i = 0; i < (int)f.size(); i++) { (*this)[i] -= f[i]; }
         return *this;
       }
       FPS &operator*=(const FPS &f) {
         if((T::mod() - 1) % (1 << 23) == 0) { *this = convolution(*this, f); }
         else {
-          ll n = this->size(), m = f.size();
+          const int n = this->size(), m = f.size();
           vector<ll> a(n), b(m);
           static constexpr ll MOD1 = 754974721, MOD2 = 167772161, MOD3 = 469762049;
           static constexpr ll M1_M2 = internal::inv_gcd(MOD1, MOD2).second, M12_M3 = internal::inv_gcd(MOD1 * MOD2, MOD3).second, M12 = (MOD1 * MOD2) % T::mod();
-          for(ll i = 0; i < n; i++) { a[i] = (*this)[i].val(); }
-          for(ll i = 0; i < m; i++) { b[i] = f[i].val(); }
+          for(int i = 0; i < n; i++) { a[i] = (*this)[i].val(); }
+          for(int i = 0; i < m; i++) { b[i] = f[i].val(); }
           vector<ll> x = convolution<MOD1>(a, b), y = convolution<MOD2>(a, b), z = convolution<MOD3>(a, b);
           vector<T> c(n + m - 1);
-          for(ll i = 0; i < n + m - 1; i++) {
+          for(int i = 0; i < n + m - 1; i++) {
             ll v1 = (y[i] - x[i]) * M1_M2 % MOD2;
             if(v1 < 0) { v1 += MOD2; }
             ll v2 = (z[i] - (x[i] + MOD1 * v1) % MOD3) * M12_M3 % MOD3;
@@ -3666,23 +3712,19 @@
         }
         return *this;
       }
-      FPS &operator*=(vector<pair<ll, T>> &f) const {
-        const ll n = (ll)this->size(), m = f.back().first;
-        auto [d, c] = f.front();
-        if(d == 0) { f.erase(f.begin()); }
-        else { c = 0; }
-        for(ll i = n - 1; i >= 0; i--) {
-          (*this)[i] *= c;
-          for(auto &[j, b] : f) {
-            if(j > i) { break; }
-            (*this)[i] += (*this)[i - j] * b;
-          }
+      template<typename I> FPS &operator*=(const vector<pair<I, T>> &f) {
+        const int n = this->size() - 1, m = f.back().first;
+        FPS r(n + m + 1, 0);
+        for(int i = 0; i <= n; i++) {
+          for(auto &[j, c] : f) { r[i + j] += (*this)[i] * c; }
         }
-        return *this;
+        return *this = r;
       }
-      void mul(const ll d, const T c) {  // *(cx^d + 1)
-        ll n = this->size();
-        for(ll i = n - d - 1; i >= 0; i--) { (*this)[i + d] += (*this)[i] * c; }
+      template<typename I> FPS &operator*=(const pair<I, T> &f) {  // *(cx^d + 1)
+        const int n = this->size();
+        auto [d, c] = f;
+        for(int i = n - d - 1; i >= 0; i--) { (*this)[i + d] += (*this)[i] * c; }
+        return *this;
       }
       FPS &operator/=(const FPS &f) {
         if(this->size() < f.size()) {
@@ -3691,9 +3733,21 @@
         }
         return *this *= f.inv();
       }
-      void div(const ll d, const T c) {  // /(cx^d + 1)
-        ll n = this->size();
-        for(ll i = 0; i < n - d; i++) { (*this)[i + d] -= (*this)[i] * c; }
+      template<typename I> FPS &operator/=(vector<pair<I, T>> &f) {
+        ranges::sort(f, [&](auto x, auto y) { return x.first > y.first; });
+        const ll n = this->size() - 1, m = f[0].first;
+        FPS r(n - m + 1, 0);
+        for(int i = n - m; i >= 0; i--) {
+          r[i] = (*this)[i + m] / f[0].second;
+          for(auto &[j, c] : f) { (*this)[i + j] -= r[i] * c; }
+        }
+        return *this = r;
+      }
+      template<typename I> FPS &operator/=(const pair<I, T> &f) {  // /(cx^d + 1)
+        const int n = this->size();
+        auto [d, c] = f;
+        for(int i = 0; i < n - d; i++) { (*this)[i + d] -= (*this)[i] * c; }
+        return *this;
       }
       FPS &operator%=(const FPS &f) { return *this -= *this / f * f; }
       pair<FPS, FPS> div_mod(const FPS &f) {
@@ -3702,7 +3756,7 @@
       }
       FPS operator-() {
         FPS r(this->size());
-        for(ll i = 0; i < (this->size()); i++) { r[i] = -(*this)[i]; }
+        for(int i = 0; i < (this->size()); i++) { r[i] = -(*this)[i]; }
         return r;
       }
       FPS &operator+=(const T &x) {
@@ -3716,15 +3770,15 @@
         return *this;
       }
       FPS &operator*=(const T &x) {
-        for(ll i = 0; i < (ll)this->size(); i++) { (*this)[i] *= x; }
+        for(int i = 0; i < (int)this->size(); i++) { (*this)[i] *= x; }
         return *this;
       }
       FPS &operator/=(const T &x) {
-        for(ll i = 0; i < (ll)this->size(); i++) { (*this)[i] /= x; }
+        for(int i = 0; i < (int)this->size(); i++) { (*this)[i] /= x; }
         return *this;
       }
       FPS operator>>(ll sz) {
-        if((ll)this->size() <= sz) { return {}; }
+        if((int)this->size() <= sz) { return {}; }
         FPS r(*this);
         r.erase(r.begin(), r.begin() + sz);
         return r;
@@ -3736,7 +3790,7 @@
       }
       FPS dot(const FPS &f) const {
         FPS r(min(this->size(), f.size()));
-        for(ll i = 0; i < r.size(); i++) { r[i] = (*this)[i] * f[i]; }
+        for(int i = 0; i < r.size(); i++) { r[i] = (*this)[i] * f[i]; }
         return r;
       }
       T operator()(T x) const {
@@ -3748,50 +3802,50 @@
         return r;
       }
       FPS diff() const {
-        const int n = (int)this->size();
+        const int n = this->size();
         FPS r(n);
-        for(ll i = 1; i < n; i++) { r[i - 1] = (*this)[i] * T(i); }
+        for(int i = 1; i < n; i++) { r[i - 1] = (*this)[i] * T(i); }
         r[n - 1] = 0;
         return r;
       }
       FPS integral() const {
-        ll n = this->size(), mod = T::mod();
+        const int n = this->size(), mod = T::mod();
         vector<T> inv(n);
         inv[1] = 1;
-        for(ll i = 2; i < n; i++) { inv[i] = -inv[mod % i] * (mod / i); }
+        for(int i = 2; i < n; i++) { inv[i] = -inv[mod % i] * (mod / i); }
         FPS r(n);
-        for(ll i = n - 2; i >= 0; i--) { r[i + 1] = (*this)[i] * inv[i + 1]; }
+        for(int i = n - 2; i >= 0; i--) { r[i + 1] = (*this)[i] * inv[i + 1]; }
         r[0] = 0;
         return r;
       }
       FPS inv(ll deg = -1) const {
-        ll n = this->size();
+        const int n = this->size();
         if(deg == -1) { deg = n; }
-        assert(n != 0 && (*this)[0] != T(0));
+        assert(n && (*this)[0] != T(0));
         FPS res{(*this)[0].inv()};
         if((T::mod() - 1) % (1 << 23) == 0) {
-          while((ll)res.size() < deg) {
-            ll d = res.size();
+          while((int)res.size() < deg) {
+            int d = res.size();
             FPS f(this->begin(), this->begin() + min(n, d * 2)), g(res);
             f.resize(d * 2);
             g.resize(d * 2);
             internal::butterfly(f);
             internal::butterfly(g);
-            for(ll i = 0; i < d * 2; i++) { f[i] *= g[i]; }
+            for(int i = 0; i < d * 2; i++) { f[i] *= g[i]; }
             internal::butterfly_inv(f);
             f.erase(f.begin(), f.begin() + d);
             f.resize(d * 2);
             internal::butterfly(f);
-            for(ll i = 0; i < d * 2; i++) { f[i] *= g[i]; }
+            for(int i = 0; i < d * 2; i++) { f[i] *= g[i]; }
             internal::butterfly_inv(f);
             T iz = T(d * 2).inv();
             iz *= -iz;
-            for(ll i = 0; i < d; i++) { f[i] *= iz; }
+            for(int i = 0; i < d; i++) { f[i] *= iz; }
             res.insert(res.end(), f.begin(), f.begin() + d);
           }
         }
         else {
-          for(ll i = 1; i < deg; i <<= 1) { res = (res + res - res * res * pre(i << 1)).pre(i << 1); }
+          for(int i = 1; i < deg; i <<= 1) { res = (res + res - res * res * pre(i << 1)).pre(i << 1); }
         }
         return res.pre(deg);
       }
@@ -3802,10 +3856,10 @@
       }
       FPS sqrt(
       ll deg = -1, const function<T(T)> &get_sqrt = [](T) { return T(1); }) const {
-        const ll n = (ll)this->size();
+        const int n = this->size();
         if(deg == -1) { deg = n; }
         if((*this)[0] == T(0)) {
-          for(ll i = 1; i < n; i++) {
+          for(int i = 1; i < n; i++) {
             if((*this)[0] != T(0)) {
               if(i & 1) { return {}; }
               if(deg - i / 2 <= 0) { break; }
@@ -3822,12 +3876,12 @@
         if(sq * sq != (*this)[0]) { return {}; }
         FPS r{sq};
         T inv2 = T(1) / T(2);
-        for(ll i = 1; i < deg; i <<= 1) { r = (r + pre(i << 1) * r.inv(i << 1)) * inv2; }
+        for(int i = 1; i < deg; i <<= 1) { r = (r + pre(i << 1) * r.inv(i << 1)) * inv2; }
         return r.pre(deg);
       }
       FPS sqrt(const function<T(T)> &get_sqrt, ll deg = -1) const { return sqrt(deg, get_sqrt); }
       FPS exp(ll deg = -1) const {
-        ll n = this->size();
+        const int n = this->size();
         assert((*this)[0] == T(0));
         if(deg == -1) { deg = n; }
         if((T::mod() - 1) % (1 << 23) == 0) {
@@ -3836,92 +3890,92 @@
           inv.emplace_back(T(0));
           inv.emplace_back(T(1));
           auto internal_integral = [&](FPS &f) {
-            ll n = f.size(), mod = T::mod();
-            while((ll)inv.size() <= n) {
-              ll i = inv.size();
+            const int n = f.size(), mod = T::mod();
+            while((int)inv.size() <= n) {
+              int i = inv.size();
               inv.emplace_back((-inv[mod % i]) * (mod / i));
             }
             f.insert(f.begin(), T(0));
-            for(ll i = 1; i <= n; i++) { f[i] *= inv[i]; }
+            for(int i = 1; i <= n; i++) { f[i] *= inv[i]; }
           };
           auto internal_diff = [](FPS &f) {
             if(f.empty()) { return; }
             f.erase(f.begin());
             T c = 1;
-            for(ll i = 0; i < (ll)f.size(); i++, c++) { f[i] *= c; }
+            for(int i = 0; i < (int)f.size(); i++, c++) { f[i] *= c; }
           };
-          FPS b{1, 1 < (ll)this->size() ? (*this)[1] : 0}, c{1}, z1, z2{1, 1};
-          for(ll m = 2; m <= deg; m <<= 1) {
+          FPS b{1, 1 < (int)this->size() ? (*this)[1] : 0}, c{1}, z1, z2{1, 1};
+          for(int m = 2; m <= deg; m <<= 1) {
             auto y = b;
             y.resize(m * 2);
             internal::butterfly(y);
             z1 = z2;
             FPS z(m);
-            for(ll i = 0; i < m; i++) { z[i] = y[i] * z1[i]; }
+            for(int i = 0; i < m; i++) { z[i] = y[i] * z1[i]; }
             internal::butterfly_inv(z);
             T si = T(m).inv();
-            for(ll i = 0; i < m; i++) { z[i] *= si; }
+            for(int i = 0; i < m; i++) { z[i] *= si; }
             fill(z.begin(), z.begin() + m / 2, T(0));
             internal::butterfly(z);
-            for(ll i = 0; i < m; i++) { z[i] *= -z1[i]; }
+            for(int i = 0; i < m; i++) { z[i] *= -z1[i]; }
             internal::butterfly_inv(z);
-            for(ll i = 0; i < m; i++) { z[i] *= si; }
+            for(int i = 0; i < m; i++) { z[i] *= si; }
             c.insert(c.end(), z.begin() + m / 2, z.end());
             z2 = c;
             z2.resize(m * 2);
             internal::butterfly(z2);
-            FPS x(this->begin(), this->begin() + min((ll)this->size(), m));
+            FPS x(this->begin(), this->begin() + min((int)this->size(), m));
             x.resize(m);
             internal_diff(x);
             x.emplace_back(T(0));
             internal::butterfly(x);
-            for(ll i = 0; i < m; i++) { x[i] *= y[i]; }
+            for(int i = 0; i < m; i++) { x[i] *= y[i]; }
             internal::butterfly_inv(x);
-            for(ll i = 0; i < m; i++) { x[i] *= si; }
+            for(int i = 0; i < m; i++) { x[i] *= si; }
             x -= b.diff();
             x.resize(m * 2);
-            for(ll i = 0; i < m - 1; i++) {
+            for(int i = 0; i < m - 1; i++) {
               x[m + i] = x[i];
               x[i] = T(0);
             }
             internal::butterfly(x);
-            for(ll i = 0; i < m * 2; i++) { x[i] *= z2[i]; }
+            for(int i = 0; i < m * 2; i++) { x[i] *= z2[i]; }
             internal::butterfly_inv(x);
             T si2 = T(m << 1).inv();
-            for(ll i = 0; i < m * 2; i++) { x[i] *= si2; }
+            for(int i = 0; i < m * 2; i++) { x[i] *= si2; }
             x.pop_back();
             internal_integral(x);
-            for(ll i = m; i < min((ll)this->size(), m * 2); i++) { x[i] += (*this)[i]; }
+            for(int i = m; i < min((int)this->size(), m * 2); i++) { x[i] += (*this)[i]; }
             fill(x.begin(), x.begin() + m, T(0));
             internal::butterfly(x);
-            for(ll i = 0; i < m * 2; i++) { x[i] *= y[i]; }
+            for(int i = 0; i < m * 2; i++) { x[i] *= y[i]; }
             internal::butterfly_inv(x);
-            for(ll i = 0; i < m * 2; i++) { x[i] *= si2; }
+            for(int i = 0; i < m * 2; i++) { x[i] *= si2; }
             b.insert(b.end(), x.begin() + m, x.end());
           }
           return b.pre(deg);
         }
         else {
           FPS r({T(1)});
-          for(ll i = 1; i < deg; i <<= 1) { r = (r * (pre(i << 1) + T(1) - r.log(i << 1))).pre(i << 1); }
+          for(int i = 1; i < deg; i <<= 1) { r = (r * (pre(i << 1) + T(1) - r.log(i << 1))).pre(i << 1); }
           return r.pre(deg);
         }
       }
       FPS pow(ll k) {
-        ll n = (ll)this->size();
+        const int n = this->size();
         assert(k >= 0);
         if(k == 0) {
           FPS r(n, T(0));
           r[0] = T(1);
           return r;
         }
-        for(ll i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
           if(i * k > n) { return FPS(n, T(0)); }
           if((*this)[i] != T(0)) {
             T rev = (*this)[i].inv();
             FPS r = (((*this * rev) >> i).log() * k).exp() * ((*this)[i].pow(k));
             r = (r << (i * k)).pre(n);
-            if((ll)r.size() < n) { r.resize(n, T(0)); }
+            if((int)r.size() < n) { r.resize(n, T(0)); }
             return r;
           }
         }
@@ -3952,20 +4006,20 @@
         return r;
       }
       FPS taylor_shift(T c) const {  // g(x) s.t. g(x)=f(x+c)
-        ll n = (ll)this->size();
+        const int n = this->size();
         vector<T> fact(n), rfact(n);
         fact[0] = rfact[0] = T(1);
-        for(ll i = 1; i < n; i++) { fact[i] = fact[i - 1] * T(i); }
+        for(int i = 1; i < n; i++) { fact[i] = fact[i - 1] * T(i); }
         rfact[n - 1] = T(1) / fact[n - 1];
-        for(ll i = n - 1; i >= 2; i--) { rfact[i - 1] = rfact[i] * T(i); }
+        for(int i = n - 1; i >= 2; i--) { rfact[i - 1] = rfact[i] * T(i); }
         FPS r(*this);
-        for(ll i = 0; i < n; i++) { r[i] *= fact[i]; }
+        for(int i = 0; i < n; i++) { r[i] *= fact[i]; }
         r = r.rev();
         FPS bs(n, T(1));
-        for(ll i = 1; i < n; i++) { bs[i] = bs[i - 1] * c * rfact[i] * fact[i - 1]; }
+        for(int i = 1; i < n; i++) { bs[i] = bs[i - 1] * c * rfact[i] * fact[i - 1]; }
         r = (r * bs).pre(n);
         r = r.rev();
-        for(ll i = 0; i < n; i++) { r[i] *= rfact[i]; }
+        for(int i = 0; i < n; i++) { r[i] *= rfact[i]; }
         return r;
       }
     };
@@ -4069,15 +4123,15 @@
 
   'suffix_array':
     'prefix':'suffix_array'
-    'body':'auto sa=suffix_array($1);$2'
+    'body':'suffix_array($1)'
 
   'lcp_array':
     'prefix':'lcp_array'
-    'body':'auto la=lcp_array($1,sa);$2'
+    'body':'lcp_array($1,sa)'
 
   'z_algorithm':
     'prefix':'z_algorithm'
-    'body':'auto z=z_algorithm($1);$2'
+    'body':'z_algorithm($1)'
 
   'fenwick_tree':
     'prefix':'fenwick_tree'
@@ -4087,16 +4141,29 @@
     // f.sum(l,r) sum[l,r)
     """
 
-  'string_repetition':
-    'prefix':'string_repetition'
+  'ShortestRepetition_str':
+    'prefix':'ShortestRepetition_str'
     'body':"""
-    ll sz=$1.size(),l=sz;
-    auto z = z_algorithm($1);
-    for(ll i=1;i<sz;i++){
-      if(z[i]==sz-i&&sz%i==0){
-        l=i;
-        break;
+    int ShortestRepetition(const string &s) {
+      vector<int> z = z_algorithm(s);
+      int sz = s.size();
+      for(int i = 1; i < sz; i++) {
+        if(z[i] == sz - i && sz % i == 0) { return i; }
       }
+      return sz;
+    }
+    """
+
+  'ShortestRepetition_vec':
+    'prefix':'ShortestRepetition_vec'
+    'body':"""
+    template<typename T> int ShortestRepetition(const vector<T> &v) {
+      vector<int> z = z_algorithm(v);
+      int sz = v.size();
+      for(int i = 1; i < sz; i++) {
+        if(z[i] == sz - i && sz % i == 0) { return i; }
+      }
+      return sz;
     }
     """
 
@@ -4128,34 +4195,34 @@
   'BipartiteMatching':
     'prefix':'BipartiteMatching'
     'body':"""
-    ll BipartiteMatching(vector<vector<ll>>& g) {
-      ll n = g.size();
-      vector<ll> color(n, -1);
-      function<bool(ll, ll)> DFS = [&](ll v, ll c) {
+    int BipartiteMatching(vector<vector<ll>> &g) {
+      const int N = g.size();
+      vector<int> color(N, -1);
+      auto DFS = [&](auto DFS, int v, int c) -> bool {
         color[v] = c;
         for(auto &nv : g[v]) {
           if(color[nv] != -1) {
-            if(color[nv] == c) {return false;}
+            if(color[nv] == c) { return false; }
             continue;
           }
-          if(!DFS(nv, 1 - c)) {return false;}
+          if(!DFS(DFS, nv, 1 - c)) { return false; }
         }
         return true;
       };
-      for(ll i = 0; i < n; i++) {
+      for(int i = 0; i < N; i++) {
         if(color[i] == -1) {
-          if(!DFS(i, 0)) {return -1;}
+          if(!DFS(DFS, i, 0)) { return -1; }
         }
       }
-      mf_graph<ll> f(n + 2);
-      for(ll i = 0; i < n; i++) {
-        !color[i] ? f.add_edge(n, i, 1) : f.add_edge(i, n + 1, 1);
+      mf_graph<ll> f(N + 2);
+      for(int i = 0; i < N; i++) {
+        !color[i] ? f.add_edge(N, i, 1) : f.add_edge(i, N + 1, 1);
         for(auto &j : g[i]) {
-          if(i >= j) {continue;}
+          if(i >= j) { continue; }
           !color[i] ? f.add_edge(i, j, 1) : f.add_edge(j, i, 1);
         }
       }
-      return f.flow(n, n + 1);
+      return f.flow(N, N + 1);
     }
     """
 
@@ -4294,17 +4361,15 @@
         return isMin ? get_y(H.back(), x) : -get_y(H.back(), x);
       }
     };
-    template<typename T> using ConvexHullTrick_min = ConvexHullTrick<T, true>;
-    template<typename T> using ConvexHullTrick_max = ConvexHullTrick<T, false>;
     """
 
   'ConvexHullTrick_min':
     'prefix':'ConvexHullTrick_min'
-    'body':'ConvexHullTrick_min<ll> c;'
+    'body':'ConvexHullTrick<ll,true> c;'
 
   'ConvexHullTrick_max':
     'prefix':'ConvexHullTrick_max'
-    'body':'ConvexHullTrick_max<ll> c;'
+    'body':'ConvexHullTrick<ll,false> c;'
 
   'Partition':
     'prefix':'Partition'
@@ -5081,7 +5146,7 @@
 
   'uniteinterval':
     'prefix':'uniteinterval'
-    'body':'auto u=UniteInterval($1);$2'
+    'body':'UniteInterval($1);$2'
 
   'Mulall':
     'prefix':'Mulall'
@@ -5818,61 +5883,44 @@
   'PrioritySum_super':
     'prefix':'PrioritySum_super'
     'body':"""
-    using S = pair<ll, ll>;
-    S op(S l, S r) { return {l.first + r.first, l.second + r.second}; }
-    S e() { return {0, 0}; }
+    using T = pair<ll, ll>;
+    T op(T l, T r) { return {l.first + r.first, l.second + r.second}; }
+    T e() { return {0, 0}; }
     ll tar;
-    bool F(S x) { return tar > x.second; }
+    bool F(T x) { return tar > x.second; }
 
     struct PrioritySum {
-      ll n;
-      segtree<S, op, e> seg;
-      set<ll> s;
-      map<ll, ll> comp;
-      vector<ll> inv;
-      bool builded = false;
+      int n;
+      segtree<T, op, e> seg;
+      vector<ll> s;
       PrioritySum() {}
-      void use(ll x) {
-        assert(!builded);
-        s.insert(x);
-      }
+      void use(ll x) { s.emplace_back(x); }
       void build() {
-        assert(!builded);
-        builded = true;
-        n = ssize(s);
-        seg = segtree<S, op, e>(n);
-        ll idx = 0;
-        for(auto &i : s) {
-          comp[i] = idx;
-          inv.emplace_back(i);
-          idx++;
-        }
+        ranges::sort(s);
+        s.erase(unique(s.begin(), s.end()), s.end());
+        n = s.size();
+        seg = segtree<T, op, e>(n);
       }
       void insert(ll x, ll c = 1) {
-        assert(builded);
-        auto it = comp.find(x);
-        assert(it != comp.end());
-        ll idx = it->second;
+        int idx = ranges::lower_bound(s, x) - s.begin();
         auto [sum, cnt] = seg.get(idx);
         seg.set(idx, {sum + x * c, cnt + c});
       }
       void erase(ll x, ll c = 1) { insert(x, -c); }
-      ll min(ll k) {
-        assert(builded);
+      ll min(int k) const {
+        if(!k) { return 0; }
         tar = k;
-        ll idx = seg.max_right<F>(0);
-        assert(idx <= n);
+        int idx = seg.max_right<F>(0);
         auto [sum, cnt] = seg.prod(0, idx);
-        sum += inv[idx] * (k - cnt);
+        sum += s[idx] * (k - cnt);
         return sum;
       }
-      ll max(ll k) {
-        assert(builded);
+      ll max(int k) const {
+        if(!k) { return 0; }
         tar = k;
-        ll idx = seg.min_left<F>(n) - 1;
-        assert(idx >= 0);
+        int idx = seg.min_left<F>(n) - 1;
         auto [sum, cnt] = seg.prod(idx, n);
-        sum -= inv[idx] * (cnt - k);
+        sum -= s[idx] * (cnt - k);
         return sum;
       }
     } s;
@@ -6157,35 +6205,62 @@
   'GCDCNT':
     'prefix':'GCDCNT'
     'body':"""
-    // val = (k∈[1,n] で gcd(n, k) == key を満たすものの個数)
-    map<ll, ll> GCDCNT(ll n) {
-      vector<ll> div;
-      for(ll i = 1; i*i <= n; i++) {
-        if(n % i == 0) {
-          div.emplace_back(i);
-          if(i * i != n) { div.emplace_back(n / i); }
-        }
+    // i∈[1,n] で gcd(i, k) == first となるものの個数/総和を求める
+    template<bool Sum = false, typename T = ll> vector<pair<ll, T>> GCDcnt(ll n, ll k) {
+      vector<ll> p, div;
+      ll l = k;
+      for(ll i = 1; i * i <= k; i++) {
+        if(k % i) { continue; }
+        div.emplace_back(i);
+        if(i * i != k) { div.emplace_back(k / i); }
+        if(i == 1 || l % i) { continue; }
+        while(l % i == 0) { l /= i; }
+        p.emplace_back(i);
       }
-      ranges::sort(div, ranges::greater());
-      ll s = ssize(div);
-      map<ll, ll> r;
-      for(ll i = 0; i < s; i++) {
-        r[div[i]] = n / div[i];
-        for(ll j = 0; j < i; j++) {
-          if(div[j] % div[i] == 0) { r[div[i]] -= r[div[j]]; }
+      if(l != 1) { p.emplace_back(l); }
+
+      ll s = p.size();
+      vector<pair<ll, bool>> e;
+      for(ll i = 0; i < 1 << s; i++) {
+        ll t = 1;
+        bool odd = false;
+        for(ll j = 0; j < s; j++) {
+          if(i & 1 << j) {
+            t *= p[j];
+            odd = !odd;
+          }
         }
+        e.emplace_back(t, odd);
       }
-      return r;
+
+      vector<pair<ll, T>> ret;
+      for(auto &i : div) {
+        T r = 0, tmp;
+        ll K = k / i, N = n / i, cnt;
+        for(auto &[t, odd] : e) {
+          if(K % t) { continue; }
+          cnt = N / t;
+          if(!Sum) { tmp = cnt; }
+          else { tmp = T(cnt + 1) * cnt * t * i / 2; }
+          r += odd ? -tmp : tmp;
+        }
+        ret.emplace_back(i, r);
+      }
+      return ret;
     }
     """
 
   'gcdcnt':
     'prefix':'gcdcnt'
-    'body':'auto g=GCDCNT($1);'
+    'body':'GCDcnt($1,$2)'
 
   'bit':
     'prefix':'bit'
-    'body':'${1:i}&1<<${2:j}'
+    'body':'${1:i}>>${2:j}&1'
+
+  'nbit':
+    'prefix':'nbit'
+    'body':'~${1:i}>>${2:j}&1'
 
   'PrimeEnum':
     'prefix':'PrimeEnum'
@@ -6227,19 +6302,19 @@
     }
 
     struct DivisorTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = 1; i * p <= n; i++) { v[i * p] += v[i]; }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = n / p; i > 0; i--) { v[i * p] -= v[i]; }
         }
       }
-      template<typename I, typename T> static void zeta_transform(map<I, T> &m) {
+      template<typename I, typename T> static void ZetaTransform(map<I, T> &m) {
         for(auto p = m.rbegin(); p != m.rend(); p++) {
           for(auto &x : m) {
             if(p->first == x.first) { break; }
@@ -6247,7 +6322,7 @@
           }
         }
       }
-      template<typename I, typename T> static void mobius_transform(map<I, T> m) {
+      template<typename I, typename T> static void MobiusTransform(map<I, T> m) {
         for(auto &x : m) {
           for(auto p = m.rbegin(); p != m.rend(); p++) {
             if(x.first == p->first) { break; }
@@ -6276,26 +6351,26 @@
     }
 
     struct MultipleTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = n / p; i > 0; i--) { v[i] += v[i * p]; }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = 1; i * p <= n; i++) { v[i] -= v[i * p]; }
         }
       }
-      template<typename I, typename T> static void zeta_transform(map<I, T> &m) {
+      template<typename I, typename T> static void ZetaTransform(map<I, T> &m) {
         for(auto &x : m) {
           for(auto p = m.rbegin(); p->first != x.first; p++) {
             if(p->first % x.first == 0) { x.second += p->second; }
           }
         }
       }
-      template<typename I, typename T> static void mobius_transform(map<I, T> &m) {
+      template<typename I, typename T> static void MobiusTransform(map<I, T> &m) {
         for(auto p1 = m.rbegin(); p1 != m.rend(); p1++) {
           for(auto p2 = m.rbegin(); p2 != p1; p2++) {
             if(p2->first % p1->first == 0) { p1->second -= p2.second; }
@@ -6323,14 +6398,14 @@
     }
 
     struct MultipleTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = n / p; i > 0; i--) { v[i] += v[i * p]; }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = 1; i * p <= n; i++) { v[i] -= v[i * p]; }
         }
@@ -6338,12 +6413,12 @@
     };
 
     template<typename T> vector<T> GCD_convolution(const vector<T> &a, const vector<T> &b) {
-      assert(ssize(a) == ssize(b));
-      auto n = ssize(a) - 1, s = a, t = b, P = PrimeEnum(n);
-      MultipleTransform::zeta_transform(s);
-      MultipleTransform::zeta_transform(t);
-      for(ll i = 0; i <= n; i++) { s[i] *= t[i]; }
-      MultipleTransform::mobius_transform(s);
+      assert(a.size() == b.size());
+      auto s = a, t = b;
+      MultipleTransform::ZetaTransform(s);
+      MultipleTransform::ZetaTransform(t);
+      for(int i = 0; i < (int)a.size(); i++) { s[i] *= t[i]; }
+      MultipleTransform::MobiusTransform(s);
       return s;
     }
     """
@@ -6366,14 +6441,14 @@
     }
 
     struct DivisorTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = 1; i * p <= n; i++) { v[i * p] += v[i]; }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v) - 1;
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size() - 1;
         for(auto &p : PrimeEnum(n)) {
           for(ll i = n / p; i > 0; i--) { v[i * p] -= v[i]; }
         }
@@ -6381,12 +6456,12 @@
     };
 
     template<typename T> vector<T> LCM_convolution(const vector<T> &a, const vector<T> &b) {
-      assert(ssize(a) == ssize(b));
-      auto n = ssize(a) - 1, s = a, t = b, P = PrimeEnum(n);
-      DivisorTransform::zeta_transform(s);
-      DivisorTransform::zeta_transform(t);
-      for(ll i = 0; i <= n; i++) { s[i] *= t[i]; }
-      DivisorTransform::mobius_transform(s);
+      assert(a.size() == b.size());
+      auto s = a, t = b;
+      DivisorTransform::ZetaTransform(s);
+      DivisorTransform::ZetaTransform(t);
+      for(int i = 0; i < (int)a.size(); i++) { s[i] *= t[i]; }
+      DivisorTransform::MobiusTransform(s);
       return s;
     }
     """
@@ -6443,7 +6518,7 @@
 
   's1':
     'prefix':'s1'
-    'body':'string ${1:s}; cin>>${1:s};$2'
+    'body':'string ${1:S}; cin>>${1:S};$2'
 
   's2':
     'prefix':'s2'
@@ -6549,16 +6624,16 @@
     'prefix':'SupersetTransform'
     'body':"""
     struct SupersetTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k] += v[j + k + i]; }
           }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k] -= v[j + k + i]; }
@@ -6572,16 +6647,16 @@
     'prefix':'AND_convolution'
     'body':"""
     struct SupersetTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k] += v[j + k + i]; }
           }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k] -= v[j + k + i]; }
@@ -6593,11 +6668,11 @@
     template<typename T> vector<T> AND_convolution(vector<T> a, vector<T> b) {
       const int n = a.size();
       assert(a.size() == b.size());
-      assert((n & (n - 1)) == 0);
-      SupersetTransform::zeta_transform(a);
-      SupersetTransform::zeta_transform(b);
+      assert(!(n & (n - 1)));
+      SupersetTransform::ZetaTransform(a);
+      SupersetTransform::ZetaTransform(b);
       for(int i = 0; i < n; i++) { a[i] *= b[i]; }
-      SupersetTransform::mobius_transform(a);
+      SupersetTransform::MobiusTransform(a);
       return a;
     }
     """
@@ -6606,16 +6681,16 @@
     'prefix':'SubsetTransform'
     'body':"""
     struct SubsetTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k + i] += v[j + k]; }
           }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k + i] -= v[j + k]; }
@@ -6629,16 +6704,16 @@
     'prefix':'OR_convolution'
     'body':"""
     struct SubsetTransform {
-      template<typename T> static void zeta_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void ZetaTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k + i] += v[j + k]; }
           }
         }
       }
-      template<typename T> static void mobius_transform(vector<T> &v) {
-        ll n = ssize(v);
+      template<typename T> static void MobiusTransform(vector<T> &v) {
+        const int n = v.size();
         for(int i = 1; i < n; i <<= 1) {
           for(int j = 0; j < n; j += i << 1) {
             for(int k = 0; k < i; k++) { v[j + k + i] -= v[j + k]; }
@@ -6650,20 +6725,41 @@
     template<typename T> vector<T> OR_convolution(vector<T> a, vector<T> b) {
       const int n = a.size();
       assert(a.size() == b.size());
-      assert((n & (n - 1)) == 0);
-      SubsetTransform::zeta_transform(a);
-      SubsetTransform::zeta_transform(b);
+      assert(!(n & (n - 1)));
+      SubsetTransform::ZetaTransform(a);
+      SubsetTransform::ZetaTransform(b);
       for(int i = 0; i < n; i++) { a[i] *= b[i]; }
-      SubsetTransform::mobius_transform(a);
+      SubsetTransform::MobiusTransform(a);
       return a;
+    }
+    """
+
+  'WalshHadamardTransform':
+    'prefix':'WalshHadamardTransform'
+    'body':"""
+    template<typename T> void WalshHadamardTransform(vector<T> &v, bool inv) {
+      const int n = v.size();
+      for(int i = 1; i < n; i <<= 1) {
+        for(int j = 0; j < n; j += i << 1) {
+          for(int k = 0; k < i; k++) {
+            T s = v[j + k], t = v[j + k + i];
+            v[j + k] = s + t;
+            v[j + k + i] = s - t;
+          }
+        }
+      }
+      if(inv) {
+        T inv_n = T(1) / n;
+        for(auto &x : v) { x *= inv_n; }
+      }
     }
     """
 
   'XOR_convolution':
     'prefix':'XOR_convolution'
     'body':"""
-    template<typename T> void Walsh_Hadamard_Transform(vector<T> &v, bool inv) {
-      ll n = ssize(v);
+    template<typename T> void WalshHadamardTransform(vector<T> &v, bool inv) {
+      const int n = v.size();
       for(int i = 1; i < n; i <<= 1) {
         for(int j = 0; j < n; j += i << 1) {
           for(int k = 0; k < i; k++) {
@@ -6682,11 +6778,11 @@
     template<typename T> vector<T> XOR_convolution(vector<T> a, vector<T> b) {
       const int n = a.size();
       assert(a.size() == b.size());
-      assert((n & (n - 1)) == 0);
-      Walsh_Hadamard_Transform(a, false);
-      Walsh_Hadamard_Transform(b, false);
+      assert(!(n & (n - 1)));
+      WalshHadamardTransform(a, false);
+      WalshHadamardTransform(b, false);
       for(int i = 0; i < n; i++) { a[i] *= b[i]; }
-      Walsh_Hadamard_Transform(a, true);
+      WalshHadamardTransform(a, true);
       return a;
     }
     """
@@ -6697,13 +6793,13 @@
 
   'CommonInterval':
     'prefix':'CommonInterval'
-    'body':'auto CI = [](pair<ll, ll> x, pair<ll, ll> y) { return max(min(x.second, y.second) - max(x.first, y.first) + 1, 0LL); };'
+    'body':'ll CommonInterval(pair<ll, ll> x, pair<ll, ll> y) { return max(min(x.second, y.second) - max(x.first, y.first) + 1, 0LL); }'
 
   'LongestCommonInterval':
     'prefix':'LongestCommonInterval'
     'body':"""
     template<typename T> T LCI(vector<pair<T, T>> v) {
-      ll n = ssize(v);
+      const int n = v.size();
       ranges::sort(v);
       T m = v[0].second, r = 0;
       for(ll i = 1; i < n; i++) {
@@ -7125,6 +7221,7 @@
     struct RollingHash {
       vector<mint> hashed, power;
       int n;
+      RollingHash(){}
       RollingHash(const string &s): n(ssize(s)) {
         hashed.assign(n + 1, 0);
         power.assign(n + 1, 0);
@@ -7236,63 +7333,60 @@
     'prefix':'Segtree2D'
     'body':"""
     template<typename S, auto op, auto e> struct SegTree2D {
-      static_assert(is_convertible_v<decltype(op), function<S(S, S)>>);
-      static_assert(is_convertible_v<decltype(e), function<S()>>);
-
      private:
       vector<S> seg;
       bool built;
-      int id(int h, int w) const { return h * 2 * W + w; }
-      S inner_prod(int h, int w1, int w2) {
+      int id(int x, int y) const { return x * 2 * W + y; }
+      S inner_prod(int x, int ly, int ry) {
         S res = e();
-        for(; w1 < w2; w1 >>= 1, w2 >>= 1) {
-          if(w1 & 1) { res = op(res, seg[id(h, w1)]), w1++; }
-          if(w2 & 1) { --w2, res = op(res, seg[id(h, w2)]); }
+        for(; ly < ry; ly >>= 1, ry >>= 1) {
+          if(ly & 1) { res = op(res, seg[id(x, ly)]), ly++; }
+          if(ry & 1) { --ry, res = op(res, seg[id(x, ry)]); }
         }
         return res;
       }
 
      public:
       int H, W;
-      SegTree2D(int h, int w): built(false) {
+      SegTree2D(int x, int y): built(false) {
         H = W = 1;
-        while(H < h) { H <<= 1; }
-        while(W < w) { W <<= 1; }
+        while(H < x) { H <<= 1; }
+        while(W < y) { W <<= 1; }
         seg.assign(4 * H * W, e());
       }
-      void set(int h, int w, const S &x) {
-        if(!built) { seg[id(h + H, w + W)] = x; }
+      void set(int x, int y, const S &s) {
+        if(!built) { seg[id(x + H, y + W)] = s; }
         else {
-          h += H, w += W;
-          seg[id(h, w)] = x;
-          for(int i = h >> 1; i; i >>= 1) { seg[id(i, w)] = op(seg[id(2 * i + 0, w)], seg[id(2 * i + 1, w)]); }
-          for(; h; h >>= 1) {
-            for(int j = w >> 1; j; j >>= 1) { seg[id(h, j)] = op(seg[id(h, 2 * j + 0)], seg[id(h, 2 * j + 1)]); }
+          x += H, y += W;
+          seg[id(x, y)] = s;
+          for(int i = x >> 1; i; i >>= 1) { seg[id(i, y)] = op(seg[id(2 * i, y)], seg[id(2 * i + 1, y)]); }
+          for(; x; x >>= 1) {
+            for(int j = y >> 1; j; j >>= 1) { seg[id(x, j)] = op(seg[id(x, 2 * j)], seg[id(x, 2 * j + 1)]); }
           }
         }
       }
       void build() {
         built = true;
-        for(int w = W; w < 2 * W; w++) {
-          for(int h = H - 1; h; h--) { seg[id(h, w)] = op(seg[id(2 * h + 0, w)], seg[id(2 * h + 1, w)]); }
+        for(int y = W; y < 2 * W; y++) {
+          for(int x = H - 1; x; x--) { seg[id(x, y)] = op(seg[id(2 * x, y)], seg[id(2 * x + 1, y)]); }
         }
-        for(int h = 0; h < 2 * H; h++) {
-          for(int w = W - 1; w; w--) { seg[id(h, w)] = op(seg[id(h, 2 * w + 0)], seg[id(h, 2 * w + 1)]); }
+        for(int x = 0; x < 2 * H; x++) {
+          for(int y = W - 1; y; y--) { seg[id(x, y)] = op(seg[id(x, 2 * y)], seg[id(x, 2 * y + 1)]); }
         }
       }
-      S get(int h, int w) const { return seg[id(h + H, w + W)]; }
-      S operator()(int h, int w) const { return seg[id(h + H, w + W)]; }
-      S prod(int h1, int w1, int h2, int w2) {
-        if(h1 >= h2 || w1 >= w2) { return e(); }
+      S get(int x, int y) const { return seg[id(x + H, y + W)]; }
+      S operator()(int x, int y) const { return seg[id(x + H, y + W)]; }
+      S prod(int lx, int rx, int ly, int ry) {
+        if(lx >= rx || ly >= ry) { return e(); }
         S res = e();
-        h1 += H, h2 += H, w1 += W, w2 += W;
-        for(; h1 < h2; h1 >>= 1, h2 >>= 1) {
-          if(h1 & 1) { res = op(res, inner_prod(h1, w1, w2)), h1++; }
-          if(h2 & 1) { --h2, res = op(res, inner_prod(h2, w1, w2)); }
+        lx += H, rx += H, ly += W, ry += W;
+        for(; lx < rx; lx >>= 1, rx >>= 1) {
+          if(lx & 1) { res = op(res, inner_prod(lx, ly, ry)), lx++; }
+          if(rx & 1) { --rx, res = op(res, inner_prod(rx, ly, ry)); }
         }
         return res;
       }
-      S operator()(int h1, int w1, int h2, int w2) { return prod(h1, w1, h2, w2); }
+      S operator()(int lx, int rx, int ly, int ry) { return prod(lx, rx, ly, ry); }
     };
     """
 
@@ -7686,7 +7780,8 @@
     template<typename T> pair<vector<vector<int>>, int> CartesianTree(vector<T> &v) {
       int N = ssize(v);
       vector<vector<int>> g(N);
-      vector<int> p(N, -1), st(N);
+      vector<int> p(N, -1), st;
+      st.reserve(N);
       for(int i = 0; i < N; i++) {
         int pre = -1;
         while(!st.empty() && v[i] < v[st.back()]) {
@@ -8169,10 +8264,19 @@
         char key;
         Node(char c): idx(-1), key(c) { ranges::fill(nxt, -1); }
       };
+      int c = 0;
       vector<Node> st;
-      Trie(char c = '$') { st.emplace_back(c); }
+      Trie() { st.emplace_back('$'); }
+      Trie(const vector<string> &v) {
+        st.emplace_back('$');
+        for(auto &i : v) { insert(i); }
+      }
+      void clear() {
+        st.clear();
+        st.emplace_back('$');
+      }
       inline int &next(int i, int j) { return st[i].nxt[j]; }
-      void add(const string &s, int x) {
+      void insert(const string &s) {
         int pos = 0;
         for(int i = 0; i < ssize(s); i++) {
           int k = s[i] - margin;
@@ -8185,6 +8289,9 @@
           st.emplace_back(s[i]);
           pos = npos;
         }
+        st[pos].idx = c;
+        st[pos].idxs.emplace_back(c);
+        c++;
       }
       int find(const string &s) {
         int pos = 0;
@@ -8205,11 +8312,12 @@
 
     template<size_t X = 26, char margin = 'a'> struct AhoCorasick : Trie<X + 1, margin> {
       using TRIE = Trie<X + 1, margin>;
+      using TRIE::c;
       using TRIE::next;
       using TRIE::st;
       using TRIE::TRIE;
       vector<int> cnt;
-      void build(int heavy = true) {
+      void build(bool heavy = false) {
         int n = st.size();
         cnt.resize(n);
         for(int i = 0; i < n; i++) {
@@ -8240,21 +8348,26 @@
             if(heavy) {
               auto &idx = st[nx].idxs, &idy = st[next(fail, i)].idxs;
               vector<int> idz;
-              ranges::set_union(idx, idy.back_inserter(idz));
+              ranges::set_union(idx, idy, back_inserter(idz));
               idx = idz;
             }
           }
         }
       }
-      vector<int> match(string s, int heavy = true) {
-        vector<int> res(heavy ? TRIE::size() : 1);
-        int pos = 0;
+      ll match_count(string s) {
+        int res = 0, pos = 0;
         for(auto &c : s) {
           pos = next(pos, c - margin);
-          if(heavy) {
-            for(auto &x : st[pos].idxs) { res[x]++; }
-          }
-          else { res[0] += cnt[pos]; }
+          res += cnt[pos];
+        }
+        return res;
+      }
+      vector<vector<int>> match(string s) {
+        vector<vector<int>> res(c);
+        int pos = 0;
+        for(int i = 0; i < (int)s.size(); i++) {
+          pos = next(pos, s[i] - margin);
+          for(auto &x : st[pos].idxs) { res[x].emplace_back(i); }
         }
         return res;
       }
@@ -8607,12 +8720,12 @@
     };
     """
 
-  'RangeBIT':
-    'prefix':'RangeBIT'
+  'CompressedBIT2D':
+    'prefix':'CompressedBIT2D'
     'body':"""
-    template<typename S, typename T> struct RangeBIT {
+    template<typename S, typename T> struct CompressedBIT2D {
      private:
-      S N;
+      int N;
       vector<fenwick_tree<T>> bit;
       vector<vector<S>> ys;
       vector<pair<S, S>> ps;
@@ -8622,7 +8735,8 @@
       int id(int i, S y) const { return ranges::lower_bound(ys[i], y) - ys[i].begin(); }
 
      public:
-      RangeBIT() = default;
+      CompressedBIT2D() = default;
+      CompressedBIT2D(int N) { ps.reserve(N); }
       void use(S x, S y) { ps.emplace_back(x, y); }
       void build() {
         ranges::sort(ps);
@@ -8647,16 +8761,16 @@
         for(int a = id(x); a; a -= a & -a) { r += bit[a].sum(0, id(a, y)); }
         return r;
       }
-      T sum(S xl, S yl, S xr, S yr) {
+      T sum(S lx, S rx, S ly, S ry) {
         T r = T();
-        int a = id(xl), b = id(xr);
+        int a = id(lx), b = id(rx);
         while(a != b) {
           if(a < b) {
-            r += bit[b].sum(id(b, yl), id(b, yr));
+            r += bit[b].sum(id(b, ly), id(b, ry));
             b -= b & -b;
           }
           else {
-            r -= bit[a].sum(id(a, yl), id(a, yr));
+            r -= bit[a].sum(id(a, ly), id(a, ry));
             a -= a & -a;
           }
         }
@@ -8665,19 +8779,16 @@
     };
     """
 
-  'rangeBIT':
-    'prefix':'rangeBIT'
-    'body':'RangeBIT<ll,ll> W;'
+  'compressedBIT2D':
+    'prefix':'compressedBIT2D'
+    'body':'CompressedBIT2D<ll,ll> W;'
 
-  'RangeSegTree':
-    'prefix':'RangeSegTree'
+  'CompressedSegTree2D':
+    'prefix':'CompressedSegTree2D'
     'body':"""
-    template<typename S, typename T, auto op, auto e> struct RangeSegTree {
-      static_assert(is_convertible_v<decltype(op), function<T(T, T)>>);
-      static_assert(is_convertible_v<decltype(e), function<T()>>);
-
+    template<typename S, typename T, auto op, auto e> struct CompressedSegTree2D {
      private:
-      S N;
+      int N;
       vector<segtree<T, op, e>> seg;
       vector<vector<S>> ys;
       vector<pair<S, S>> ps;
@@ -8687,7 +8798,7 @@
       int id(int i, S y) const { return ranges::lower_bound(ys[i], y) - ys[i].begin(); }
 
      public:
-      RangeSegTree() = default;
+      CompressedSegTree2D() = default;
       void use(S x, S y) { ps.emplace_back(x, y); }
       void build() {
         ranges::sort(ps);
@@ -8706,22 +8817,22 @@
           seg[i] = segtree<T, op, e>(ys[i].size());
         }
       }
-      void add(S x, S y, T a) {
+      void set(S x, S y, T a) {
         int i = ranges::lower_bound(ps, make_pair(x, y)) - ps.begin();
         assert(ps[i] == make_pair(x, y));
-        for(i += N; i; i >>= 1) { seg[i].set(id(i, y), seg[i].get(id(i, y)) + a); }
+        for(i += N; i; i >>= 1) { seg[i].set(id(i, y), a); }
       }
-      T prod(S xl, S yl, S xr, S yr) {
+      T prod(S lx, S rx, S ly, S ry) {
         T L = e(), R = e();
-        int a = id(xl), b = id(xr);
+        int a = id(lx), b = id(rx);
         for(a += N, b += N; a < b; a >>= 1, b >>= 1) {
           if(a & 1) {
-            L = op(L, seg[a].prod(id(a, yl), id(a, yr)));
+            L = op(L, seg[a].prod(id(a, ly), id(a, ry)));
             a++;
           }
           if(b & 1) {
             b--;
-            R = op(seg[b].prod(id(b, yl), id(b, yr)), R);
+            R = op(seg[b].prod(id(b, ly), id(b, ry)), R);
           }
         }
         return op(L, R);
@@ -8729,10 +8840,14 @@
     };
     """
 
+  'compressedSegTree2D':
+    'prefix':'compressedSegTree2D'
+    'body':'CompressedSegTree2D<ll,S,op,e> seg;'
+
   'GoldenSectionSearch':
     'prefix':'GoldenSectionSearch'
     'body':"""
-    template<typename T, bool get_min = true> pair<ll, T> GCS(const auto &f, ll Min, ll Max) {
+    template<typename T, bool get_min = true> pair<ll, T> GoldenSectionSearch(const auto &f, ll Min, ll Max) {
       assert(Min <= Max);
       ll a = Min - 1, x, b, s = 1, t = 2;
       while(t < Max - Min + 2) { swap(s += t, t); }
@@ -8797,7 +8912,6 @@
     'prefix':'fill'
     'body':'ranges::fill($1);'
 
-
   'AuxiliaryTree':
     'prefix':'AuxiliaryTree'
     'body':"""
@@ -8855,15 +8969,17 @@
     template<typename S, typename T> struct CompressedBIT {
      private:
       fenwick_tree<T> f;
-      vector<S> s;
-      int id(S x) const { return ranges::lower_bound(s, x) - s.begin(); }
+      vector<S> p;
+      int id(S x) const { return ranges::lower_bound(p, x) - p.begin(); }
 
      public:
-      void use(S x) { s.emplace_back(x); }
+      CompressedBIT() = default;
+      CompressedBIT(int N) { p.reserve(N); }
+      void use(S x) { p.emplace_back(x); }
       void build() {
-        ranges::sort(s);
-        s.erase(unique(s.begin(), s.end()), s.end());
-        f = fenwick_tree<T>(s.size());
+        ranges::sort(p);
+        p.erase(unique(p.begin(), p.end()), p.end());
+        f = fenwick_tree<T>(p.size());
       }
       void add(S i, T x) { f.add(id(i), x); }
       T sum(S l, S r) { return f.sum(id(l), id(r)); }
@@ -8880,15 +8996,17 @@
     template<typename T, typename S, auto op, auto e> struct CompressedSegTree {
      private:
       segtree<S, op, e> seg;
-      vector<T> s;
-      int id(T x) { return ranges::lower_bound(s, x) - s.begin(); }
+      vector<T> p;
+      int id(T x) { return ranges::lower_bound(p, x) - p.begin(); }
 
      public:
-      void use(ll x) { s.emplace_back(x); }
+      CompressedSegTree() = default;
+      CompressedSegTree(int N) { p.reserve(N); }
+      void use(ll x) { p.emplace_back(x); }
       void build() {
-        ranges::sort(s);
-        s.erase(unique(s.begin(), s.end()), s.end());
-        seg = segtree<S, op, e>(s.size());
+        ranges::sort(p);
+        p.erase(unique(p.begin(), p.end()), p.end());
+        seg = segtree<S, op, e>(p.size());
       }
       void set(T i, S x) { seg.set(id(i), x); }
       S get(T i) { return seg.get(id(i)); }
@@ -8913,15 +9031,17 @@
     template<typename T, typename S, auto op, auto e, typename F, auto fx, auto fg, auto id> struct CompressedLazySegTree {
      private:
       lazy_segtree<S, op, e, F, fx, fg, id> seg;
-      vector<T> s;
-      int idx(T x) { return ranges::lower_bound(s, x) - s.begin(); }
+      vector<T> p;
+      int idx(T x) { return ranges::lower_bound(p, x) - p.begin(); }
 
      public:
-      void use(T x) { s.emplace_back(x); }
+      CompressedLazySegTree() = default;
+      CompressedLazySegTree(int N) { p.reserve(N); }
+      void use(T x) { p.emplace_back(x); }
       void build() {
-        ranges::sort(s);
-        s.erase(unique(s.begin(), s.end()), s.end());
-        lazy_segtree<S, op, e, F, fx, fg, id>(s.size());
+        ranges::sort(p);
+        p.erase(unique(p.begin(), p.end()), p.end());
+        seg = lazy_segtree<S, op, e, F, fx, fg, id>(p.size());
       }
       void set(T i, S x) { seg.set(idx(i), x); }
       S get(T i) { return seg.get(idx(i)); }
@@ -8978,14 +9098,15 @@
   'Palindrome':
     'prefix':'Palindrome'
     'body':"""
-    template<typename T> vector<int> manacher(const T &S) {
-      vector<int> r(ssize(S));
+    template<typename T> vector<int> Manacher(const T &S) {
+      const int N = S.size();
+      vector<int> r(N);
       int i = 0, j = 0;
-      while(i < ssize(S)) {
-        while(i - j >= 0 && i + j < ssize(S) && S[i - j] == S[i + j]) { j++; }
+      while(i < N) {
+        while(i - j >= 0 && i + j < N && S[i - j] == S[i + j]) { j++; }
         r[i] = j;
         int k = 1;
-        while(i - k >= 0 && i + k < ssize(S) && k + r[i - k] < j) {
+        while(i - k >= 0 && i + k < N && k + r[i - k] < j) {
           r[i + k] = r[i - k];
           k++;
         }
@@ -8995,16 +9116,16 @@
       return r;
     }
 
-    template<typename T> vector<pair<int, int>> Enum_palindrome(const T &vec) {
+    template<typename T> vector<pair<int, int>> WidestPalindrome(const T &vec) {
       using U = typename T::value_type;
       vector<U> v;
-      const int N = ssize(vec);
+      const int N = vec.size();
       for(int i = 0; i < N - 1; i++) {
         v.emplace_back(vec[i]);
         v.emplace_back(-1);
       }
       v.emplace_back(vec.back());
-      const auto m = manacher(v);
+      const auto m = Manacher(v);
       vector<pair<int, int>> r;
       for(int i = 0; i < N * 2 - 1; i++) {
         if(i & 1) {
@@ -9019,12 +9140,2221 @@
       return r;
     }
 
-    template<typename T> vector<int> Enum_LeftmostPalindrome(const T &vec) {
-      vector<int> v(ssize(vec), -1);
-      for(auto &[l, r] : Enum_palindrome(vec)) { v[r - 1] = max(v[r - 1], r - l); }
-      for(int i = ssize(vec) - 2; i >= 0; i--) { v[i] = max(v[i], v[i + 1] - 2); }
-      vector<int> r(ssize(vec));
-      for(int i = 0; i < ssize(vec); i++) { r[i] = i + 1 - v[i]; }
+    template<typename T> vector<int> LeftmostPalindrome(const T &vec) {
+      const int N = vec.size();
+      vector<int> v(N, -1);
+      for(auto &[l, r] : WidestPalindrome(vec)) { v[r - 1] = max(v[r - 1], r - l); }
+      for(int i = N - 2; i >= 0; i--) { v[i] = max(v[i], v[i + 1] - 2); }
+      vector<int> r(N);
+      for(int i = 0; i < N; i++) { r[i] = i + 1 - v[i]; }
       return r;
     }
     """
+
+  'SegTreeBeats':
+    'prefix':'SegTreeBeats'
+    'body':"""
+    struct SegTreeBeats {
+     private:
+      static constexpr ll INF = numeric_limits<ll>::max() / 2.1;
+      struct alignas(32) Node {
+        ll sum = 0, add = 0;
+        ll g1 = 0, g2 = -INF, gc = 1;
+        ll l1 = 0, l2 = INF, lc = 1;
+      };
+
+      vector<Node> v;
+      ll n, log;
+
+      void update(int k) {
+        Node &p = v[k], &l = v[k * 2], &r = v[k * 2 + 1];
+        p.sum = l.sum + r.sum;
+        if(l.g1 == r.g1) {
+          p.g1 = l.g1;
+          p.g2 = max(l.g2, r.g2);
+          p.gc = l.gc + r.gc;
+        }
+        else {
+          bool f = l.g1 > r.g1;
+          p.g1 = f ? l.g1 : r.g1;
+          p.gc = f ? l.gc : r.gc;
+          p.g2 = max(f ? r.g1 : l.g1, f ? l.g2 : r.g2);
+        }
+        if(l.l1 == r.l1) {
+          p.l1 = l.l1;
+          p.l2 = min(l.l2, r.l2);
+          p.lc = l.lc + r.lc;
+        }
+        else {
+          bool f = l.l1 < r.l1;
+          p.l1 = f ? l.l1 : r.l1;
+          p.lc = f ? l.lc : r.lc;
+          p.l2 = min(f ? r.l1 : l.l1, f ? l.l2 : r.l2);
+        }
+      }
+      void push_add(int k, ll x) {
+        Node &p = v[k];
+        p.sum += x << (log + __builtin_clz(k) - 31);
+        p.g1 += x;
+        p.l1 += x;
+        if(p.g2 != -INF) { p.g2 += x; }
+        if(p.l2 != INF) { p.l2 += x; }
+        p.add += x;
+      }
+      void push_min(int k, ll x) {
+        Node &p = v[k];
+        p.sum += (x - p.g1) * p.gc;
+        if(p.l1 == p.g1) { p.l1 = x; }
+        if(p.l2 == p.g1) { p.l2 = x; }
+        p.g1 = x;
+      }
+      void push_max(int k, ll x) {
+        Node &p = v[k];
+        p.sum += (x - p.l1) * p.lc;
+        if(p.g1 == p.l1) { p.g1 = x; }
+        if(p.g2 == p.l1) { p.g2 = x; }
+        p.l1 = x;
+      }
+      void push(int k) {
+        Node &p = v[k];
+        if(p.add) {
+          push_add(k * 2, p.add);
+          push_add(k * 2 + 1, p.add);
+          p.add = 0;
+        }
+        if(p.g1 < v[k * 2].g1) { push_min(k * 2, p.g1); }
+        if(p.l1 > v[k * 2].l1) { push_max(k * 2, p.l1); }
+        if(p.g1 < v[k * 2 + 1].g1) { push_min(k * 2 + 1, p.g1); }
+        if(p.l1 > v[k * 2 + 1].l1) { push_max(k * 2 + 1, p.l1); }
+      }
+      void subtree_chmin(int k, ll x) {
+        if(v[k].g1 <= x) { return; }
+        if(v[k].g2 < x) {
+          push_min(k, x);
+          return;
+        }
+        push(k);
+        subtree_chmin(k * 2, x);
+        subtree_chmin(k * 2 + 1, x);
+        update(k);
+      }
+      void subtree_chmax(int k, ll x) {
+        if(x <= v[k].l1) { return; }
+        if(x < v[k].l2) {
+          push_max(k, x);
+          return;
+        }
+        push(k);
+        subtree_chmax(k * 2, x);
+        subtree_chmax(k * 2 + 1, x);
+        update(k);
+      }
+      template<int cmd> inline void apply(int k, ll x) {
+        if constexpr(cmd == 1) { subtree_chmin(k, x); }
+        if constexpr(cmd == 2) { subtree_chmax(k, x); }
+        if constexpr(cmd == 3) { push_add(k, x); }
+        if constexpr(cmd == 4) {
+          subtree_chmax(k, x);
+          subtree_chmax(k, x);
+        }
+      }
+      template<int cmd> void apply(int l, int r, ll x) {
+        if(l == r) { return; }
+        l += n, r += n;
+        for(int i = log; i >= 1; i--) {
+          if(((l >> i) << i) != l) { push(l >> i); }
+          if(((r >> i) << i) != r) { push((r - 1) >> i); }
+        }
+        {
+          int l2 = l, r2 = r;
+          while(l < r) {
+            if(l & 1) { apply<cmd>(l++, x); }
+            if(r & 1) { apply<cmd>(--r, x); }
+            l >>= 1;
+            r >>= 1;
+          }
+          l = l2, r = r2;
+        }
+        for(int i = 1; i <= log; i++) {
+          if(((l >> i) << i) != l) { update(l >> i); }
+          if(((r >> i) << i) != r) { update((r - 1) >> i); }
+        }
+      }
+      template<int cmd> inline ll e() {
+        if constexpr(cmd == 1) { return INF; }
+        if constexpr(cmd == 2) { return -INF; }
+        return 0;
+      }
+      template<int cmd> inline void op(ll &a, const Node &b) {
+        if constexpr(cmd == 1) { a = min(a, b.l1); }
+        if constexpr(cmd == 2) { a = max(a, b.g1); }
+        if constexpr(cmd == 3) { a += b.sum; }
+      }
+      template<int cmd> ll prod(int l, int r) {
+        if(l == r) { return e<cmd>(); }
+        l += n, r += n;
+        for(int i = log; i >= 1; i--) {
+          if(((l >> i) << i) != l) { push(l >> i); }
+          if(((r >> i) << i) != r) { push((r - 1) >> i); }
+        }
+        ll lx = e<cmd>(), rx = e<cmd>();
+        while(l < r) {
+          if(l & 1) { op<cmd>(lx, v[l++]); }
+          if(r & 1) { op<cmd>(rx, v[--r]); }
+          l >>= 1;
+          r >>= 1;
+        }
+        if constexpr(cmd == 1) { lx = min(lx, rx); }
+        if constexpr(cmd == 2) { lx = max(lx, rx); }
+        if constexpr(cmd == 3) { lx += rx; }
+        return lx;
+      }
+
+     public:
+      SegTreeBeats() {}
+      SegTreeBeats(int N): SegTreeBeats(vector<ll>(N)) {}
+      SegTreeBeats(const vector<ll> &vc): n(1), log(0) {
+        while(n < ssize(vc)) {
+          n <<= 1;
+          log++;
+        }
+        v.resize(2 * n);
+        for(ll i = 0; i < ssize(vc); i++) { v[i + n].sum = v[i + n].g1 = v[i + n].l1 = vc[i]; }
+        for(ll i = n - 1; i; i--) { update(i); }
+      }
+
+      void chmin(int l, int r, ll x) { apply<1>(l, r, x); }
+      void chmax(int l, int r, ll x) { apply<2>(l, r, x); }
+      void add(int l, int r, ll x) { apply<3>(l, r, x); }
+      void update(int l, int r, ll x) { apply<4>(l, r, x); }
+      ll getmin(int l, int r) { return prod<1>(l, r); }
+      ll getmax(int l, int r) { return prod<2>(l, r); }
+      ll getsum(int l, int r) { return prod<3>(l, r); }
+    };
+    """
+
+  'Lazy_add/or_max/and/or':
+    'prefix':'Lazy_add/or_max/and/or'
+    'body':"""
+    template<class S, auto op, auto e, class F, auto mapping, auto composition, auto id> struct lazy_segtree {
+      static_assert(std::is_convertible_v<decltype(op), std::function<S(S, S)>>, "op must work as S(S, S)");
+      static_assert(std::is_convertible_v<decltype(e), std::function<S()>>, "e must work as S()");
+      static_assert(std::is_convertible_v<decltype(mapping), std::function<S(F, S)>>, "mapping must work as F(F, S)");
+      static_assert(std::is_convertible_v<decltype(composition), std::function<F(F, F)>>, "compostiion must work as F(F, F)");
+      static_assert(std::is_convertible_v<decltype(id), std::function<F()>>, "id must work as F()");
+
+     public:
+      lazy_segtree(): lazy_segtree(0) {}
+      explicit lazy_segtree(int n): lazy_segtree(std::vector<S>(n, e())) {}
+      explicit lazy_segtree(const std::vector<S>& v): _n(int(v.size())) {
+        size = (int)bit_ceil((unsigned int)(_n));
+        log = countr_zero((unsigned int)size);
+        d = std::vector<S>(2 * size, e());
+        lz = std::vector<F>(size, id());
+        for(int i = 0; i < _n; i++) { d[size + i] = v[i]; }
+        for(int i = size - 1; i >= 1; i--) { update(i); }
+      }
+      void set(int p, S x) {
+        assert(0 <= p && p < _n);
+        p += size;
+        for(int i = log; i >= 1; i--) { push(p >> i); }
+        d[p] = x;
+        for(int i = 1; i <= log; i++) { update(p >> i); }
+      }
+      S get(int p) {
+        assert(0 <= p && p < _n);
+        p += size;
+        for(int i = log; i >= 1; i--) { push(p >> i); }
+        return d[p];
+      }
+      S prod(int l, int r) {
+        assert(0 <= l && l <= r && r <= _n);
+        if(l == r) { return e(); }
+        l += size;
+        r += size;
+        for(int i = log; i >= 1; i--) {
+          if(((l >> i) << i) != l) { push(l >> i); }
+          if(((r >> i) << i) != r) { push((r - 1) >> i); }
+        }
+        S sml = e(), smr = e();
+        while(l < r) {
+          if(l & 1) { sml = op(sml, d[l++]); }
+          if(r & 1) { smr = op(d[--r], smr); }
+          l >>= 1;
+          r >>= 1;
+        }
+        return op(sml, smr);
+      }
+      S all_prod() { return d[1]; }
+      void apply(int p, F f) {
+        assert(0 <= p && p < _n);
+        p += size;
+        for(int i = log; i >= 1; i--) { push(p >> i); }
+        d[p] = mapping(f, d[p]);
+        for(int i = 1; i <= log; i++) { update(p >> i); }
+      }
+      void apply(int l, int r, F f) {
+        assert(0 <= l && l <= r && r <= _n);
+        if(l == r) return;
+        l += size;
+        r += size;
+        for(int i = log; i >= 1; i--) {
+          if(((l >> i) << i) != l) { push(l >> i); }
+          if(((r >> i) << i) != r) { push((r - 1) >> i); }
+        }
+        {
+          int l2 = l, r2 = r;
+          while(l < r) {
+            if(l & 1) { all_apply(l++, f); }
+            if(r & 1) { all_apply(--r, f); }
+            l >>= 1;
+            r >>= 1;
+          }
+          l = l2;
+          r = r2;
+        }
+        for(int i = 1; i <= log; i++) {
+          if(((l >> i) << i) != l) { update(l >> i); }
+          if(((r >> i) << i) != r) { update((r - 1) >> i); }
+        }
+      }
+      template<bool (*g)(S)> int max_right(int l) {
+        return max_right(l, [](S x) { return g(x); });
+      }
+      template<class G> int max_right(int l, G g) {
+        assert(0 <= l && l <= _n);
+        assert(g(e()));
+        if(l == _n) { return _n; }
+        l += size;
+        for(int i = log; i >= 1; i--) { push(l >> i); }
+        S sm = e();
+        do {
+          while(l % 2 == 0) l >>= 1;
+          if(!g(op(sm, d[l]))) {
+            while(l < size) {
+              push(l);
+              l = (2 * l);
+              if(g(op(sm, d[l]))) {
+                sm = op(sm, d[l]);
+                l++;
+              }
+            }
+            return l - size;
+          }
+          sm = op(sm, d[l]);
+          l++;
+        } while((l & -l) != l);
+        return _n;
+      }
+      template<bool (*g)(S)> int min_left(int r) {
+        return min_left(r, [](S x) { return g(x); });
+      }
+      template<class G> int min_left(int r, G g) {
+        assert(0 <= r && r <= _n);
+        assert(g(e()));
+        if(r == 0) { return 0; }
+        r += size;
+        for(int i = log; i >= 1; i--) { push((r - 1) >> i); }
+        S sm = e();
+        do {
+          r--;
+          while(r > 1 && (r % 2)) r >>= 1;
+          if(!g(op(d[r], sm))) {
+            while(r < size) {
+              push(r);
+              r = (2 * r + 1);
+              if(g(op(d[r], sm))) {
+                sm = op(d[r], sm);
+                r--;
+              }
+            }
+            return r + 1 - size;
+          }
+          sm = op(d[r], sm);
+        } while((r & -r) != r);
+        return 0;
+      }
+
+     private:
+      int _n, size, log;
+      std::vector<S> d;
+      std::vector<F> lz;
+      void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
+      void all_apply(int k, F f) {
+        d[k] = mapping(f, d[k]);
+        if(k < size) {
+          lz[k] = composition(f, lz[k]);
+          if(d[k].fail) { push(k), update(k); }
+        }
+      }
+      void push(int k) {
+        all_apply(2 * k, lz[k]);
+        all_apply(2 * k + 1, lz[k]);
+        lz[k] = id();
+      }
+    };
+
+    using ull = unsigned long long;
+    constexpr ull dig = 60, mask = (1ULL << dig) - 1;
+
+    struct S {
+      ull max, range_or, range_and;
+      bool fail;
+      S(ull x = 0): max(x), range_or(x), range_and(x), fail(false) {}
+    };
+    struct F {
+      ull bit_and, bit_or;
+      F(): bit_and(mask), bit_or(0) {}
+      F(ull a, ull o): bit_and(a), bit_or(o) {}
+      static F b_and(ull x) noexcept { return {x, 0}; }
+      static F b_or(ull x) noexcept { return {mask, x}; }
+    };
+    S op(S l, S r) {
+      l.max = max(l.max, r.max);
+      l.range_or |= r.range_or;
+      l.range_and &= r.range_and;
+      return l;
+    }
+    S e() { return S(); }
+    S fx(F f, S x) {
+      if((x.range_or - x.range_and) & (~f.bit_and | f.bit_or)) {
+        x.fail = true;
+        return x;
+      }
+      x.range_or = (x.range_or & f.bit_and) | f.bit_or;
+      x.range_and = (x.range_and & f.bit_and) | f.bit_or;
+      x.max = (x.max & f.bit_and) | f.bit_or;
+      return x;
+    }
+    F fg(F f, F g) { return F{f.bit_and & g.bit_and, f.bit_or | g.bit_or}; }
+    F id() { return F(); }
+    """
+
+  'Lazy_update/gcd_max/sum':
+    'prefix':'Lazy_update/gcd_max/sum'
+    'body':"""
+    template<class S, auto op, auto e, class F, auto mapping, auto composition, auto id> struct lazy_segtree {
+      static_assert(std::is_convertible_v<decltype(op), std::function<S(S, S)>>, "op must work as S(S, S)");
+      static_assert(std::is_convertible_v<decltype(e), std::function<S()>>, "e must work as S()");
+      static_assert(std::is_convertible_v<decltype(mapping), std::function<S(F, S)>>, "mapping must work as F(F, S)");
+      static_assert(std::is_convertible_v<decltype(composition), std::function<F(F, F)>>, "compostiion must work as F(F, F)");
+      static_assert(std::is_convertible_v<decltype(id), std::function<F()>>, "id must work as F()");
+
+     public:
+      lazy_segtree(): lazy_segtree(0) {}
+      explicit lazy_segtree(int n): lazy_segtree(std::vector<S>(n, e())) {}
+      explicit lazy_segtree(const std::vector<S>& v): _n(int(v.size())) {
+        size = (int)bit_ceil((unsigned int)(_n));
+        log = countr_zero((unsigned int)size);
+        d = std::vector<S>(2 * size, e());
+        lz = std::vector<F>(size, id());
+        for(int i = 0; i < _n; i++) { d[size + i] = v[i]; }
+        for(int i = size - 1; i >= 1; i--) { update(i); }
+      }
+      void set(int p, S x) {
+        assert(0 <= p && p < _n);
+        p += size;
+        for(int i = log; i >= 1; i--) { push(p >> i); }
+        d[p] = x;
+        for(int i = 1; i <= log; i++) { update(p >> i); }
+      }
+      S get(int p) {
+        assert(0 <= p && p < _n);
+        p += size;
+        for(int i = log; i >= 1; i--) { push(p >> i); }
+        return d[p];
+      }
+      S prod(int l, int r) {
+        assert(0 <= l && l <= r && r <= _n);
+        if(l == r) { return e(); }
+        l += size;
+        r += size;
+        for(int i = log; i >= 1; i--) {
+          if(((l >> i) << i) != l) { push(l >> i); }
+          if(((r >> i) << i) != r) { push((r - 1) >> i); }
+        }
+        S sml = e(), smr = e();
+        while(l < r) {
+          if(l & 1) { sml = op(sml, d[l++]); }
+          if(r & 1) { smr = op(d[--r], smr); }
+          l >>= 1;
+          r >>= 1;
+        }
+        return op(sml, smr);
+      }
+      S all_prod() { return d[1]; }
+      void apply(int p, F f) {
+        assert(0 <= p && p < _n);
+        p += size;
+        for(int i = log; i >= 1; i--) { push(p >> i); }
+        d[p] = mapping(f, d[p]);
+        for(int i = 1; i <= log; i++) { update(p >> i); }
+      }
+      void apply(int l, int r, F f) {
+        assert(0 <= l && l <= r && r <= _n);
+        if(l == r) return;
+        l += size;
+        r += size;
+        for(int i = log; i >= 1; i--) {
+          if(((l >> i) << i) != l) { push(l >> i); }
+          if(((r >> i) << i) != r) { push((r - 1) >> i); }
+        }
+        {
+          int l2 = l, r2 = r;
+          while(l < r) {
+            if(l & 1) { all_apply(l++, f); }
+            if(r & 1) { all_apply(--r, f); }
+            l >>= 1;
+            r >>= 1;
+          }
+          l = l2;
+          r = r2;
+        }
+        for(int i = 1; i <= log; i++) {
+          if(((l >> i) << i) != l) { update(l >> i); }
+          if(((r >> i) << i) != r) { update((r - 1) >> i); }
+        }
+      }
+      template<bool (*g)(S)> int max_right(int l) {
+        return max_right(l, [](S x) { return g(x); });
+      }
+      template<class G> int max_right(int l, G g) {
+        assert(0 <= l && l <= _n);
+        assert(g(e()));
+        if(l == _n) { return _n; }
+        l += size;
+        for(int i = log; i >= 1; i--) { push(l >> i); }
+        S sm = e();
+        do {
+          while(l % 2 == 0) l >>= 1;
+          if(!g(op(sm, d[l]))) {
+            while(l < size) {
+              push(l);
+              l = (2 * l);
+              if(g(op(sm, d[l]))) {
+                sm = op(sm, d[l]);
+                l++;
+              }
+            }
+            return l - size;
+          }
+          sm = op(sm, d[l]);
+          l++;
+        } while((l & -l) != l);
+        return _n;
+      }
+      template<bool (*g)(S)> int min_left(int r) {
+        return min_left(r, [](S x) { return g(x); });
+      }
+      template<class G> int min_left(int r, G g) {
+        assert(0 <= r && r <= _n);
+        assert(g(e()));
+        if(r == 0) { return 0; }
+        r += size;
+        for(int i = log; i >= 1; i--) { push((r - 1) >> i); }
+        S sm = e();
+        do {
+          r--;
+          while(r > 1 && (r % 2)) r >>= 1;
+          if(!g(op(d[r], sm))) {
+            while(r < size) {
+              push(r);
+              r = (2 * r + 1);
+              if(g(op(d[r], sm))) {
+                sm = op(d[r], sm);
+                r--;
+              }
+            }
+            return r + 1 - size;
+          }
+          sm = op(d[r], sm);
+        } while((r & -r) != r);
+        return 0;
+      }
+
+     private:
+      int _n, size, log;
+      std::vector<S> d;
+      std::vector<F> lz;
+      void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
+      void all_apply(int k, F f) {
+        d[k] = mapping(f, d[k]);
+        if(k < size) {
+          lz[k] = composition(f, lz[k]);
+          if(d[k].fail) { push(k), update(k); }
+        }
+      }
+      void push(int k) {
+        all_apply(2 * k, lz[k]);
+        all_apply(2 * k + 1, lz[k]);
+        lz[k] = id();
+      }
+    };
+
+    constexpr ll INF = 2e9;
+    struct S {
+      ll max, lcm, sz, sum;
+      bool fail;
+      S(): max(0), lcm(1), sz(0), sum(0), fail(false) {}
+      S(ll x, ll sz = 1): max(x), lcm(x), sz(sz), sum(x * sz), fail(false) {}
+    };
+    struct F {
+      ll g, upd;
+      F(): g(0), upd(0) {}
+      F(ll g, ll upd): g(g), upd(upd) {}
+      static F gcd(ll x) noexcept { return F(x, 0); }
+      static F update(ll x) noexcept { return F(0, x); }
+    };
+    S op(S l, S r) {
+      if(!r.sz) { return l; }
+      if(!l.sz) { return r; }
+      S ret;
+      ret.max = std::max(l.max, r.max);
+      ret.sum = l.sum + r.sum;
+      ret.lcm = min(INF, std::lcm(l.lcm, r.lcm));
+      ret.sz = l.sz + r.sz;
+      return ret;
+    }
+    S e() { return S(); }
+    S fx(F f, S x) {
+      if(x.fail) { return x; }
+      if(f.upd) { x = S(f.upd, x.sz); }
+      if(f.g) {
+        if(x.sz * x.max == x.sum) { x = S(gcd(x.max, f.g), x.sz); }
+        else if(x.lcm == INF || f.g % x.lcm) { x.fail = true; }
+      }
+      return x;
+    }
+    F fg(F f, F g) {
+      if(f.upd) { return F::update(f.upd); }
+      else if(g.upd) { return F::update(gcd(f.g, g.upd)); }
+      else { return F::gcd(gcd(f.g, g.g)); }
+    }
+    F id() { return F(); }
+    """
+
+  'CentroidDecomposition':
+    'prefix':'CentroidDecomposition'
+    'body':"""
+    struct CentroidDecomposition {
+     private:
+      const vector<vector<ll>> &g;
+      vector<int> sub;
+      vector<bool> vis;
+      vector<vector<int>> tree;
+      int root;
+      int get_size(int v, int p) {
+        sub[v] = 1;
+        for(auto &nv : g[v]) {
+          if(nv == p || vis[nv]) { continue; }
+          sub[v] += get_size(nv, v);
+        }
+        return sub[v];
+      }
+      int get_centroid(int v, int p, int mid) {
+        for(auto &nv : g[v]) {
+          if(nv == p || vis[nv]) { continue; }
+          if(sub[nv] > mid) { return get_centroid(nv, v, mid); }
+        }
+        return v;
+      }
+      int dfs(int v) {
+        int centroid = get_centroid(v, -1, get_size(v, -1) / 2);
+        vis[centroid] = true;
+        for(auto &nv : g[centroid]) {
+          if(!vis[nv]) {
+            int nxt = dfs(nv);
+            if(centroid != nxt) { tree[centroid].emplace_back(nxt); }
+          }
+        }
+        vis[centroid] = false;
+        return centroid;
+      }
+
+     public:
+      CentroidDecomposition(const vector<vector<ll>> &g): g(g), sub(g.size(), 0), vis(g.size(), false), tree(g.size()) {}
+      int build() { return root = dfs(0); }
+      inline vector<int> operator[](ll i) { return tree[i]; }
+    };
+    """
+
+  'DualSegTree':
+    'prefix':'DualSegTree'
+    'body':"""
+    template<typename S, auto op, auto e> struct DualSegTree {
+      vector<S> seg;
+      int N, size = 1;
+      DualSegTree(int n): DualSegTree(vector<S>(n, e())) {}
+      DualSegTree(const vector<S> &v): N(v.size()) {
+        while(size < N) { size <<= 1; }
+        seg = vector<S>(size * 2, e());
+        for(int i = 0; i < N; i++) { seg[size + i] = v[i]; }
+      }
+      void set(int i, const S &x) {
+        i += size;
+        for(int h = bit_width((unsigned)i); h; h--) {
+          int j = i >> h;
+          if(seg[j] != e()) {
+            seg[j * 2] = op(seg[j * 2], seg[j]);
+            seg[j * 2 + 1] = op(seg[j * 2 + 1], seg[j]);
+            seg[j] = e();
+          }
+        }
+        seg[i] = x;
+      }
+      S get(int i) {
+        S r = e();
+        for(i += size; i; i >>= 1) { r = op(r, seg[i]); }
+        return r;
+      }
+      void apply(int l, int r, const S &x) {
+        for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
+          if(l & 1) { seg[l++] = op(seg[l], x); }
+          if(r & 1) { seg[r] = op(seg[--r], x); }
+        }
+      }
+    };
+    """
+
+  'dualsegtree':
+    'prefix':'dualsegtree'
+    'body':'DualSegTree<S,op,e> seg($1);'
+
+  'ErasablePriorityQueue':
+    'prefix':'ErasablePriorityQueue'
+    'body':"""
+    template<typename T, typename Compare> struct ErasablePriorityQueue {
+      priority_queue<T, vector<T>, Compare> q1, q2;
+      ErasablePriorityQueue() {}
+      ErasablePriorityQueue(initializer_list<T> ini): q1(ini.begin(), ini.end()) {}
+      void push(T x) { q1.emplace(x); }
+      void erase(T x) {
+        if(!q1.empty() && q1.top() == x) {
+          q1.pop();
+          while(!q2.empty() && q1.top() == q2.top()) {
+            q1.pop();
+            q2.pop();
+          }
+        }
+        else { q2.emplace(x); }
+      }
+      T top() const { return q1.top(); }
+      int size() const { return q1.size() - q2.size(); }
+      bool empty() const { return q1.empty(); }
+    };
+    """
+
+  'ErasablePQ':
+    'prefix':'ErasablePQ'
+    'body':'ErasablePriorityQueue<${1:ll}, greater<${1:ll}>> $2'
+
+  'ErasableQP':
+    'prefix':'ErasableQP'
+    'body':'ErasablePriorityQueue<${1:ll}, less<${1:ll}>> $2'
+
+  'DynamicSegTree':
+    'prefix':'DynamicSegTree'
+    'body':"""
+    template<typename S, auto op, auto e, int n> struct DynamicSegTree {
+     private:
+      struct Node;
+      using Node_ptr = unique_ptr<Node>;
+      struct Node {
+        int idx;
+        S val, prod;
+        Node_ptr l, r;
+        Node(int idx, S val): idx(idx), val(val), prod(val), l(nullptr), r(nullptr) {}
+        void update() { prod = op(op(l ? l->prod : e(), val), r ? r->prod : e()); }
+      };
+      Node_ptr root;
+      void set(Node_ptr &t, int a, int b, int p, S x) const {
+        if(!t) {
+          t = make_unique<Node>(p, x);
+          return;
+        }
+        if(t->idx == p) {
+          t->val = x;
+          t->update();
+          return;
+        }
+        int c = (a + b) >> 1;
+        if(p < c) {
+          if(t->idx < p) {
+            swap(t->idx, p);
+            swap(t->val, x);
+          }
+          set(t->l, a, c, p, x);
+        }
+        else {
+          if(t->idx > p) {
+            swap(t->idx, p);
+            swap(t->val, x);
+          }
+          set(t->r, c, b, p, x);
+        }
+        t->update();
+      }
+      S get(const Node_ptr &t, int a, int b, int p) const {
+        if(!t) { return e(); }
+        if(t->idx == p) { return t->val; }
+        int c = (a + b) >> 1;
+        if(p < c) { return get(t->l, a, c, p); }
+        else { return get(t->r, c, b, p); }
+      }
+      S prod(const Node_ptr &t, int a, int b, int l, int r) const {
+        if(!t || b <= l || r <= a) { return e(); }
+        if(l <= a && b <= r) { return t->prod; }
+        int c = (a + b) >> 1;
+        S res = prod(t->l, a, c, l, r);
+        if(l <= t->idx && t->idx < r) { res = op(res, t->val); }
+        return op(res, prod(t->r, c, b, l, r));
+      }
+      void reset(Node_ptr &t, int a, int b, int l, int r) const {
+        if(!t || b <= l || r <= a) { return; }
+        if(l <= a && b <= r) {
+          t->reset();
+          return;
+        }
+        int c = (a + b) >> 1;
+        reset(t->l, a, c, l, r);
+        reset(t->r, c, b, l, r);
+        t->update();
+      }
+      template<typename F> int max_right(const Node_ptr &t, int a, int b, int l, const F &f, S &p) const {
+        if(!t || b <= l) { return n; }
+        if(f(op(p, t->prod))) {
+          p = op(p, t->prod);
+          return n;
+        }
+        int c = (a + b) >> 1;
+        int res = max_right(t->l, a, c, l, f, p);
+        if(res != n) { return res; }
+        if(l <= t->idx) {
+          p = op(p, t->val);
+          if(!f(p)) { return t->idx; }
+        }
+        return max_right(t->r, c, b, l, f, p);
+      }
+      template<typename F> int min_left(const Node_ptr &t, int a, int b, int r, const F &f, S &p) const {
+        if(!t || r <= a) { return 0; }
+        if(f(op(p, t->prod))) {
+          p = op(p, t->prod);
+          return 0;
+        }
+        int c = (a + b) >> 1;
+        int res = min_left(t->r, c, b, r, f, p);
+        if(res) { return res; }
+        if(t->idx < r) {
+          p = op(p, t->val);
+          if(!f(p)) { return t->idx + 1; }
+        }
+        return min_left(t->l, a, c, r, f, p);
+      }
+
+     public:
+      DynamicSegTree(): root(nullptr) {}
+      void set(int i, S x) { set(root, 0, n, i, x); }
+      S get(int i) const { return get(root, 0, n, i); }
+      S prod(int l, int r) const { return prod(root, 0, n, l, r); }
+      S all_prod() const { return root ? root->prod : e(); }
+      void reset(int l, int r) { reset(root, 0, n, l, r); }
+      template<auto f> int max_right(int l) const {
+        return max_right(l, [](S x) { return f(x); });
+      }
+      template<typename F> int max_right(int l, const F &f) const {
+        S p = e();
+        return max_right(root, 0, n, l, f, p);
+      }
+      template<auto f> int min_left(int r) const {
+        return min_left(r, [](S x) { return f(x); });
+      }
+      template<typename F> int min_left(int r, const F &f) const {
+        S p = e();
+        return min_left(root, 0, n, r, f, p);
+      }
+    };
+    """
+
+  'dynamicsegtree':
+    'prefix':'dynamicsegtree'
+    'body':'DynamicSegTree<S,op,e,$1> seg;$2'
+
+  'vb':
+    'prefix':'vb'
+    'body':'vector<bool> '
+
+  'DualBIT':
+    'prefix':'DualBIT'
+    'body':"""
+    template<typename T> struct DualBIT {
+      fenwick_tree<T> f1, f2;
+      DualBIT(int N): f1(N + 1), f2(N + 1) {}
+      void add(int i, T x) { add(i, i + 1, x); }
+      void add(int l, int r, T x) {
+        f1.add(l, x), f1.add(r, -x);
+        f2.add(l, -x * (l - 1)), f2.add(r, x * (r - 1));
+      }
+      T sum(int i) { return f1.sum(0, i) * (i - 1) + f2.sum(0, i); }
+      T sum(int l, int r) { return sum(r) - sum(l); }
+      T operator[](int i) { return sum(i + 1) - sum(i); }
+    };
+    """
+
+  'dualBIT':
+    'prefix':'dualBIT'
+    'body':'DualBIT<ll>'
+
+  'OfflineDynamicConnectivity':
+    'prefix':'OfflineDynamicConnectivity'
+    'body':"""
+    template<typename S, auto op, auto e> struct RollbackUnionfind {
+     private:
+      vector<int> par;
+      vector<S> val;
+      stack<tuple<int, int, S, int>> history;
+      int snap, cnt;
+
+     public:
+      RollbackUnionfind() = default;
+      RollbackUnionfind(int n): RollbackUnionfind(vector<S>(n, e())) {}
+      RollbackUnionfind(const vector<S> &v): par(v.size(), -1), val(v), snap(0), cnt(v.size()) {}
+      int root(int v) const {
+        if(par[v] < 0) { return v; }
+        return root(par[v]);
+      }
+      void unite(int u, int v) {
+        u = root(u), v = root(v);
+        history.emplace(-1, 0, e(), cnt);
+        history.emplace(u, par[u], val[u], cnt);
+        history.emplace(v, par[v], val[v], cnt);
+        if(u == v) { return; }
+        if(par[u] > par[v]) { swap(u, v); }
+        par[u] += par[v];
+        par[v] = u;
+        val[u] = op(val[u], val[v]);
+        cnt--;
+      }
+      void undo() {
+        assert(!history.empty());
+        while(true) {
+          auto [v, p, x, c] = history.top();
+          history.pop();
+          if(v == -1) { break; }
+          par[v] = p;
+          val[v] = x;
+          cnt = c;
+        }
+      }
+      bool same(int u, int v) const { return root(u) == root(v); }
+      int size(int v) const { return -par[root(v)]; }
+      int count() const { return cnt; }
+      S prod(int v) const { return val[root(v)]; }
+      void update(int v, const S &x) {
+        v = root(v);
+        history.emplace(-1, 0, e(), cnt);
+        history.emplace(v, par[v], val[v], cnt);
+        val[v] = op(val[x], x);
+      }
+      int state() const { return history.size(); }
+      void snapshot() { snap = history.size(); }
+      void rollback(int p = -1) {
+        if(p == -1) { p = snap; }
+        while(p < (int)history.size()) { undo(); }
+      }
+    };
+
+    template<typename S, auto op, auto e> struct OfflineDynamicConnectivity {
+     private:
+      int idx;
+      multimap<pair<int, int>, int> open;
+      vector<tuple<int, int, int, int>> closed;
+      vector<tuple<int, int, S>> query_update;
+      map<int, pair<int, int>> query_same;
+      map<int, int> query_prod;
+      vector<int> query_count;
+      vector<S> val;
+
+     public:
+      OfflineDynamicConnectivity() = default;
+      OfflineDynamicConnectivity(int n): OfflineDynamicConnectivity(vector<S>(n, e())) {}
+      OfflineDynamicConnectivity(const vector<S> &v): val(v), idx(0) {}
+      void unite(int u, int v) {
+        auto edge = minmax(u, v);
+        open.emplace(edge, ++idx);
+      }
+      void cut(int u, int v) {
+        auto edge = minmax(u, v);
+        auto it = open.find(edge);
+        assert(it != open.end());
+        closed.emplace_back(edge.first, edge.second, it->second, ++idx);
+        open.erase(it);
+      }
+      void update(int v, const S &x) { query_update.emplace_back(++idx, v, x); }
+      void same(int u, int v) { query_same[++idx] = {u, v}; }
+      void prod(int v) { query_prod[++idx] = v; }
+      void count() { query_count.emplace_back(++idx); }
+      vector<pair<int, S>> build() {
+        idx++;
+        for(auto &[edge, s] : open) { closed.emplace_back(edge.first, edge.second, s, idx); }
+        int size = bit_ceil((unsigned)idx);
+        vector<vector<pair<int, int>>> edges(size << 1);
+        vector<vector<pair<int, S>>> updates(size << 1);
+        for(auto &[u, v, s, t] : closed) {
+          for(s += size, t += size; s < t; s >>= 1, t >>= 1) {
+            if(s & 1) { edges[s++].emplace_back(u, v); }
+            if(t & 1) { edges[--t].emplace_back(u, v); }
+          }
+        }
+        for(auto &[s, v, x] : query_update) {
+          int t = size;
+          for(s += size, t += size; s < t; s >>= 1, t >>= 1) {
+            if(s & 1) { updates[s++].emplace_back(v, x); }
+            if(t & 1) { updates[--t].emplace_back(v, x); }
+          }
+        }
+        RollbackUnionfind<S, op, e> uf(val);
+        vector<pair<int, S>> r;
+        auto dfs = [&](auto &&dfs, int k) -> void {
+          for(auto &[u, v] : edges[k]) { uf.unite(u, v); }
+          for(auto &[v, x] : updates[k]) { uf.update(v, x); }
+          if(k < size) {
+            dfs(dfs, 2 * k);
+            dfs(dfs, 2 * k + 1);
+          }
+          else if(k < size + idx) {
+            if(query_same.contains(k - size)) {
+              auto [u, v] = query_same[k - size];
+              r.emplace_back(uf.same(u, v), e());
+            }
+            if(query_prod.contains(k - size)) {
+              r.emplace_back(false, uf.prod(query_prod[k - size]));
+            }
+            if(ranges::binary_search(query_count, k - size)) {
+              r.emplace_back(uf.count(), e());
+            }
+          }
+          for(int i = 0; i < (int)(edges[k].size() + updates[k].size()); i++) { uf.undo(); }
+        };
+        dfs(dfs, 1);
+        return r;
+      }
+    };
+    """
+
+  'offlinedynamicconnectivity':
+    'prefix':'offlinedynamicconnectivity'
+    'body':'OfflineDynamicConnectivity<S,op,e> u(N);'
+
+  'stringcontains':
+    'prefix':'stringcontains'
+    'body':"""
+    bool contains(const string &s, const string &t) {
+      int n = s.size(), m = t.size();
+      auto z = z_algorithm(t + s);
+      for(int i = m; i <= n; i++) {
+        if(z[i] >= m) { return true; }
+      }
+      return false;
+    }
+    """
+
+  'TravelingSalesmanProblem':
+    'prefix':'TravelingSalesmanProblem'
+    'body':"""
+    vector<vector<ll>> dp(1 << N, vector<ll>(N, 1e18));
+    for(int i = 0; i < N; i++) { dp[1 << i][i] = 0; }
+    for(int i = 0; i < 1 << N; i++) {
+      for(int j = 0; j < N; j++) {
+        if(~i >> j & 1) { continue; }
+        for(int k = 0; k < N; k++) {
+          if(i >> k & 1) { continue; }
+          dp[i | 1 << k][k] = min(dp[i | 1 << k][k], dp[i][j] + d[j][k]);
+        }
+      }
+    }
+    """
+
+  'fast_set':
+    'prefix':'fast_set'
+    'body':"""
+    struct fast_set {
+     private:
+      static constexpr int B = 64;
+      int n, cnt;
+      vector<vector<uint64_t>> d;
+      static int bsf(uint64_t x) { return __builtin_ctzll(x); }
+      static int bsr(uint64_t x) { return 63 - __builtin_clzll(x); }
+
+     public:
+      fast_set(int n): n(n), cnt(0) {
+        do {
+          n = (n + B - 1) / B;
+          d.emplace_back(vector<uint64_t>(n));
+        } while(n > 1);
+      }
+      bool contains(int i) const { return (d[0][i / B] >> (i % B)) & 1; }
+      void insert(int i) {
+        if(contains(i)) { return; }
+        ++cnt;
+        for(auto &v : d) {
+          bool f = v[i / B];
+          v[i / B] |= 1ULL << (i % B);
+          i /= B;
+          if(f) { break; }
+        }
+      }
+      void erase(int i) {
+        if(!contains(i)) { return; }
+        --cnt;
+        for(auto &v : d) {
+          v[i / B] &= ~(1ULL << (i % B));
+          i /= B;
+          if(v[i]) { break; }
+        }
+      }
+      int next(int i) const {
+        for(auto itr = d.cbegin(); itr != d.cend(); ++itr, i = i / B + 1) {
+          if(i / B >= int(itr->size())) { break; }
+          if(auto t = itr->at(i / B) >> (i % B); t) {
+            i += bsf(t);
+            while(itr != d.cbegin()) { i = i * B + bsf((--itr)->at(i)); }
+            return i;
+          }
+        }
+        return n;
+      }
+      int prev(int i) const {
+        for(auto itr = d.cbegin(); itr != d.cend() && i >= 0; ++itr, i = i / B - 1) {
+          if(auto t = itr->at(i / B) << (B - 1 - i % B); t) {
+            i += bsr(t) - (B - 1);
+            while(itr != d.cbegin()) { i = i * B + bsr((--itr)->at(i)); }
+            return i;
+          }
+        }
+        return -1;
+      }
+      int min() const { return next(0); }
+      int max() const { return prev(n - 1); }
+      int size() const { return cnt; }
+      bool empty() const { return cnt == 0; }
+      void clear() {
+        if(!cnt) { return; }
+        cnt = 0;
+        auto rec = [&](auto &&self, int t, int x) -> void {
+          if(t) {
+            for(auto m = d[t][x]; m;) {
+              int i = bsf(m);
+              m -= 1ULL << i;
+              self(self, t - 1, x * B + i);
+            }
+          }
+          d[t][x] = 0;
+        };
+        rec(rec, d.size() - 1, 0);
+      }
+    };
+    """
+
+  'ProjectSelectionProblem':
+    'prefix':'ProjectSelectionProblem'
+    'body':"""
+    struct ProjectSelectionProblem {
+      int N, S, G;
+      ll offset;
+      vector<tuple<int, int, ll>> e;
+      mf_graph<ll> g;
+      ProjectSelectionProblem(int n): N(n + 2), S(n), G(n + 1), offset(0) {}
+      void cost0(int i, ll c) { e.emplace_back(i, G, c); }
+      void cost1(int i, ll c) { e.emplace_back(S, i, c); }
+      void get0(int i, ll c) {
+        offset += c;
+        e.emplace_back(S, i, c);
+      }
+      void get1(int i, ll c) {
+        offset += c;
+        e.emplace_back(i, G, c);
+      }
+      void cost01(int i, int j, ll c) { e.emplace_back(i, j, c); }
+      void cost10(int i, int j, ll c) { e.emplace_back(j, i, c); }
+      void get00(int i, int j, ll c) {
+        offset += c;
+        e.emplace_back(S, N, c);
+        e.emplace_back(N, i, 1e18);
+        e.emplace_back(N, j, 1e18);
+        N++;
+      }
+      void get11(int i, int j, ll c) {
+        offset += c;
+        e.emplace_back(N, G, c);
+        e.emplace_back(i, N, 1e18);
+        e.emplace_back(j, N, 1e18);
+        N++;
+      }
+      template<typename T> void getall0(vector<T> &v, ll c) {
+        offset += c;
+        e.emplace_back(S, N, c);
+        for(auto &i : v) { e.emplace_back(N, i, 1e18); }
+        N++;
+      }
+      template<typename T> void getall1(vector<T> &v, ll c) {
+        offset += c;
+        e.emplace_back(N, G, c);
+        for(auto &i : v) { e.emplace_back(i, N, 1e18); }
+        N++;
+      }
+      ll build() {
+        g = mf_graph<ll>(N);
+        for(auto &[s, t, c] : e) { g.add_edge(s, t, c); }
+        return g.flow(S, G) - offset;
+      }
+      vector<bool> restore() {
+        auto r = g.min_cut(S);
+        for(int i = 0; i < N; i++) { r[i] = !r[i]; }
+        return r;
+      }
+    };
+    """
+
+  'ManhattanMST':
+    'prefix':'ManhattanMST'
+    'body':"""
+    template<typename T> vector<tuple<T, int, int>> ManhattanMST(vector<T> &xs, vector<T> &ys) {
+      const int N = xs.size();
+      vector<int> idx(N);
+      iota(idx.begin(), idx.end(), 0);
+      vector<tuple<T, int, int>> tmp, ret;
+      for(int s = 0; s < 2; s++) {
+        for(int t = 0; t < 2; t++) {
+          ranges::sort(idx, [&](int i, int j) { return xs[i] + ys[i] < xs[j] + ys[j]; });
+          map<T, int> sweep;
+          for(auto &i : idx) {
+            for(auto it = sweep.lower_bound(-ys[i]); it != sweep.end(); it = sweep.erase(it)) {
+              int j = it->second;
+              if(xs[i] - xs[j] < ys[i] - ys[j]) { break; }
+              tmp.emplace_back(abs(xs[i] - xs[j]) + abs(ys[i] - ys[j]), i, j);
+            }
+            sweep[-ys[i]] = i;
+          }
+          swap(xs, ys);
+        }
+        for(auto &x : xs) { x = -x; }
+      }
+      ranges::sort(tmp);
+      dsu u(N);
+      for(auto &[w, a, b] : tmp) {
+        if(u.same(a, b)) { continue; }
+        u.merge(a, b);
+        ret.emplace_back(w, a, b);
+      }
+      return ret;
+    }
+    """
+
+  'DequeAggregation':
+    'prefix':'DequeAggregation'
+    'body':"""
+    template<typename T, auto op, auto e> struct DequeAggregation {
+      static_assert(is_convertible_v<decltype(op), function<T(T, T)>>);
+      static_assert(is_convertible_v<decltype(e), function<T()>>);
+
+     private:
+      struct Itr {
+        vector<pair<T, T>>::const_reverse_iterator it_l;
+        vector<pair<T, T>>::const_reverse_iterator it_l_end;
+        vector<pair<T, T>>::const_iterator it_r;
+        vector<pair<T, T>>::const_iterator it_r_begin;
+        Itr &operator++() {
+          it_l == it_l_end ? it_r++ : it_l++;
+          return *this;
+        }
+        Itr operator++(int) {
+          Itr ret = *this;
+          ++(*this);
+          return ret;
+        }
+        Itr &operator--() {
+          it_r == it_r_begin ? it_l-- : it_r--;
+          return *this;
+        }
+        Itr operator--(int) {
+          Itr ret = *this;
+          --(*this);
+          return ret;
+        }
+        Itr &operator+=(int diff) {
+          if(diff < 0) { return *this -= -diff; }
+          if(int d = it_l_end - it_l; d < diff) {
+            it_l = it_l_end;
+            it_r += diff - d;
+          }
+          else { it_l += diff; }
+          return *this;
+        }
+        friend Itr operator+(Itr it, int diff) {
+          it += diff;
+          return it;
+        }
+        friend Itr operator+(int diff, Itr it) {
+          it += diff;
+          return it;
+        }
+        Itr &operator-=(int diff) {
+          if(diff < 0) { return *this += -diff; }
+          if(int d = it_r - it_r_begin; d < diff) {
+            it_r = it_r_begin;
+            it_l -= diff - d;
+          }
+          else { it_r -= diff; }
+          return *this;
+        }
+        friend Itr operator-(Itr it, int diff) {
+          it -= diff;
+          return it;
+        }
+        int operator-(const Itr &r) const {
+          int d1 = it_l == it_l_end ? it_r - it_r_begin : it_l - it_l_end;
+          int d2 = r.it_l == r.it_l_end ? r.it_r - r.it_r_begin : r.it_l - r.it_l_end;
+          return d1 - d2;
+        }
+        const T &operator[](int i) const { return *((*this) + i); }
+        const T &operator*() const { return it_l == it_l_end ? it_r->first : it_l->first; }
+        bool operator!=(const Itr &r) const { return it_l != r.it_l || it_r != r.it_r; }
+        bool operator==(const Itr &r) const { return !(*this != r); }
+        bool operator<(const Itr &r) const { return (*this) - r < 0; }
+        bool operator<=(const Itr &r) const { return (*this) - r <= 0; }
+        bool operator>(const Itr &r) const { return (*this) - r > 0; }
+        bool operator>=(const Itr &r) const { return (*this) - r >= 0; }
+      };
+
+      vector<pair<T, T>> st_l, st_r;
+      T prod(const vector<pair<T, T>> &st) const { return st.empty() ? e() : st.back().second; }
+
+     public:
+      DequeAggregation() = default;
+      template<typename InputItr, enable_if_t<is_constructible_v<T, typename InputItr::T>, nullptr_t> = nullptr>
+      DequeAggregation(InputItr first, InputItr last) {
+        for(; first != last; first++) { push_back(*first); }
+      }
+      template<typename Container, enable_if_t<is_constructible_v<T, typename Container::T>, nullptr_t> = nullptr>
+      DequeAggregation(const Container &c): DequeAggregation(begin(c), end(c)) {}
+      T prod() const { return op(prod(st_l), prod(st_r)); }
+      void push_back(const T &val) { st_r.emplace_back(val, op(prod(st_r), val)); }
+      void push_front(const T &val) { st_l.emplace_back(val, op(val, prod(st_l))); }
+      void pop_back() {
+        if(st_r.size()) { return st_r.pop_back(); }
+        const int sz = st_l.size();
+        const int l = sz >> 1, r = sz - l;
+        for(int i = r - 1; i; i--) { push_back(move(st_l[i].first)); }
+        st_l.erase(st_l.begin(), st_l.begin() + r);
+        if(!l) { return; }
+        st_l[0].second = st_l[0].first;
+        for(int i = 1; i < l; i++) { st_l[i].second = op(st_l[i].first, st_l[i - 1].second); }
+      }
+      void pop_front() {
+        if(st_l.size()) { return st_l.pop_back(); }
+        const int sz = st_r.size();
+        const int r = sz >> 1, l = sz - r;
+        for(int i = l - 1; i; i--) { push_front(move(st_r[i].first)); }
+        st_r.erase(st_r.begin(), st_r.begin() + l);
+        if(!r) { return; }
+        st_r[0].second = st_r[0].first;
+        for(int i = 1; i < r; i++) { st_r[i].second = op(st_r[i - 1].second, st_r[i].first); }
+      }
+      const T &front() const { return st_l.size() ? st_l.back().first : st_r.front().first; }
+      const T &back() const { return st_r.size() ? st_r.back().first : st_l.front().first; }
+      const T &operator[](int i) const {
+        const int k = i - st_l.size();
+        return k < 0 ? st_l[~k].first : st_r[k].first;
+      }
+      int size() const { return st_l.size() + st_r.size(); }
+      void clear() {
+        st_l.clear();
+        st_r.clear();
+      }
+      void shrink() {
+        st_l.shrink_to_fit();
+        st_r.shrink_to_fit();
+      }
+      Itr begin() const { return Itr{st_l.rbegin(), st_l.rend(), st_r.begin(), st_r.begin()}; }
+      Itr end() const { return Itr{st_l.rend(), st_l.rend(), st_r.begin(), st_r.end()}; }
+      Itr cbegin() const { return begin(); }
+      Itr cend() const { return end(); }
+    };
+    """
+
+  'SubstringSet':
+    'prefix':'SubstringSet'
+    'body':"""
+    template<typename T, typename SequenceType> struct SuffixAutomatonBase {
+      struct Node {
+        map<T, int> nxt;
+        int link, len;
+        bool cloned;
+        int index;
+      };
+
+      vector<Node> nodes;
+      int last;
+
+      SuffixAutomatonBase() {
+        nodes.push_back({{}, -1, 0, false, -1});
+        last = 0;
+      }
+      SuffixAutomatonBase(const SequenceType &s): SuffixAutomatonBase() {
+        for(const T &c : s) { append(c); }
+      }
+
+      void append(const T &c) {
+        const int new_node = nodes.size();
+        const int new_node_index = nodes[last].index + 1;
+        nodes.push_back({{}, -1, nodes[last].len + 1, false, new_node_index});
+        int p = last;
+        for(; p != -1 && !nodes[p].nxt.count(c); p = nodes[p].link) { nodes[p].nxt[c] = new_node; }
+        const int q = p == -1 ? 0 : nodes[p].nxt[c];
+        if(p == -1 || nodes[p].len + 1 == nodes[q].len) { nodes[new_node].link = q; }
+        else {
+          const int clone_node = nodes.size();
+          nodes.push_back({nodes[q].nxt, nodes[q].link, nodes[p].len + 1, true, new_node_index});
+          for(; p != -1 && nodes[p].nxt[c] == q; p = nodes[p].link) { nodes[p].nxt[c] = clone_node; }
+          nodes[new_node].link = nodes[q].link = clone_node;
+        }
+        last = new_node;
+      }
+      SuffixAutomatonBase &operator+=(const T &c) {
+        append(c);
+        return *this;
+      }
+
+      int transition(const SequenceType &t, int invalid_state = -1) const {
+        int cur = 0;
+        for(const auto &c : t) {
+          auto it = nodes[cur].nxt.find(c);
+          if(it == nodes[cur].nxt.end()) { return invalid_state; }
+          cur = it->second;
+        }
+        return cur;
+      }
+
+      bool accept(const SequenceType &t) const { return transition(t) != -1; }
+
+      struct SubstringCounter {
+       public:
+        SubstringCounter(const SuffixAutomatonBase *sa): sa(sa), n(sa->nodes.size()), dp(n, 0) {
+          const vector<Node> &nodes = sa->nodes;
+          for(const int u : sa->topological_order(true)) {
+            dp[u] += !nodes[u].cloned;
+            const int p = nodes[u].link;
+            if(p >= 0) { dp[p] += dp[u]; }
+          }
+        }
+        long long count(const SequenceType &t) const {
+          const int state = sa->transition(t);
+          return state == -1 ? 0 : dp[state];
+        }
+
+       private:
+        const SuffixAutomatonBase *sa;
+        int n;
+        vector<long long> dp;
+      };
+
+      SubstringCounter substring_counter() const & { return SubstringCounter{this}; }
+      SubstringCounter substring_counter() const && = delete;
+
+      struct SuffixLinkTree {
+       public:
+        SuffixLinkTree(const SuffixAutomatonBase *sa): sa(sa), g(sa->nodes.size()) {
+          const int n = g.size();
+          for(int i = 1; i < n; i++) { g[sa->nodes[i].link].push_back(i); }
+        }
+        int size() const { return g.size(); }
+        const vector<int> &operator[](int i) const { return g[i]; }
+
+       private:
+        const SuffixAutomatonBase *sa;
+        vector<vector<int>> g;
+      };
+
+      SuffixLinkTree suffix_link_tree() const & { return SuffixLinkTree(this); }
+      SuffixLinkTree suffix_link_tree() const && = delete;
+
+      struct OccurrenceEnumerator {
+       public:
+        OccurrenceEnumerator(const SuffixAutomatonBase *sa): sa(sa), t(sa->suffix_link_tree()) {}
+
+        // returns vector of i s.t. S[i:i+|t|] = t
+        vector<int> enumerate_all_occurrence(const SequenceType &pattern) const {
+          const int state = sa->transition(pattern);
+          if(state == -1) { return {}; }
+          const vector<Node> &nodes = sa->nodes;
+          const int l = pattern.size();
+          vector<int> res;
+          auto dfs = [&](auto self, int u) -> void {
+            if(!nodes[u].cloned) { res.push_back(nodes[u].len - l); }
+            for(const int v : t[u]) { self(self, v); }
+          };
+          dfs(dfs, state);
+          return res;
+        }
+
+       private:
+        const SuffixAutomatonBase *sa;
+        SuffixLinkTree t;
+      };
+
+      OccurrenceEnumerator occurrence_enumerator() const & { return OccurrenceEnumerator(this); }
+      OccurrenceEnumerator occurrence_enumerator() const && = delete;
+
+      struct FirstOccurenceSearcher {
+       public:
+        FirstOccurenceSearcher(const SuffixAutomatonBase *sa): sa(sa) {
+          const vector<Node> &nodes = sa->nodes;
+          dp.resize(nodes.size(), numeric_limits<int>::max());
+          for(const int u : sa->topological_order(true)) {
+            if(!nodes[u].cloned) { dp[u] = nodes[u].len; }
+            const int p = nodes[u].link;
+            if(p >= 0 && nodes[p].cloned) { dp[p] = min(dp[p], dp[u]); }
+          }
+        }
+
+        // returns min { i | S[i:i+|t|] = t }. if such i does !exist, returns -1.
+        int first_occurrence(const SequenceType &t) const {
+          const int state = sa->transition(t);
+          if(state == -1) { return -1; }
+          return dp[state] - t.size();
+        }
+
+       private:
+        const SuffixAutomatonBase *sa;
+        vector<int> dp;
+      };
+
+      FirstOccurenceSearcher first_occurence_searcher() const & { return FirstOccurenceSearcher(this); }
+      FirstOccurenceSearcher first_occurence_searcher() const && = delete;
+
+      // returns { start_s, start_t, len } s.t. lcs = s[start_s: start_s+len] t[start_t: start_t+len]
+      tuple<int, int, int> longest_common_substring(const SequenceType &t) const {
+        if(t.size() == 0) { return {0, 0, 0}; }
+        const Node *v = &nodes[0];
+        int l = 0, max_len = 0, s_end_pos = 0, t_end_pos = 0;
+        for(int i = 0; i < (int)t.size(); i++) {
+          while(v->link != -1 && !v->nxt.count(t[i])) {
+            v = &nodes[v->link];
+            l = v->len;
+          }
+          auto it = v->nxt.find(t[i]);
+          if(it != v->nxt.end()) {
+            v = &nodes[it->second];
+            l++;
+          }
+          if(l > max_len) {
+            max_len = l;
+            t_end_pos = i;
+            s_end_pos = v->index;
+          }
+        }
+        if(max_len == 0) { return {0, 0, 0}; }
+        return {s_end_pos - max_len + 1, t_end_pos - max_len + 1, max_len};
+      }
+
+      vector<int> topological_order(bool reversed = false) const {
+        const int n = nodes.size();
+        vector<int> in(n, 0);
+        for(const auto &node : nodes) {
+          for(const auto &p : node.nxt) { in[p.second]++; }
+        }
+        deque<int> dq;
+        for(int i = 0; i < n; i++) {
+          if(!in[i]) { dq.push_back(i); }
+        }
+        vector<int> res;
+        while(dq.size()) {
+          int u = dq.front();
+          dq.pop_front();
+          res.push_back(u);
+          for(const auto &p : nodes[u].nxt) {
+            if(!--in[p.second]) { dq.push_back(p.second); }
+          }
+        }
+        if(reversed) { ranges::reverse(res); }
+        assert((int)res.size() == n);
+        return res;
+      }
+    };
+
+    template<typename T> struct SuffixAutomaton : public SuffixAutomatonBase<T, vector<T>> {
+      using SuffixAutomatonBase<T, vector<T>>::SuffixAutomatonBase;
+      using value_type = T;
+      using sequence_type = vector<T>;
+    };
+
+    template<typename T> SuffixAutomaton(vector<T>) -> SuffixAutomaton<T>;
+
+    template<> struct SuffixAutomaton<char> : public SuffixAutomatonBase<char, string> {
+      using SuffixAutomatonBase<char, string>::SuffixAutomatonBase;
+      using value_type = char;
+      using sequence_type = string;
+    };
+
+    SuffixAutomaton(string) -> SuffixAutomaton<char>;
+
+    template<typename T> struct SubstringSet {
+     public:
+      using value_type = typename SuffixAutomaton<T>::sequence_type;
+      using size_type = long long;
+      using difference_type = size_type;
+
+      // create empty set
+      SubstringSet(): SubstringSet(value_type{}) {}
+      // create set of all substrings in `s`
+      SubstringSet(const value_type &s) { build(s); }
+      // build set of all substrings in `s`
+      void build(const value_type &s) {
+        sa = SuffixAutomaton(s);
+        dp.resize(sa.nodes.size(), size_type(1));
+        for(const int u : sa.topological_order(true)) {
+          for(const auto &p : sa.nodes[u].nxt) { dp[u] += dp[p.second]; }
+        }
+      }
+      size_type size() const { return dp[0]; }
+      bool contains(const value_type &t) const { return sa.accept(t); }
+      // the k'th lexicographically smallest substring, O(|return value|).
+      value_type operator[](size_type k) const {
+        assert(0 <= k && k < dp[0]);
+        int cur = 0;
+        value_type res;
+        while(k--) {
+          for(const auto &[e, v] : sa.nodes[cur].nxt) {
+            if(k < dp[v]) {
+              res.push_back(e);
+              cur = v;
+              break;
+            }
+            else { k -= dp[v]; }
+          }
+        }
+        return res;
+      }
+      // the k'th lexicographically smallest substring, O(|return value|).
+      value_type kth_element(size_type k) const { return (*this)[k]; }
+      // number of { s | s < t, s is in this set }, O(|min(t, max_substr_len)|).
+      size_type count_lt(const value_type &t) const {
+        size_type res = 0;
+        int cur = 0;
+        for(const T &c : t) {
+          res++;
+          auto it_r = sa.nodes[cur].nxt.lower_bound(c);
+          for(auto it_l = sa.nodes[cur].nxt.begin(); it_l != it_r; it_l++) { res += dp[it_l->second]; }
+          if(it_r == sa.nodes[cur].nxt.end() || it_r->first != c) { break; }
+          cur = it_r->second;
+        }
+        return res;
+      }
+      // number of { s | s <= t, s is in this set }, O(min(|t|, max_substr_len)).
+      size_type count_leq(const value_type &t) const { return count_lt(t) + contains(t); }
+      // number of { s | s > t, s is in this set }, O(min(|t|, max_substr_len)).
+      size_type count_gt(const value_type &t) const { return size() - count_leq(t); }
+      // number of { s | s >= t, s is in this set }, O(min(|t|, max_substr_len)).
+      size_type count_geq(const value_type &t) const { return size() - count_lt(t); }
+      // number of { s | l <= s <= r, s is in this set }, O(min(|t|, max_substr_len)).
+      size_type count_range(const value_type &l, const value_type &r) const { return l >= r ? 0 : count_lt(r) - count_lt(l); }
+
+      // min { s | s >= t, s is in this set }, O(|return value| + min(|t|, max_substr_len))
+      value_type min_geq(const value_type &t) const { return (*this)[count_lt(t)]; }
+      // min { s | s > t, s is in this set }, O(|return value| + min(|t|, max_substr_len))
+      value_type min_gt(const value_type &t) const { return (*this)[count_leq(t)]; }
+      // max { s | s < t, s is in this set }, O(|return value| + min(|t|, max_substr_len))
+      value_type max_lt(const value_type &t) const { return (*this)[count_lt(t) - 1]; }
+      // max { s | s <= t, s is in this set }, O(|return value| + min(|t|, max_substr_len))
+      value_type max_leq(const value_type &t) const { return (*this)[count_leq(t) - 1]; }
+
+      // iterator
+
+      // operator*: O(|return value|), other operations: O(1).
+      struct SubstringSetIterator {
+       public:
+        SubstringSetIterator(const SubstringSet *st, size_type k): st(st), k(k) {}
+        value_type operator*() const { return st->kth_substring(k); }
+        auto &operator=(const SubstringSetIterator &other) {
+          st = other.st;
+          k = other.k;
+          return *this;
+        }
+        auto &operator++() {
+          k++;
+          return *this;
+        }
+        auto &operator--() {
+          k--;
+          return *this;
+        }
+        auto &operator+=(difference_type d) {
+          k += d;
+          return *this;
+        }
+        auto &operator-=(difference_type d) {
+          k -= d;
+          return *this;
+        }
+        auto operator+(difference_type d) { return SubstringSetIterator{st, k + d}; }
+        auto operator-(difference_type d) { return SubstringSetIterator{st, k - d}; }
+        difference_type operator-(const SubstringSetIterator &other) { return k - other.k; }
+        bool operator==(const SubstringSetIterator &other) const { return k == other.k; }
+        bool operator!=(const SubstringSetIterator &other) const { return k != other.k; }
+        bool operator<(const SubstringSetIterator &other) const { return k < other.k; }
+        bool operator<=(const SubstringSetIterator &other) const { return k <= other.k; }
+        bool operator>(const SubstringSetIterator &other) const { return k > other.k; }
+        bool operator>=(const SubstringSetIterator &other) const { return k >= other.k; }
+
+       protected:
+        const SubstringSet *st;
+        size_type k;
+      };
+
+      // operator*: O(|return value|), other operations: O(1).
+      struct ReversedSubstringSetIterator : public SubstringSetIterator {
+        using SubstringSetIterator::SubstringSetIterator;
+        value_type operator*() const { return this->st->kth_element(this->st->size() - this->k - 1); }
+      };
+      using iterator = SubstringSetIterator;
+      using reverse_iterator = ReversedSubstringSetIterator;
+      using const_iterator = iterator;
+      using const_reverse_iterator = reverse_iterator;
+      auto begin() const { return iterator{this, 0LL}; }
+      auto end() const { return iterator{this, size()}; }
+      auto cbegin() const { return begin(); }
+      auto cend() const { return end(); }
+      auto rbegin() const { return reverse_iterator{this, 0LL}; }
+      auto rend() const { return reverse_iterator{this, size()}; }
+      auto crbegin() const { return rbegin(); }
+      auto crend() const { return rend(); }
+      // O(|min(t, max_substr_len)|).
+      auto lower_bound(const value_type &t) const { return iterator{this, count_lt(t)}; }
+      // O(|min(t, max_substr_len)|).
+      auto upper_bound(const value_type &t) const { return iterator{this, count_leq(t)}; }
+      // O(|min(t, max_substr_len)|).
+      auto find(const value_type &t) const {
+        auto it = lower_bound(t);
+        if(it == end() || t != *it) { return end(); }
+        return it;
+      }
+
+     private:
+      SuffixAutomaton<T> sa;
+      std::vector<size_type> dp;
+    };
+
+    template<typename T> SubstringSet(std::vector<T>) -> SubstringSet<T>;
+
+    SubstringSet(std::string) -> SubstringSet<char>;
+    """
+
+  'MinMaxPlusConvolution':
+    'prefix':'MinMaxPlusConvolution'
+    'body':"""
+    namespace SMAWKImpl {
+    constexpr int M = 1 << 20, N = 1 << 20;
+    int is0[2 * M], js0[max(2 * M, N)];
+    template<typename F> struct SMAWK {
+      const int m, n;
+      const F f;
+      vector<int> v;
+      SMAWK(int m, int n, F f): m(m), n(n), f(f) {
+        for(int i = 0; i < m; i++) { is0[i] = i; }
+        for(int j = 0; j < n; j++) { js0[j] = j; }
+        v.assign(m, -1);
+        rec(is0, m, js0, n);
+      }
+      void rec(int *is, int il, int *js, int jl) {
+        if(!il || !jl) { return; }
+        if(il < jl) {
+          int len = 0;
+          for(int y = 0; y < jl; y++) {
+            const int j = js[y];
+            for(; len && f(is[len - 1], js[len - 1], j); len--) {}
+            if(len != il) { js[len++] = j; }
+          }
+          jl = len;
+        }
+        int *iis = is + il, *jjs = js + jl, iil = 0;
+        for(int x = 1; x < il; x += 2) { iis[iil++] = is[x]; }
+        for(int y = 0; y < jl; y++) { jjs[y] = js[y]; }
+        rec(iis, iil, jjs, jl);
+        for(int x = 0, y = 0; x < il; x += 2) {
+          const int i = is[x];
+          const int j1 = (x + 1 < il) ? v[is[x + 1]] : js[jl - 1];
+          for(;;) {
+            const int j = js[y];
+            if(!~v[i] || f(i, v[i], j)) { v[i] = j; }
+            if(j == j1) { break; }
+            y++;
+          }
+        }
+      }
+    };
+    }  // namespace SMAWKImpl
+
+    template<typename F> vector<int> SMAWK(int m, int n, F f) { return SMAWKImpl::SMAWK<F>(m, n, f).v; }
+
+    // C[k] = min[i+j=k] (A[i] + B[j]), A : 下に凸
+    template<typename T> vector<T> MinPlusConvolution(const vector<T> &A, const vector<T> &B) {
+      const int a = A.size(), b = B.size();
+      if(!a || !b) { return {}; }
+      const auto v = SMAWK(a + b - 1, b, [&](int i, int j, int k) -> bool {
+        if(i - j >= a) { return true; }
+        if(i - k < 0) { return false; }
+        return A[i - j] + B[j] > A[i - k] + B[k];
+      });
+      vector<T> C(a + b - 1);
+      for(int i = 0; i < a + b - 1; i++) { C[i] = A[i - v[i]] + B[v[i]]; }
+      return C;
+    }
+
+    // C[k] = max[i+j=k] (A[i] + B[j]), A : 上に凸
+    template<typename T> vector<T> MaxPlusConvolution(const vector<T> &A, const vector<T> &B) {
+      const int a = A.size(), b = B.size();
+      if(!a || !b) { return {}; }
+      const auto v = SMAWK(a + b - 1, b, [&](int i, int j, int k) -> bool {
+        if(i - j >= a) { return true; }
+        if(i - k < 0) { return false; }
+        return A[i - j] + B[j] < A[i - k] + B[k];
+      });
+      vector<T> C(a + b - 1);
+      for(int i = 0; i < a + b - 1; i++) { C[i] = A[i - v[i]] + B[v[i]]; }
+      return C;
+    }
+    """
+
+  'DisjointSparseTable':
+    'prefix':'DisjointSparseTable'
+    'body':"""
+    template<typename S, auto op, auto e> struct DisjointSparseTable {
+      vector<vector<S>> t;
+      DisjointSparseTable() {}
+      DisjointSparseTable(const vector<S> &v) {
+        const int N = v.size() + 2;
+        const int H = 32 - __builtin_clz(N - 1);
+        t.assign(H, vector<S>(N, e()));
+        for(int k = 1; k < H; k++) {
+          auto &s = t[k];
+          const int W = 1 << k;
+          for(int i = W; i < N; i += W * 2) {
+            for(int j = i - 1; j > i - W; j--) { s[j - 1] = op(v[j - 1], s[j]); }
+            const int M = min(i + W - 1, N - 1);
+            for(int j = i; j < M; j++) { s[j + 1] = op(s[j], v[j - 1]); }
+          }
+        }
+      }
+      S get(int i) const { return prod(i, i + 1); }
+      S prod(int l, int r) const {
+        assert(0 <= l && l <= r && r <= ssize(t[0]) - 2);
+        r++;
+        const auto &s = t[31 - __builtin_clz(l ^ r)];
+        return op(s[l], s[r]);
+      }
+    };
+    """
+
+  'disjointsparsetable':
+    'prefix':'disjointsparsetable'
+    'body':'DisjointSparseTable<S,op,e> S($1)'
+
+  'RangeCountDistinct':
+    'prefix':'RangeCountDistinct'
+    'body':"""
+    template<typename T> struct RangeCountDistinct {
+     private:
+      int N, Q;
+      vector<T> v;
+      vector<pair<int, int>> qs;
+
+     public:
+      RangeCountDistinct(): RangeCountDistinct(vector<T>{}) {}
+      explicit RangeCountDistinct(const vector<T> &v): N(v.size()), Q(0), v(v) {}
+      void reserve(int Q) { qs.reserve(Q); }
+      int query(int l, int r) {
+        assert(0 <= l && l <= r && r <= N);
+        qs.emplace_back(l, r);
+        return Q++;
+      }
+      vector<int> solve() const {
+        unordered_map<T, int> last;
+        vector<int> prv(N), idx(N + 2), iq(Q), ans(Q);
+        for(int i = 0; i < N; i++) { prv[i] = exchange(last[v[i]], i + 1); }
+        for(auto &[l, r] : qs) { idx[r]++; }
+        for(int i = 1; i <= N; i++) { idx[i] += idx[i - 1]; }
+        idx[N + 1] = Q;
+        for(int i = 0; i < Q; i++) { iq[--idx[qs[i].second]] = i; }
+        fenwick_tree<int> f(N + 1);
+        for(int r = 0; r <= N; r++) {
+          for(int i = idx[r]; i < idx[r + 1]; i++) {
+            const int id = iq[i], l = qs[id].first;
+            ans[id] = f.sum(0, l + 1) - l;
+          }
+          if(r < N) { f.add(prv[r], 1); }
+        }
+        return ans;
+      }
+    };
+    """
+
+  'rangecountdistinct':
+    'prefix':'rangecountdistinct'
+    'body':'RangeCountDistinct S($1);$2'
+
+  'CompressedRectangleSum':
+    'prefix':'CompressedRectangleSum'
+    'body':"""
+    template<typename S, typename T> struct CompressedRectangleSum {
+      struct P {
+        S x, y;
+        T w;
+      };
+      struct Q1 {
+        S lx, ly, rx, ry;
+      };
+      vector<P> ps;
+      vector<Q1> Qs;
+      CompressedRectangleSum() = default;
+      CompressedRectangleSum(int N, int Q) {
+        ps.reserve(N);
+        Qs.reserve(Q);
+      }
+      void add(S x, S y, T w) { ps.emplace_back(P{x, y, w}); }
+      void sum(S lx, S rx, S ly, S ry) { Qs.emplace_back(Q1{lx, ly, rx, ry}); }
+      vector<T> solve() {
+        int N = ps.size(), Q = Qs.size();
+        ranges::sort(ps, [](const P &a, const P &b) { return a.y < b.y; });
+        vector<S> ys;
+        ys.reserve(N);
+        for(P &p : ps) {
+          if(ys.empty() || ys.back() != p.y) { ys.emplace_back(p.y); }
+          p.y = ys.size() - 1;
+        }
+        ys.shrink_to_fit();
+        struct Q2 {
+          S x, ly, ry;
+          bool type;
+          int idx;
+        };
+        vector<Q2> qs;
+        qs.reserve(Q + Q);
+        for(int i = 0; i < Q; i++) {
+          auto &q = Qs[i];
+          int d = ranges::lower_bound(ys, q.ly) - ys.begin(), u = ranges::lower_bound(ys, q.ry) - ys.begin();
+          qs.emplace_back(Q2{q.lx, d, u, false, i});
+          qs.emplace_back(Q2{q.rx, d, u, true, i});
+        }
+        ranges::sort(ps, [](const P &a, const P &b) { return a.x < b.x; });
+        ranges::sort(qs, [](const Q2 &a, const Q2 &b) { return a.x < b.x; });
+        vector<T> ans(Q);
+        int j = 0;
+        fenwick_tree<T> f(ys.size());
+        for(auto &q : qs) {
+          while(j < N && ps[j].x < q.x) {
+            f.add(ps[j].y, ps[j].w);
+            j++;
+          }
+          if(q.type) { ans[q.idx] += f.sum(q.ly, q.ry); }
+          else { ans[q.idx] -= f.sum(q.ly, q.ry); }
+        }
+        return ans;
+      }
+    };
+    """
+
+  'compressedrectanglesum':
+    'prefix':'compressedrectanglesum'
+    'body':'CompressedRectangleSum<ll,ll> S'
+
+  'CompressedInverseBIT2D':
+    'prefix':'CompressedInverseBIT2D'
+    'body':"""
+    template<typename S, typename T> struct CompressedInverseBIT2D {
+     private:
+      vector<array<S, 4>> rs;
+      vector<T> ws;
+      vector<array<S, 2>> ps;
+      vector<int> ts;
+      static int p2(int x) { return 1 << (31 - __builtin_clz(x)); }
+
+     public:
+      CompressedInverseBIT2D() = default;
+      CompressedInverseBIT2D(int N, int Q) {
+        rs.reserve(N);
+        ws.reserve(N);
+        ps.reserve(Q);
+        ts.reserve(Q);
+      }
+      void add(S lx, S rx, S ly, S ry, T w) {
+        assert(lx <= rx && ly <= ry);
+        if(lx == rx || ly == ry) return;
+        rs.push_back({lx, rx, ly, ry});
+        ws.push_back(w);
+      }
+      void get(S x, S y) {
+        ps.push_back({x, y});
+        ts.push_back(rs.size());
+      }
+      vector<T> solve() const {
+        vector<T> ans(ps.size());
+        const int N = rs.size();
+        using Key = pair<S, int>;
+        constexpr auto comp = [](const Key &k1, const Key &k2) { return k1.first < k2.first; };
+        vector<Key> esx(2 * N), esy(2 * N);
+        for(int i = 0; i < N; i++) {
+          esx[2 * i] = Key{rs[i][0], 2 * i};
+          esx[2 * i + 1] = Key{rs[i][1], 2 * i + 1};
+          esy[2 * i] = Key{rs[i][2], 2 * i};
+          esy[2 * i + 1] = Key{rs[i][3], 2 * i + 1};
+        }
+        vector<vector<Key>> psx(N), psy(N);
+        for(int pid = 0; pid < (int)ps.size(); pid++)
+          if(ts[pid]) {
+            const int r = p2(ts[pid]);
+            psx[r - 1].emplace_back(ps[pid][0], pid);
+            psy[r - 1].emplace_back(ps[pid][1], pid);
+          }
+        vector<int> pscy(ps.size()), escy(2 * N);
+        for(int r = 1; r <= N; r++) {
+          const int w = -r & r, l = r - w;
+          for(int t = 1; t < w; t <<= 1) {
+            auto irx = esx.begin() + 2 * r, imx = irx - 2 * t, ilx = imx - 2 * t;
+            inplace_merge(ilx, imx, irx, comp);
+            auto iry = esy.begin() + 2 * r, imy = iry - 2 * t, ily = imy - 2 * t;
+            inplace_merge(ily, imy, iry, comp);
+          }
+          const int n = psx[r - 1].size();
+          if(!n) { continue; }
+          if(r == (-r & r)) {
+            ranges::sort(psx[r - 1], comp);
+            ranges::sort(psy[r - 1], comp);
+          }
+          int ny = 0;
+          {
+            vector<Key> mixy(esy.begin() + 2 * l, esy.begin() + 2 * r);
+            const int msiz = mixy.size(), siz = msiz + n;
+            mixy.reserve(siz);
+            for(const auto &[y, pid] : psy[r - 1]) { mixy.emplace_back(y, ~pid); }
+            inplace_merge(mixy.begin(), mixy.begin() + msiz, mixy.end(), comp);
+            for(int t = 0; t < siz; t++) {
+              const Key pkey = t ? mixy[t - 1] : Key{0, 0}, key = mixy[t];
+              ny += t && comp(pkey, key) && (pkey.second < 0) && (key.second >= 0);
+              const int i = key.second;
+              (i >= 0 ? escy[i] : pscy[~i]) = ny;
+            }
+            ny++;
+          }
+          fenwick_tree<T> f(ny);
+          for(int j = 0, i = 2 * l; j < n; j++) {
+            const auto &[px, pid] = psx[r - 1][j];
+            for(; i < 2 * r; i++) {
+              const auto &[ex, eid] = esx[i];
+              if(px < ex) { break; }
+              const T &w = ws[eid >> 1];
+              f.add(escy[eid & ~1], (eid & 1) ? -w : +w);
+              f.add(escy[eid | 1], (eid & 1) ? +w : -w);
+            }
+            ans[pid] += f.sum(0, pscy[pid] + 1);
+          }
+          for(Key &key : psx[r - 1]) {
+            if(int d = ts[key.second] - r) { psx[r + p2(d) - 1].push_back(move(key)); }
+          }
+          psx[r - 1].clear();
+          psx[r - 1].shrink_to_fit();
+          for(Key &key : psy[r - 1]) {
+            if(int d = ts[key.second] - r) { psy[r + p2(d) - 1].push_back(move(key)); }
+          }
+          psy[r - 1].clear();
+          psy[r - 1].shrink_to_fit();
+        }
+        return ans;
+      }
+    };
+    """
+
+  'compressedinverseBIT2D':
+    'prefix':'compressedinverseBIT2D'
+    'body':'CompressedInverseBIT2D<ll,ll> S'
+
+  'StaticCompressedDualBIT2D':
+    'prefix':'StaticCompressedDualBIT2D'
+    'body':"""
+    template<typename S, typename T> struct StaticCompressedDualBIT2D {
+      vector<tuple<S, S, S, S, T>> Add;
+      vector<tuple<S, S, S, S>> Sum;
+      StaticCompressedDualBIT2D() = default;
+      StaticCompressedDualBIT2D(int N, int Q) {
+        Add.reserve(N);
+        Sum.reserve(Q);
+      }
+      void add(S lx, S rx, S ly, S ry, T w) { Add.emplace_back(lx, rx, ly, ry, w); }
+      void sum(S lx, S rx, S ly, S ry) { Sum.emplace_back(lx, rx, ly, ry); }
+      vector<T> solve() {
+        vector<S> ys;
+        vector<tuple<S, S, T>> add;
+        for(const auto &[lx, rx, ly, ry, w] : Add) {
+          ys.emplace_back(ly), ys.emplace_back(ry);
+          add.emplace_back(lx, ly, w), add.emplace_back(rx, ly, -w);
+          add.emplace_back(lx, ry, -w), add.emplace_back(rx, ry, w);
+        }
+        ranges::sort(ys);
+        ys.erase(unique(ys.begin(), ys.end()), ys.end());
+        auto id = [&ys](S y) -> int { return ranges::lower_bound(ys, y) - ys.begin(); };
+        vector<tuple<S, S, int, bool>> sum;
+        for(int i = 0; i < (int)Sum.size(); i++) {
+          const auto &[lx, rx, ly, ry] = Sum[i];
+          sum.emplace_back(lx, ly, i, true), sum.emplace_back(rx, ly, i, false);
+          sum.emplace_back(lx, ry, i, false), sum.emplace_back(rx, ry, i, true);
+        }
+        static constexpr auto comp = [](const auto &q1, const auto &q2) { return get<0>(q1) < get<0>(q2); };
+        ranges::sort(add, comp);
+        ranges::sort(sum, comp);
+        fenwick_tree<T> f[4];
+        for(int i = 0; i < 4; i++) { f[i] = fenwick_tree<T>(ys.size()); }
+        vector<T> ans(Sum.size(), T{0});
+        const int N = add.size(), M = sum.size();
+        for(int i = 0, j = 0; i < N || j < M;) {
+          if(j == M || (i < N && get<0>(add[i]) < get<0>(sum[j]))) {
+            const auto [lx, ly, w] = add[i++];
+            int idy = id(ly);
+            f[0].add(idy, w);
+            f[1].add(idy, -w * ly);
+            f[2].add(idy, -w * lx);
+            f[3].add(idy, w * lx * ly);
+          }
+          else {
+            const auto &[x, y, qid, plus] = sum[j++];
+            T s[4];
+            for(int i = 0, idy = id(y); i < 4; i++) { s[i] = f[i].sum(0, idy); }
+            const T tmp = s[0] * x * y + s[1] * x + s[2] * y + s[3];
+            ans[qid] += (plus ? tmp : -tmp);
+          }
+        }
+        return ans;
+      }
+    };
+    """
+
+  'staticcompresseddualBIT2D':
+    'prefix':'staticcompresseddualBIT2D'
+    'body':'StaticCompressedDualBIT2D<ll,ll> S'
+
+  'CompressedDualBIT2D':
+    'prefix':'CompressedDualBIT2D'
+    'body':"""
+    namespace std {
+    template<typename T> tuple<T, T, T, T> operator+=(tuple<T, T, T, T> &l, tuple<T, T, T, T> r) {
+      return l = make_tuple(get<0>(l) + get<0>(r), get<1>(l) + get<1>(r), get<2>(l) + get<2>(r), get<3>(l) + get<3>(r));
+    }
+    template<typename T> tuple<T, T, T, T> operator-(tuple<T, T, T, T> l, tuple<T, T, T, T> r) {
+      return make_tuple(get<0>(l) - get<0>(r), get<1>(l) - get<1>(r), get<2>(l) - get<2>(r), get<3>(l) - get<3>(r));
+    }
+    template<typename T> tuple<T, T, T, T> operator-=(tuple<T, T, T, T> &l, tuple<T, T, T, T> r) {
+      return l = l - r;
+    }
+    }  // namespace std
+
+    template<typename S, typename T> struct CompressedBIT2D {
+     private:
+      struct BIT {
+       private:
+        int n;
+        vector<T> data;
+        T sum(int r) {
+          T s = {0, 0, 0, 0};
+          for(; r > 0; r -= r & -r) { s += data[r - 1]; }
+          return s;
+        }
+
+       public:
+        BIT() = default;
+        explicit BIT(int n): n(n), data(n) {}
+        void add(int p, T x) {
+          for(++p; p <= n; p += p & -p) { data[p - 1] += T(x); }
+        }
+        T sum(int l, int r) { return sum(r) - sum(l); }
+      };
+      int N;
+      vector<BIT> bit;
+      vector<vector<S>> ys;
+      vector<pair<S, S>> ps;
+      int id(S x) const {
+        return ranges::lower_bound(ps, make_pair(x, S()), [](const pair<S, S> &a, const pair<S, S> &b) { return a.first < b.first; }) - ps.begin();
+      }
+      int id(int i, S y) const { return ranges::lower_bound(ys[i], y) - ys[i].begin(); }
+
+     public:
+      CompressedBIT2D() = default;
+      CompressedBIT2D(int N) { ps.reserve(N); }
+      void use(S x, S y) { ps.emplace_back(x, y); }
+      void build() {
+        ranges::sort(ps);
+        ps.erase(unique(ps.begin(), ps.end()), ps.end());
+        N = ps.size();
+        bit.resize(N + 1);
+        ys.resize(N + 1);
+        for(int i = 0; i <= N; ++i) {
+          for(int j = i + 1; j <= N; j += j & -j) { ys[j].emplace_back(ps[i].second); }
+          ranges::sort(ys[i]);
+          ys[i].erase(unique(ys[i].begin(), ys[i].end()), ys[i].end());
+          bit[i] = BIT(ys[i].size() + 1);
+        }
+      }
+      void add(S x, S y, T a) {
+        int i = ranges::lower_bound(ps, make_pair(x, y)) - ps.begin();
+        assert(ps[i] == make_pair(x, y));
+        for(++i; i <= N; i += i & -i) { bit[i].add(id(i, y), a); }
+      }
+      T sum(S x, S y) {
+        T r = T();
+        for(int a = id(x); a; a -= a & -a) { r += bit[a].sum(0, id(a, y)); }
+        return r;
+      }
+      T sum(S lx, S rx, S ly, S ry) {
+        T r = T();
+        int a = id(lx), b = id(rx);
+        while(a != b) {
+          if(a < b) {
+            r += bit[b].sum(id(b, ly), id(b, ry));
+            b -= b & -b;
+          }
+          else {
+            r -= bit[a].sum(id(a, ly), id(a, ry));
+            a -= a & -a;
+          }
+        }
+        return r;
+      }
+    };
+
+    template<typename S, typename T> struct CompressedDualBIT2D {
+     private:
+      CompressedBIT2D<S, tuple<T, T, T, T>> B;
+      static constexpr S inf = numeric_limits<S>::max();
+      void add(S lx, S ly, const T &w) {
+        B.add(lx, ly, make_tuple(w, -w * ly, -w * lx, w * lx * ly));
+      }
+      T sum(S x, S y) {
+        auto [a, b, c, d] = B.sum(-inf, x, -inf, y);
+        return a * x * y + b * x + c * y + d;
+      }
+
+     public:
+      CompressedDualBIT2D() = default;
+      void use(S lx, S rx, S ly, S ry) {
+        B.use(lx, ly), B.use(rx, ly);
+        B.use(lx, ry), B.use(rx, ry);
+      }
+      void build() { B.build(); }
+      void add(S lx, S rx, S ly, S ry, const T &val) {
+        add(lx, ly, val), add(rx, ly, -val);
+        add(lx, ry, -val), add(rx, ry, val);
+      }
+      T sum(S lx, S rx, S ly, S ry) { return sum(rx, ry) - sum(rx, ly) - sum(lx, ry) + sum(lx, ly); }
+    };
+    """
+
+  'compresseddualBIT2D':
+    'prefix':'compresseddualBIT2D'
+    'body':'CompressedDualBIT2D<ll,ll> S'
