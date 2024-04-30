@@ -14,7 +14,7 @@ template<typename T> struct BIT2D {
       for(int b = y; b <= W; b += b & -b) { bit[a][b] += w; }
     }
   }
-  void imos_add(int x1, int y1, int x2, int y2, T w) { add(x1, y1, w), add(x1, y2, -w), add(x2, y1, -w), add(x2, y2, w); }
+  void imos_add(int lx, int rx, int ly, int ry, T w) { add(lx, ly, w), add(lx, ry, -w), add(rx, ly, -w), add(rx, ry, w); }
   void imos_add(int x, int y, T w) { imos_add(x, y, x, y, w); }
   T sum(int x, int y) {
     x--, y--;
@@ -24,6 +24,6 @@ template<typename T> struct BIT2D {
     }
     return r;
   }
-  T sum(int x1, int y1, int x2, int y2) { return sum(x2, y2) - sum(x2, y1) - sum(x1, y2) + sum(x1, y1); }
+  T sum(int lx, int rx, int ly, int ry) { return sum(rx, ry) - sum(rx, ly) - sum(lx, ry) + sum(lx, ly); }
   T imos_get(int x, int y) { return sum(++x, ++y); }
 };
