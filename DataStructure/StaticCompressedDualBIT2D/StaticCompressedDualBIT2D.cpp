@@ -1,42 +1,6 @@
-namespace std {
-template<typename T> tuple<T, T, T, T> operator+=(tuple<T, T, T, T> &l, tuple<T, T, T, T> r) {
-  return l = make_tuple(get<0>(l) + get<0>(r), get<1>(l) + get<1>(r), get<2>(l) + get<2>(r), get<3>(l) + get<3>(r));
-}
-template<typename T> tuple<T, T, T, T> operator-(tuple<T, T, T, T> l, tuple<T, T, T, T> r) {
-  return make_tuple(get<0>(l) - get<0>(r), get<1>(l) - get<1>(r), get<2>(l) - get<2>(r), get<3>(l) - get<3>(r));
-}
-}  // namespace std
-
 template<typename S, typename T> struct StaticCompressedDualBIT2D {
- private:
-  struct BIT {
-   private:
-    using U = tuple<T, T, T, T>;
-    int n;
-    vector<U> data;
-
-   public:
-    explicit BIT(int n): n(n), data(n) {}
-    void add(int p, U x) {
-      for(++p; p <= n; p += p & -p) { data[p - 1] += U(x); }
-    }
-    U sum(int r) {
-      U s = {0, 0, 0, 0};
-      for(; r > 0; r -= r & -r) { s += data[r - 1]; }
-      return s;
-    }
-  };
-  struct Add {
-    S lx, rx, ly, ry;
-    T w;
-  };
-  struct Sum {
-    S lx, rx, ly, ry;
-  };
-  vector<Add> Add;
-  vector<Sum> Sum;
-
- public:
+  vector<tuple<S, S, S, S, T>> Add;
+  vector<tuple<S, S, S, S>> Sum;
   StaticCompressedDualBIT2D() = default;
   StaticCompressedDualBIT2D(int N, int Q) {
     Add.reserve(N);
@@ -64,18 +28,24 @@ template<typename S, typename T> struct StaticCompressedDualBIT2D {
     static constexpr auto comp = [](const auto &q1, const auto &q2) { return get<0>(q1) < get<0>(q2); };
     ranges::sort(add, comp);
     ranges::sort(sum, comp);
-    BIT f(ys.size());
+    fenwick_tree<T> f[4];
+    for(int i = 0; i < 4; i++) { f[i] = fenwick_tree<T>(ys.size()); }
     vector<T> ans(Sum.size(), T{0});
     const int N = add.size(), M = sum.size();
     for(int i = 0, j = 0; i < N || j < M;) {
       if(j == M || (i < N && get<0>(add[i]) < get<0>(sum[j]))) {
         const auto [lx, ly, w] = add[i++];
-        f.add(id(ly), make_tuple(w, -w * ly, -w * lx, w * lx * ly));
+        int idy = id(ly);
+        f[0].add(idy, w);
+        f[1].add(idy, -w * ly);
+        f[2].add(idy, -w * lx);
+        f[3].add(idy, w * lx * ly);
       }
       else {
         const auto &[x, y, qid, plus] = sum[j++];
-        auto [a, b, c, d] = f.sum(id(y));
-        const T tmp = a * x * y + b * x + c * y + d;
+        T s[4];
+        for(int i = 0, idy = id(y); i < 4; i++) { s[i] = f[i].sum(0, idy); }
+        const T tmp = s[0] * x * y + s[1] * x + s[2] * y + s[3];
         ans[qid] += (plus ? tmp : -tmp);
       }
     }
