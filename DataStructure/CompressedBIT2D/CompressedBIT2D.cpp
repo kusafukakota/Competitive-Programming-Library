@@ -11,6 +11,7 @@ template<typename S, typename T> struct CompressedBIT2D {
 
  public:
   CompressedBIT2D() = default;
+  CompressedBIT2D(int n) { ps.reserve(n); }
   void use(S x, S y) { ps.emplace_back(x, y); }
   void build() {
     ranges::sort(ps);
