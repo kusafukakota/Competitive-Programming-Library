@@ -1,6 +1,6 @@
-template<typename S, typename T> struct RangeBIT {
+template<typename S, typename T> struct CompressedBIT2D {
  private:
-  S N;
+  int N;
   vector<fenwick_tree<T>> bit;
   vector<vector<S>> ys;
   vector<pair<S, S>> ps;
@@ -10,7 +10,7 @@ template<typename S, typename T> struct RangeBIT {
   int id(int i, S y) const { return ranges::lower_bound(ys[i], y) - ys[i].begin(); }
 
  public:
-  RangeBIT() = default;
+  CompressedBIT2D() = default;
   void use(S x, S y) { ps.emplace_back(x, y); }
   void build() {
     ranges::sort(ps);
@@ -35,7 +35,7 @@ template<typename S, typename T> struct RangeBIT {
     for(int a = id(x); a; a -= a & -a) { r += bit[a].sum(0, id(a, y)); }
     return r;
   }
-  T sum(S lx, S ly, S rx, S ry) {
+  T sum(S lx, S rx, S ly, S ry) {
     T r = T();
     int a = id(lx), b = id(rx);
     while(a != b) {
