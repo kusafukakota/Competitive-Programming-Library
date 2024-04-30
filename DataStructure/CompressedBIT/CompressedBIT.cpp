@@ -1,15 +1,17 @@
 template<typename S, typename T> struct CompressedBIT {
  private:
   fenwick_tree<T> f;
-  vector<S> s;
-  int id(S x) const { return ranges::lower_bound(s, x) - s.begin(); }
+  vector<S> p;
+  int id(S x) const { return ranges::lower_bound(p, x) - p.begin(); }
 
  public:
-  void use(S x) { s.emplace_back(x); }
+  CompressedBIT() = default;
+  CompressedBIT(int N) { p.reserve(N); }
+  void use(S x) { p.emplace_back(x); }
   void build() {
-    ranges::sort(s);
-    s.erase(unique(s.begin(), s.end()), s.end());
-    f = fenwick_tree<T>(s.size());
+    ranges::sort(p);
+    p.erase(unique(p.begin(), p.end()), p.end());
+    f = fenwick_tree<T>(p.size());
   }
   void add(S i, T x) { f.add(id(i), x); }
   T sum(S l, S r) { return f.sum(id(l), id(r)); }
