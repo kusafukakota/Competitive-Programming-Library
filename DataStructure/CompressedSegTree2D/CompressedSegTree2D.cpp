@@ -1,9 +1,6 @@
-template<typename S, typename T, auto op, auto e> struct RangeSegTree {
-  static_assert(is_convertible_v<decltype(op), function<T(T, T)>>);
-  static_assert(is_convertible_v<decltype(e), function<T()>>);
-
+template<typename S, typename T, auto op, auto e> struct CompressedSegTree2D {
  private:
-  S N;
+  int N;
   vector<segtree<T, op, e>> seg;
   vector<vector<S>> ys;
   vector<pair<S, S>> ps;
@@ -13,7 +10,8 @@ template<typename S, typename T, auto op, auto e> struct RangeSegTree {
   int id(int i, S y) const { return ranges::lower_bound(ys[i], y) - ys[i].begin(); }
 
  public:
-  RangeSegTree() = default;
+  CompressedSegTree2D() = default;
+  CompressedSegTree2D(int n) { ps.reserve(n); }
   void use(S x, S y) { ps.emplace_back(x, y); }
   void build() {
     ranges::sort(ps);
@@ -32,22 +30,22 @@ template<typename S, typename T, auto op, auto e> struct RangeSegTree {
       seg[i] = segtree<T, op, e>(ys[i].size());
     }
   }
-  void add(S x, S y, T a) {
+  void set(S x, S y, T a) {
     int i = ranges::lower_bound(ps, make_pair(x, y)) - ps.begin();
     assert(ps[i] == make_pair(x, y));
-    for(i += N; i; i >>= 1) { seg[i].set(id(i, y), seg[i].get(id(i, y)) + a); }
+    for(i += N; i; i >>= 1) { seg[i].set(id(i, y), a); }
   }
-  T prod(S xl, S yl, S xr, S yr) {
+  T prod(S lx, S rx, S ly, S ry) {
     T L = e(), R = e();
-    int a = id(xl), b = id(xr);
+    int a = id(lx), b = id(rx);
     for(a += N, b += N; a < b; a >>= 1, b >>= 1) {
       if(a & 1) {
-        L = op(L, seg[a].prod(id(a, yl), id(a, yr)));
+        L = op(L, seg[a].prod(id(a, ly), id(a, ry)));
         a++;
       }
       if(b & 1) {
         b--;
-        R = op(seg[b].prod(id(b, yl), id(b, yr)), R);
+        R = op(seg[b].prod(id(b, ly), id(b, ry)), R);
       }
     }
     return op(L, R);
