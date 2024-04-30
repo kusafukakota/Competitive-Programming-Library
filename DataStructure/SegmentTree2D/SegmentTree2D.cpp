@@ -42,7 +42,7 @@ template<typename S, auto op, auto e> struct SegTree2D {
   }
   S get(int x, int y) const { return seg[id(x + H, y + W)]; }
   S operator()(int x, int y) const { return seg[id(x + H, y + W)]; }
-  S prod(int lx, int ly, int rx, int ry) {
+  S prod(int lx, int rx, int ly, int ry) {
     if(lx >= rx || ly >= ry) { return e(); }
     S res = e();
     lx += H, rx += H, ly += W, ry += W;
@@ -52,5 +52,5 @@ template<typename S, auto op, auto e> struct SegTree2D {
     }
     return res;
   }
-  S operator()(int lx, int ly, int rx, int ry) { return prod(lx, ly, rx, ry); }
+  S operator()(int lx, int rx, int ly, int ry) { return prod(lx, rx, ly, ry); }
 };
