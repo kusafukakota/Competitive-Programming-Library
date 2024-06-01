@@ -61,7 +61,7 @@ template<typename S, auto op, auto e> struct OfflineDynamicConnectivity {
   vector<tuple<int, int, int, int>> closed;
   vector<tuple<int, int, S>> query_update;
   map<int, pair<int, int>> query_same;
-  map<int, int> query_prod;
+  map<int, int> query_prod, query_size;
   vector<int> query_count;
   vector<S> val;
 
@@ -83,6 +83,7 @@ template<typename S, auto op, auto e> struct OfflineDynamicConnectivity {
   void update(int v, const S &x) { query_update.emplace_back(++idx, v, x); }
   void same(int u, int v) { query_same[++idx] = {u, v}; }
   void prod(int v) { query_prod[++idx] = v; }
+  void size(int v) { query_size[++idx] = v; }
   void count() { query_count.emplace_back(++idx); }
   vector<pair<int, S>> build() {
     idx++;
@@ -117,12 +118,9 @@ template<typename S, auto op, auto e> struct OfflineDynamicConnectivity {
           auto [u, v] = query_same[k - size];
           r.emplace_back(uf.same(u, v), e());
         }
-        if(query_prod.contains(k - size)) {
-          r.emplace_back(false, uf.prod(query_prod[k - size]));
-        }
-        if(ranges::binary_search(query_count, k - size)) {
-          r.emplace_back(uf.count(), e());
-        }
+        if(query_prod.contains(k - size)) { r.emplace_back(false, uf.prod(query_prod[k - size])); }
+        if(query_size.contains(k - size)) { r.emplace_back(uf.size(query_size[k - size]), e()); }
+        if(ranges::binary_search(query_count, k - size)) { r.emplace_back(uf.count(), e()); }
       }
       for(int i = 0; i < (int)(edges[k].size() + updates[k].size()); i++) { uf.undo(); }
     };
