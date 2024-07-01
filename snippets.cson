@@ -279,19 +279,19 @@
     'body':'cout<<${1:r}<<"\\\\n";$2'
 
   'cout2':
-    'prefix':'cout2'
+    'prefix':'c2'
     'body':'cout<<$1<<" "<<$2<<"\\\\n";$3'
 
   'cout3':
-    'prefix':'cout3'
+    'prefix':'c3'
     'body':'cout<<$1<<" "<<$2<<" "<<$3<<"\\\\n";$4'
 
   'cout4':
-    'prefix':'cout4'
+    'prefix':'c4'
     'body':'cout<<$1<<" "<<$2<<" "<<$3<<" "<<$4<<"\\\\n";$5'
 
   'cout5':
-    'prefix':'cout5'
+    'prefix':'c5'
     'body':'cout<<$1<<" "<<$2<<" "<<$3<<" "<<$4<<" "<<$5<<"\\\\n";$6'
 
   'print':
@@ -710,6 +710,7 @@
     'prefix':'lvi'
     'body':"""
     ll ${1:N}; cin>>${1:N};
+
     vector<ll> ${2:A}(${1:N});
     for(auto &i:${2:A}) {cin>>i;}
     $3
@@ -1681,10 +1682,10 @@
     'prefix':'Dijkstra'
     'body':"""
     vector<ll> d(N, 1e18);
-    d[0] = 0;
+    d[${1:0}] = 0;
     auto chmin = [&](auto &a, const auto &b) { return a > b ? (a = b, true) : false; };
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> q;
-    q.emplace(0, 0);
+    q.emplace(0, ${1:0});
     while(!q.empty()) {
       auto [tmp, v] = q.top();
       q.pop();
@@ -1692,7 +1693,7 @@
       for(auto &[nv, c] : g[v]) {
         if(chmin(d[nv], d[v] + c)) {q.emplace(d[nv], nv);}
       }
-    }
+    }$2
     """
 
   'Dijkstra_func':
@@ -2712,6 +2713,81 @@
 
     """
 
+  'Lazy_affine_max':
+    'prefix':'Lazy_affine_max'
+    'body':"""
+    using S = ll;
+    using F = pair<ll, ll>;
+    S op(S l, S r) { return max(l, r); }
+    S e() { return -1e18; }
+    S fx(F f, S x) { return f.first * x + f.second; }
+    F fg(F f, F g) { return {f.first * g.first, f.first * g.second + f.second}; }
+    F id() { return {1, 0}; }
+
+    /*
+    void seg.set(i,x);    -> a[i] = x;
+    T    seg.get(i);      -> return a[i];
+    T    seg.prod(l,r)    -> return op(a[l], ... , a[r - 1]);
+    T    seg.all_prod()   -> return op(a[0], ... , a[n - 1]);
+    void seg.apply(i,f)   -> a[i] = f(a[i]);
+    void seg.apply(l,r,f) -> l <= i < r について a[i] = f(a[i]);
+    ll   seg.max_right<F>(l) -> F(op(a[l], ... , a[r - 1])) = true となる最大の r
+    ll   seg.min_left<F>(r)  -> F(op(a[l], ... , a[r - 1])) = true となる最小の l
+    */
+
+    """
+
+  'Lazy_affine_min':
+    'prefix':'Lazy_affine_min'
+    'body':"""
+    using S = ll;
+    using F = pair<ll, ll>;
+    S op(S l, S r) { return min(l, r); }
+    S e() { return 1e18; }
+    S fx(F f, S x) { return f.first * x + f.second; }
+    F fg(F f, F g) { return {f.first * g.first, f.first * g.second + f.second}; }
+    F id() { return {1, 0}; }
+
+    /*
+    void seg.set(i,x);    -> a[i] = x;
+    T    seg.get(i);      -> return a[i];
+    T    seg.prod(l,r)    -> return op(a[l], ... , a[r - 1]);
+    T    seg.all_prod()   -> return op(a[0], ... , a[n - 1]);
+    void seg.apply(i,f)   -> a[i] = f(a[i]);
+    void seg.apply(l,r,f) -> l <= i < r について a[i] = f(a[i]);
+    ll   seg.max_right<F>(l) -> F(op(a[l], ... , a[r - 1])) = true となる最大の r
+    ll   seg.min_left<F>(r)  -> F(op(a[l], ... , a[r - 1])) = true となる最小の l
+    */
+
+    """
+
+  'Lazy_affine_sum':
+    'prefix':'Lazy_affine_sum'
+    'body':"""
+    struct S {
+      ll val, siz;
+    };
+    using F = pair<ll, ll>;
+    S op(S l, S r) { return {l.val + r.val, l.siz + r.siz}; }
+    S e() { return {0, 0}; }
+    S fx(F f, S x) { return {f.first * x.val + f.second * x.siz, x.siz}; }
+    F fg(F f, F g) { return {f.first * g.first, f.first * g.second + f.second}; }
+    F id() { return {1, 0}; }
+
+    /*
+    void seg.set(i,x);    -> a[i] = x;
+    T    seg.get(i);      -> return a[i];
+    T    seg.prod(l,r)    -> return op(a[l], ... , a[r - 1]);
+    T    seg.all_prod()   -> return op(a[0], ... , a[n - 1]);
+    void seg.apply(i,f)   -> a[i] = f(a[i]);
+    void seg.apply(l,r,f) -> l <= i < r について a[i] = f(a[i]);
+    ll   seg.max_right<F>(l) -> F(op(a[l], ... , a[r - 1])) = true となる最大の r
+    ll   seg.min_left<F>(r)  -> F(op(a[l], ... , a[r - 1])) = true となる最小の l
+    */
+
+    """
+
+
   'Lazy_void':
     'prefix':'Lazy_void'
     'body':"""
@@ -3654,7 +3730,8 @@
   'FormalPowerSeries':
     'prefix':'FPS'
     'body':"""
-    template<typename T = mint> struct FPS : vector<T> {
+    #define FAST
+    template<ll MOD = 998244353, typename T = mint> struct FPS : vector<T> {
       using vector<T>::vector;
       using vector<T>::operator=;
       FPS pre(int deg) const { return FPS(begin(*this), begin(*this) + min((int)this->size(), deg)); }
@@ -3691,25 +3768,26 @@
         return *this;
       }
       FPS &operator*=(const FPS &f) {
-        if((T::mod() - 1) % (1 << 23) == 0) { *this = convolution(*this, f); }
-        else {
-          const int n = this->size(), m = f.size();
-          vector<ll> a(n), b(m);
-          static constexpr ll MOD1 = 754974721, MOD2 = 167772161, MOD3 = 469762049;
-          static constexpr ll M1_M2 = internal::inv_gcd(MOD1, MOD2).second, M12_M3 = internal::inv_gcd(MOD1 * MOD2, MOD3).second, M12 = (MOD1 * MOD2) % T::mod();
-          for(int i = 0; i < n; i++) { a[i] = (*this)[i].val(); }
-          for(int i = 0; i < m; i++) { b[i] = f[i].val(); }
-          vector<ll> x = convolution<MOD1>(a, b), y = convolution<MOD2>(a, b), z = convolution<MOD3>(a, b);
-          vector<T> c(n + m - 1);
-          for(int i = 0; i < n + m - 1; i++) {
-            ll v1 = (y[i] - x[i]) * M1_M2 % MOD2;
-            if(v1 < 0) { v1 += MOD2; }
-            ll v2 = (z[i] - (x[i] + MOD1 * v1) % MOD3) * M12_M3 % MOD3;
-            if(v2 < 0) { v2 += MOD3; }
-            c[i] = x[i] + MOD1 * v1 + M12 * v2;
-          }
-          *this = c;
+    #ifdef FAST
+        *this = convolution(*this, f);
+    #else
+        const int n = this->size(), m = f.size();
+        vector<ll> a(n), b(m);
+        static constexpr ll MOD1 = 754974721, MOD2 = 167772161, MOD3 = 469762049;
+        static constexpr ll M1_M2 = internal::inv_gcd(MOD1, MOD2).second, M12_M3 = internal::inv_gcd(MOD1 * MOD2, MOD3).second, M12 = (MOD1 * MOD2) % MOD;
+        for(int i = 0; i < n; i++) { a[i] = (*this)[i].val(); }
+        for(int i = 0; i < m; i++) { b[i] = f[i].val(); }
+        vector<ll> x = convolution<MOD1>(a, b), y = convolution<MOD2>(a, b), z = convolution<MOD3>(a, b);
+        vector<T> c(n + m - 1);
+        for(int i = 0; i < n + m - 1; i++) {
+          ll v1 = (y[i] - x[i]) * M1_M2 % MOD2;
+          if(v1 < 0) { v1 += MOD2; }
+          ll v2 = (z[i] - (x[i] + MOD1 * v1) % MOD3) * M12_M3 % MOD3;
+          if(v2 < 0) { v2 += MOD3; }
+          c[i] = x[i] + MOD1 * v1 + M12 * v2;
         }
+        *this = c;
+    #endif
         return *this;
       }
       template<typename I> FPS &operator*=(const vector<pair<I, T>> &f) {
@@ -3809,10 +3887,10 @@
         return r;
       }
       FPS integral() const {
-        const int n = this->size(), mod = T::mod();
+        const int n = this->size();
         vector<T> inv(n);
         inv[1] = 1;
-        for(int i = 2; i < n; i++) { inv[i] = -inv[mod % i] * (mod / i); }
+        for(int i = 2; i < n; i++) { inv[i] = -inv[MOD % i] * (MOD / i); }
         FPS r(n);
         for(int i = n - 2; i >= 0; i--) { r[i + 1] = (*this)[i] * inv[i + 1]; }
         r[0] = 0;
@@ -3823,30 +3901,29 @@
         if(deg == -1) { deg = n; }
         assert(n && (*this)[0] != T(0));
         FPS res{(*this)[0].inv()};
-        if((T::mod() - 1) % (1 << 23) == 0) {
-          while((int)res.size() < deg) {
-            int d = res.size();
-            FPS f(this->begin(), this->begin() + min(n, d * 2)), g(res);
-            f.resize(d * 2);
-            g.resize(d * 2);
-            internal::butterfly(f);
-            internal::butterfly(g);
-            for(int i = 0; i < d * 2; i++) { f[i] *= g[i]; }
-            internal::butterfly_inv(f);
-            f.erase(f.begin(), f.begin() + d);
-            f.resize(d * 2);
-            internal::butterfly(f);
-            for(int i = 0; i < d * 2; i++) { f[i] *= g[i]; }
-            internal::butterfly_inv(f);
-            T iz = T(d * 2).inv();
-            iz *= -iz;
-            for(int i = 0; i < d; i++) { f[i] *= iz; }
-            res.insert(res.end(), f.begin(), f.begin() + d);
-          }
+    #ifdef FAST
+        while((int)res.size() < deg) {
+          int d = res.size();
+          FPS f(this->begin(), this->begin() + min(n, d * 2)), g(res);
+          f.resize(d * 2);
+          g.resize(d * 2);
+          internal::butterfly(f);
+          internal::butterfly(g);
+          for(int i = 0; i < d * 2; i++) { f[i] *= g[i]; }
+          internal::butterfly_inv(f);
+          f.erase(f.begin(), f.begin() + d);
+          f.resize(d * 2);
+          internal::butterfly(f);
+          for(int i = 0; i < d * 2; i++) { f[i] *= g[i]; }
+          internal::butterfly_inv(f);
+          T iz = T(d * 2).inv();
+          iz *= -iz;
+          for(int i = 0; i < d; i++) { f[i] *= iz; }
+          res.insert(res.end(), f.begin(), f.begin() + d);
         }
-        else {
-          for(int i = 1; i < deg; i <<= 1) { res = (res + res - res * res * pre(i << 1)).pre(i << 1); }
-        }
+    #else
+        for(int i = 1; i < deg; i <<= 1) { res = (res + res - res * res * pre(i << 1)).pre(i << 1); }
+    #endif
         return res.pre(deg);
       }
       FPS log(ll deg = -1) const {
@@ -3854,112 +3931,138 @@
         if(deg == -1) { deg = this->size(); }
         return (this->diff() * this->inv(deg)).pre(deg).integral();
       }
-      FPS sqrt(
-      ll deg = -1, const function<T(T)> &get_sqrt = [](T) { return T(1); }) const {
+      FPS sqrt(ll deg = -1) {
         const int n = this->size();
         if(deg == -1) { deg = n; }
         if((*this)[0] == T(0)) {
           for(int i = 1; i < n; i++) {
-            if((*this)[0] != T(0)) {
+            if((*this)[i] != T(0)) {
               if(i & 1) { return {}; }
               if(deg - i / 2 <= 0) { break; }
-              auto r = (*this >> i).sqrt(deg - i / 2, get_sqrt);
+              auto r = (*this >> i).sqrt(deg - i / 2);
               if(r.empty()) { return {}; }
               r = r << (i / 2);
-              if(r.size() < deg) { r.resize(deg, T(0)); }
+              if((int)r.size() < deg) { r.resize(deg, T(0)); }
               return r;
             }
           }
           return FPS(deg, 0);
         }
-        auto sq = T(get_sqrt((*this)[0]));
+        auto mod_sqrt = [&](const ll &a) -> ll {
+          ll m = MOD - 1, e = 0;
+          if(!a) { return 0; }
+          if(MOD == 2) { return a; }
+          if(mint(a).pow(m >> 1) != 1) { return -1; }
+          mint b = 1;
+          while(b.pow(m >> 1) == 1) { b++; }
+          while(~m & 1) {
+            m >>= 1;
+            e++;
+          }
+          mint x = mint(a).pow((m - 1) >> 1), y = mint(a) * x * x, z = mint(b).pow(m);
+          x *= a;
+          while(y != 1) {
+            ll j = 0;
+            mint t = y;
+            while(t != 1) {
+              j++;
+              t *= t;
+            }
+            z = z.pow(1LL << (e - j - 1));
+            x *= z;
+            z *= z;
+            y *= z;
+            e = j;
+          }
+          return x.val();
+        };
+        auto sq = T(mod_sqrt((*this)[0].val()));
         if(sq * sq != (*this)[0]) { return {}; }
         FPS r{sq};
         T inv2 = T(1) / T(2);
         for(int i = 1; i < deg; i <<= 1) { r = (r + pre(i << 1) * r.inv(i << 1)) * inv2; }
         return r.pre(deg);
       }
-      FPS sqrt(const function<T(T)> &get_sqrt, ll deg = -1) const { return sqrt(deg, get_sqrt); }
+      FPS sqrt(const function<T(T)> &get_sqrt, ll deg = -1) { return sqrt(deg, get_sqrt); }
       FPS exp(ll deg = -1) const {
         const int n = this->size();
         assert((*this)[0] == T(0));
         if(deg == -1) { deg = n; }
-        if((T::mod() - 1) % (1 << 23) == 0) {
-          FPS inv;
-          inv.reserve(deg);
-          inv.emplace_back(T(0));
-          inv.emplace_back(T(1));
-          auto internal_integral = [&](FPS &f) {
-            const int n = f.size(), mod = T::mod();
-            while((int)inv.size() <= n) {
-              int i = inv.size();
-              inv.emplace_back((-inv[mod % i]) * (mod / i));
-            }
-            f.insert(f.begin(), T(0));
-            for(int i = 1; i <= n; i++) { f[i] *= inv[i]; }
-          };
-          auto internal_diff = [](FPS &f) {
-            if(f.empty()) { return; }
-            f.erase(f.begin());
-            T c = 1;
-            for(int i = 0; i < (int)f.size(); i++, c++) { f[i] *= c; }
-          };
-          FPS b{1, 1 < (int)this->size() ? (*this)[1] : 0}, c{1}, z1, z2{1, 1};
-          for(int m = 2; m <= deg; m <<= 1) {
-            auto y = b;
-            y.resize(m * 2);
-            internal::butterfly(y);
-            z1 = z2;
-            FPS z(m);
-            for(int i = 0; i < m; i++) { z[i] = y[i] * z1[i]; }
-            internal::butterfly_inv(z);
-            T si = T(m).inv();
-            for(int i = 0; i < m; i++) { z[i] *= si; }
-            fill(z.begin(), z.begin() + m / 2, T(0));
-            internal::butterfly(z);
-            for(int i = 0; i < m; i++) { z[i] *= -z1[i]; }
-            internal::butterfly_inv(z);
-            for(int i = 0; i < m; i++) { z[i] *= si; }
-            c.insert(c.end(), z.begin() + m / 2, z.end());
-            z2 = c;
-            z2.resize(m * 2);
-            internal::butterfly(z2);
-            FPS x(this->begin(), this->begin() + min((int)this->size(), m));
-            x.resize(m);
-            internal_diff(x);
-            x.emplace_back(T(0));
-            internal::butterfly(x);
-            for(int i = 0; i < m; i++) { x[i] *= y[i]; }
-            internal::butterfly_inv(x);
-            for(int i = 0; i < m; i++) { x[i] *= si; }
-            x -= b.diff();
-            x.resize(m * 2);
-            for(int i = 0; i < m - 1; i++) {
-              x[m + i] = x[i];
-              x[i] = T(0);
-            }
-            internal::butterfly(x);
-            for(int i = 0; i < m * 2; i++) { x[i] *= z2[i]; }
-            internal::butterfly_inv(x);
-            T si2 = T(m << 1).inv();
-            for(int i = 0; i < m * 2; i++) { x[i] *= si2; }
-            x.pop_back();
-            internal_integral(x);
-            for(int i = m; i < min((int)this->size(), m * 2); i++) { x[i] += (*this)[i]; }
-            fill(x.begin(), x.begin() + m, T(0));
-            internal::butterfly(x);
-            for(int i = 0; i < m * 2; i++) { x[i] *= y[i]; }
-            internal::butterfly_inv(x);
-            for(int i = 0; i < m * 2; i++) { x[i] *= si2; }
-            b.insert(b.end(), x.begin() + m, x.end());
+    #ifdef FAST
+        FPS inv;
+        inv.reserve(deg);
+        inv.emplace_back(T(0));
+        inv.emplace_back(T(1));
+        auto internal_integral = [&](FPS &f) {
+          const int n = f.size();
+          while((int)inv.size() <= n) {
+            int i = inv.size();
+            inv.emplace_back((-inv[MOD % i]) * (MOD / i));
           }
-          return b.pre(deg);
+          f.insert(f.begin(), T(0));
+          for(int i = 1; i <= n; i++) { f[i] *= inv[i]; }
+        };
+        auto internal_diff = [](FPS &f) {
+          if(f.empty()) { return; }
+          f.erase(f.begin());
+          T c = 1;
+          for(int i = 0; i < (int)f.size(); i++, c++) { f[i] *= c; }
+        };
+        FPS b{1, 1 < (int)this->size() ? (*this)[1] : 0}, c{1}, z1, z2{1, 1};
+        for(int m = 2; m <= deg; m <<= 1) {
+          auto y = b;
+          y.resize(m * 2);
+          internal::butterfly(y);
+          z1 = z2;
+          FPS z(m);
+          for(int i = 0; i < m; i++) { z[i] = y[i] * z1[i]; }
+          internal::butterfly_inv(z);
+          T si = T(m).inv();
+          for(int i = 0; i < m; i++) { z[i] *= si; }
+          fill(z.begin(), z.begin() + m / 2, T(0));
+          internal::butterfly(z);
+          for(int i = 0; i < m; i++) { z[i] *= -z1[i]; }
+          internal::butterfly_inv(z);
+          for(int i = 0; i < m; i++) { z[i] *= si; }
+          c.insert(c.end(), z.begin() + m / 2, z.end());
+          z2 = c;
+          z2.resize(m * 2);
+          internal::butterfly(z2);
+          FPS x(this->begin(), this->begin() + min((int)this->size(), m));
+          x.resize(m);
+          internal_diff(x);
+          x.emplace_back(T(0));
+          internal::butterfly(x);
+          for(int i = 0; i < m; i++) { x[i] *= y[i]; }
+          internal::butterfly_inv(x);
+          for(int i = 0; i < m; i++) { x[i] *= si; }
+          x -= b.diff();
+          x.resize(m * 2);
+          for(int i = 0; i < m - 1; i++) {
+            x[m + i] = x[i];
+            x[i] = T(0);
+          }
+          internal::butterfly(x);
+          for(int i = 0; i < m * 2; i++) { x[i] *= z2[i]; }
+          internal::butterfly_inv(x);
+          T si2 = T(m << 1).inv();
+          for(int i = 0; i < m * 2; i++) { x[i] *= si2; }
+          x.pop_back();
+          internal_integral(x);
+          for(int i = m; i < min((int)this->size(), m * 2); i++) { x[i] += (*this)[i]; }
+          fill(x.begin(), x.begin() + m, T(0));
+          internal::butterfly(x);
+          for(int i = 0; i < m * 2; i++) { x[i] *= y[i]; }
+          internal::butterfly_inv(x);
+          for(int i = 0; i < m * 2; i++) { x[i] *= si2; }
+          b.insert(b.end(), x.begin() + m, x.end());
         }
-        else {
-          FPS r({T(1)});
-          for(int i = 1; i < deg; i <<= 1) { r = (r * (pre(i << 1) + T(1) - r.log(i << 1))).pre(i << 1); }
-          return r.pre(deg);
-        }
+        return b.pre(deg);
+    #else
+        FPS r({T(1)});
+        for(int i = 1; i < deg; i <<= 1) { r = (r * (pre(i << 1) + T(1) - r.log(i << 1))).pre(i << 1); }
+        return r.pre(deg);
+    #endif
       }
       FPS pow(ll k) {
         const int n = this->size();
@@ -4316,7 +4419,7 @@
       ConvexHullTrick() = default;
       bool empty() const { return H.empty(); }
       void clear() { H.clear(); }
-      void add(T a, T b) {  // O(n) in total
+      void add(T a, T b) {  // a は広義単調増加または広義単調減少, O(n) in total
         if(!isMin) { a *= -1, b *= -1; }
         pair<T, T> line(a, b);
         if(empty()) {
@@ -5124,17 +5227,15 @@
     'prefix':'UniteInterval'
     'body':"""
     // union of [a1,b1), [a2,b2) ...
-    template<typename T> vector<pair<T,T>> UniteInterval(const vector<pair<T, T>> &v) {
+    template<typename T> vector<pair<T, T>> UniteInterval(const vector<pair<T, T>> &v) {
       vector<pair<T, T>> u{v}, r;
       ranges::sort(u);
       for(auto &p : u) {
         r.emplace_back(p);
-        while((ll)r.size() >= 2) {
-          ll n = r.size();
-          if(r[n - 2].second < r[n - 1].first) {break;}
-          pair<T, T> q;
-          q.first = r[n - 2].first;
-          q.second = max<T>(r[n - 2].second, r[n - 1].second);
+        while((int)r.size() >= 2) {
+          const int n = r.size();
+          if(r[n - 2].second < r[n - 1].first) { break; }
+          pair<T, T> q = {r[n - 2].first, max<T>(r[n - 2].second, r[n - 1].second)};
           r.pop_back();
           r.pop_back();
           r.emplace_back(q);
@@ -5152,13 +5253,12 @@
     'prefix':'Mulall'
     'body':"""
     auto mulall(vector<auto> &v) {
-      ll n = ssize(v);
-      queue<ll> q;
-      for(ll i = 0; i < n; i++) {q.emplace(i);}
-      while(ssize(q) >= 2) {
-        ll x = q.front();
+      queue<int> q;
+      for(int i = 0; i < (int)v.size(); i++) { q.emplace(i); }
+      while((int)q.size() >= 2) {
+        int x = q.front();
         q.pop();
-        ll y = q.front();
+        int y = q.front();
         q.pop();
         v[x] = convolution(v[x], v[y]);
         q.emplace(x);
@@ -7415,19 +7515,27 @@
     'prefix':'C++17'
     'body':"""
     #if __cplusplus <= 201703L
-    #define ssize(v) (int)(v).size()
+    #define ssize(v) ((int)(v).size())
+    template<typename T> ll bit_ceil(T n) {
+      ll r = 1;
+      while(r < n) { r <<= 1; }
+      return r;
+    }
+    template<typename T> ll bit_width(T n) { return 64 - __builtin_clzll(n); }
+    template<typename T> ll countr_zero(T n) { return __builtin_ctzll(n); }
+    template<typename T> ll popcount(T n) { return __builtin_popcountll(n); }
     namespace ranges {
     template<typename T> void sort(vector<T> &v) { sort(v.begin(), v.end()); }
     template<typename T> void stable_sort(vector<T> &v) { stable_sort(v.begin(), v.end()); }
-    template<typename T> void sort(vector<T> &v, const auto &f) { sort(v.begin(), v.end(), f); }
+    template<typename T, typename F> void sort(vector<T> &v, const F &f) { sort(v.begin(), v.end(), f); }
     template<typename T> void reverse(vector<T> &v) { reverse(v.begin(), v.end()); }
     template<typename T> T max(const vector<T> &v) { return *max_element(v.begin(), v.end()); }
     template<typename T> T min(const vector<T> &v) { return *min_element(v.begin(), v.end()); }
     template<typename T, typename U> bool binary_search(const vector<T> &v, U x) { return binary_search(v.begin(), v.end(), x); }
-    template<typename T> bool all_of(const vector<T> &v, const auto &f) { return all_of(v.begin(), v.end(), f); }
-    template<typename T> bool any_of(const vector<T> &v, const auto &f) { return any_of(v.begin(), v.end(), f); }
-    template<typename T> bool none_of(const vector<T> &v, const auto &f) { return none_of(v.begin(), v.end(), f); }
-    template<typename T> int count_if(const vector<T> &v, const auto &f) { return count_if(v.begin(), v.end(), f); }
+    template<typename T, typename F> bool all_of(const vector<T> &v, const F &f) { return all_of(v.begin(), v.end(), f); }
+    template<typename T, typename F> bool any_of(const vector<T> &v, const F &f) { return any_of(v.begin(), v.end(), f); }
+    template<typename T, typename F> bool none_of(const vector<T> &v, const F &f) { return none_of(v.begin(), v.end(), f); }
+    template<typename T, typename F> int count_if(const vector<T> &v, const F &f) { return count_if(v.begin(), v.end(), f); }
     template<typename T, typename U> auto lower_bound(const vector<T> &v, U x) { return lower_bound(v.begin(), v.end(), x); }
     template<typename T, typename U> auto upper_bound(const vector<T> &v, U x) { return upper_bound(v.begin(), v.end(), x); }
     template<typename T> auto max_element(const vector<T> &v) { return max_element(v.begin(), v.end()); }
@@ -10070,7 +10178,7 @@
       vector<tuple<int, int, int, int>> closed;
       vector<tuple<int, int, S>> query_update;
       map<int, pair<int, int>> query_same;
-      map<int, int> query_prod;
+      map<int, int> query_prod, query_size;
       vector<int> query_count;
       vector<S> val;
 
@@ -10092,6 +10200,7 @@
       void update(int v, const S &x) { query_update.emplace_back(++idx, v, x); }
       void same(int u, int v) { query_same[++idx] = {u, v}; }
       void prod(int v) { query_prod[++idx] = v; }
+      void size(int v) { query_size[++idx] = v; }
       void count() { query_count.emplace_back(++idx); }
       vector<pair<int, S>> build() {
         idx++;
@@ -10126,12 +10235,9 @@
               auto [u, v] = query_same[k - size];
               r.emplace_back(uf.same(u, v), e());
             }
-            if(query_prod.contains(k - size)) {
-              r.emplace_back(false, uf.prod(query_prod[k - size]));
-            }
-            if(ranges::binary_search(query_count, k - size)) {
-              r.emplace_back(uf.count(), e());
-            }
+            if(query_prod.contains(k - size)) { r.emplace_back(false, uf.prod(query_prod[k - size])); }
+            if(query_size.contains(k - size)) { r.emplace_back(uf.size(query_size[k - size]), e()); }
+            if(ranges::binary_search(query_count, k - size)) { r.emplace_back(uf.count(), e()); }
           }
           for(int i = 0; i < (int)(edges[k].size() + updates[k].size()); i++) { uf.undo(); }
         };
@@ -11358,3 +11464,288 @@
   'compresseddualBIT2D':
     'prefix':'compresseddualBIT2D'
     'body':'CompressedDualBIT2D<ll,ll> S'
+
+  'DoubleEndedPriorityQueue':
+    'prefix':'DoubleEndedPriorityQueue'
+    'body':"""
+    template<typename T> struct DualPriorityQueue {
+     private:
+      inline int par(int i) { return (i - 4 + (i & 3)) / 2; }
+
+      void down(int i) {
+        int n = dat.size();
+        if(i % 2 == 0) {
+          while(true) {
+            if(i + 1 < n && dat[i] > dat[i + 1]) { swap(dat[i], dat[i + 1]); }
+            int j = i, l = 2 * i + 2, r = 2 * i + 4;
+            if(l < n && dat[l] < dat[j]) { j = l; }
+            if(r < n && dat[r] < dat[j]) { j = r; }
+            if(i == j) { break; }
+            swap(dat[i], dat[j]);
+            i = j;
+          }
+        }
+        else {
+          while(true) {
+            if(dat[i - 1] > dat[i]) { swap(dat[i - 1], dat[i]); }
+            int j = i, l = 2 * i + 1, r = 2 * i + 3;
+            if(r >= n) { --r; }
+            if(l >= n) { --l; }
+            if(l < n && dat[l] > dat[j]) { j = l; }
+            if(r < n && dat[r] > dat[j]) { j = r; }
+            if(i == j) { break; }
+            swap(dat[i], dat[j]);
+            i = j;
+            if(i % 2 == 0) { break; }
+          }
+        }
+      }
+
+      void up() {
+        int i = dat.size() - 1;
+        if(2 <= i && i % 2 == 0) {
+          int p = par(i) ^ 1;
+          if(dat[p] < dat[i]) { swap(dat[i], dat[p]), i = p; }
+        }
+        if(i % 2 == 1 && dat[i - 1] > dat[i]) { swap(dat[i - 1], dat[i]), --i; }
+        if(i % 2 == 0) {
+          while(i >= 2) {
+            int p = par(i);
+            if(dat[p] <= dat[i]) { break; }
+            swap(dat[p], dat[i]);
+            i = p;
+          }
+          return;
+        }
+        while(i >= 3) {
+          int p = par(i);
+          if(dat[p] >= dat[i]) { break; }
+          swap(dat[p], dat[i]);
+          i = p;
+        }
+      }
+
+     public:
+      vector<T> dat;
+      Double_End_Queue() {}
+      Double_End_Queue(vector<T> &A) {
+        dat = A;
+        int n = dat.size();
+        for(int i = n - 1; i >= 0; i--) { down(i); }
+      }
+      int size() { return dat.size(); }
+      bool empty() { return dat.empty(); }
+      T min() { return dat[0]; }
+      T max() { return dat.size() == 1 ? dat[0] : dat[1]; }
+      void push(T x) {
+        dat.emplace_back(x);
+        up();
+      }
+      T pop_min() {
+        assert(!dat.empty());
+        swap(dat[0], dat.back());
+        T res = dat.back();
+        dat.pop_back();
+        down(0);
+        return res;
+      }
+      T pop_max() {
+        assert(!dat.empty());
+        if(dat.size() <= 2) {
+          T res = dat.back();
+          dat.pop_back();
+          return res;
+        }
+        swap(dat[1], dat.back());
+        T res = dat.back();
+        dat.pop_back();
+        down(1);
+        return res;
+      }
+    };
+    """
+
+  '__int128_t_option':
+    'prefix':'__int128_t_option'
+    'body':"""
+    istream &operator>>(istream &is, __int128_t &v) {
+      string s;
+      is >> s;
+      v = 0;
+      for(const auto &i : s) {
+        if(isdigit(i)) { v = v * 10 + i - '0'; }
+      }
+      if(s[0] == '-') { v = -v; }
+      return is;
+    }
+
+    ostream &operator<<(ostream &os, const __int128_t &v) {
+      if(!v) { return (os << "0"); }
+      __int128_t n = v;
+      if(v < 0) {
+        os << '-';
+        n = -n;
+      }
+      string s;
+      for(; n; n /= 10) { s += (n % 10) + '0'; }
+      ranges::reverse(s);
+      return (os << s);
+    }
+    """
+
+  'gradient':
+    'prefix':'gradient'
+    'body':"""
+    void grd(ll &dx, ll &dy) {
+      ll g = gcd(dx, dy);
+      dx /= g, dy /= g;
+      if(dx < 0) { dx *= -1, dy *= -1; }
+      if(!dx) { dy = 1; }
+      if(!dy) { dx = 1; }
+    };
+    """
+
+  'mod_sqrt':
+    'prefix':'mod_sqrt'
+    'body':"""
+    ll mod_sqrt(const ll &a, const ll &MOD = 998244353) {
+      modint::set_mod(MOD);
+      ll m = MOD - 1, e = 0;
+      if(!a) { return 0; }
+      if(MOD == 2) { return a; }
+      if(mint(a).pow(m >> 1) != 1) { return -1; }
+      mint b = 1;
+      while(b.pow(m >> 1) == 1) { b++; }
+      while(~m & 1) {
+        m >>= 1;
+        e++;
+      }
+      mint x = mint(a).pow((m - 1) >> 1), y = mint(a) * x * x, z = mint(b).pow(m);
+      x *= a;
+      while(y != 1) {
+        ll j = 0;
+        mint t = y;
+        while(t != 1) {
+          j++;
+          t *= t;
+        }
+        z = z.pow(1LL << (e - j - 1));
+        x *= z;
+        z *= z;
+        y *= z;
+        e = j;
+      }
+      return x.val();
+    }
+    """
+
+  'RangeModeQuery':
+    'prefix':'RangeModeQuery'
+    'body':"""
+    template<typename T> struct RangeModeQuery {
+     private:
+      int len, bs, bn;
+      vector<T> sorted;
+      vector<int> a, pos, posinv, start;
+      vector<pair<int, int>> modebs;
+
+      const auto &querybs(int lb, int rb) const { return modebs[lb * (bn + 1) + rb]; }
+      auto &querybs(int lb, int rb) { return modebs[lb * (bn + 1) + rb]; }
+      int checkl(int v, int posid, int l) const { return start[v] <= posid && l <= pos[posid]; }
+      int checkr(int v, int posid, int r) const { return posid < start[v + 1] && pos[posid] < r; }
+      static int cld(int num, int den) { return (num + den - 1) / den; }
+      static int fld(int num, int den) { return num / den; }
+
+     public:
+      RangeModeQuery() = default;
+      explicit RangeModeQuery(const vector<T> &v): len(v.size()), bs(sqrt(len)), bn(cld(len, bs)) {
+        sorted = v;
+        ranges::sort(sorted);
+        sorted.erase(unique(sorted.begin(), sorted.end()), sorted.end());
+        const int k = sorted.size();
+        a.resize(len);
+        start.assign(k + 1, 0);
+        for(int i = 0; i < len; i++) {
+          a[i] = ranges::lower_bound(sorted, v[i]) - sorted.begin();
+          start[a[i]]++;
+        }
+        for(int i = 0; i < k; i++) { start[i + 1] += start[i]; }
+        pos.resize(len);
+        posinv.resize(len);
+        for(int i = len - 1; i >= 0; i--) {
+          const int posid = --start[a[i]];
+          pos[posid] = i;
+          posinv[i] = posid;
+        }
+        modebs.assign((bn + 1) * (bn + 1), {0, 0});
+        vector<int> freq(k);
+        for(int lb = 0; lb <= bn; lb++) {
+          freq.assign(k, 0);
+          pair<int, int> mode{0, 0};
+          for(int rb = lb + 1; rb <= bn; rb++) {
+            const int lid = (rb - 1) * bs, rid = min(len, rb * bs);
+            for(int i = lid; i < rid; i++) { mode = max(mode, {++freq[a[i]], a[i]}); }
+            querybs(lb, rb) = mode;
+          }
+        }
+      }
+
+      pair<T, int> query(const int l, const int r) const {
+        assert(0 <= l && l < r && r <= len);
+        const int lb = cld(l, bs), rb = fld(r, bs);
+        auto [freq, mode] = querybs(lb, rb);
+        for(int i = l; i < min(r, lb * bs); ++i) {
+          const int v = a[i], posid = posinv[i];
+          if(!checkr(v, posid + freq, r)) { continue; }
+          do { ++freq; } while(checkr(v, posid + freq, r));
+          mode = v;
+        }
+        for(int i = r - 1; i >= max(l, rb * bs); --i) {
+          const int v = a[i], posid = posinv[i];
+          if(!checkl(v, posid - freq, l)) { continue; }
+          do { ++freq; } while(checkl(v, posid - freq, l));
+          mode = v;
+        }
+        return {sorted[mode], freq};
+      }
+      pair<T, int> operator()(int l, int r) const { return query(l, r); }
+    };
+    """
+
+  'RangeUnionFind':
+    'prefix':'RangeUnionFind'
+    'body':"""
+    struct RangeUnionFind {
+      vector<int> data, L, R;
+      RangeUnionFind(int N): data(N, -1), L(N), R(N) {
+        iota(L.begin(), L.end(), 0);
+        iota(R.begin(), R.end(), 1);
+      }
+      int find(int k) { return data[k] < 0 ? k : data[k] = find(data[k]); }
+      int unite(int x, int y) {
+        if((x = find(x)) == (y = find(y))) { return false; }
+        if(data[x] > data[y]) { swap(x, y); }
+        data[x] += data[y];
+        data[y] = x;
+        L[x] = min(L[x], L[y]);
+        R[x] = max(R[x], R[y]);
+        return true;
+      }
+      void range_unite(int l, int r) {  // unite [l, r)
+        if((l = max(l, 0)) >= (r = min(r, (int)data.size()))) { return; }
+        int m;
+        while((m = R[find(l)]) < r) { unite(l, m); }
+      }
+      int size(int k) { return -data[find(k)]; }
+      int same(int x, int y) { return find(x) == find(y); }
+    };
+    """
+
+  'Fail':
+    'prefix':'Fail'
+    'body':"""
+    void Fail() {
+      cout << ${1:-1} << "\\\\n";
+      exit(0);
+    }$2
+    """
