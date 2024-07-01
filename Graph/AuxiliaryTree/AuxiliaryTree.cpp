@@ -41,6 +41,7 @@ struct AuxiliaryTree : Tree {
     }
     return inv[s.top()];
   }
+  ll size() { return g.size(); }
   inline vector<ll> operator[](ll i) { return g[i]; }
   inline ll operator()(ll i) { return id[i]; }
 };
