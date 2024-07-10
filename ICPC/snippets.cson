@@ -1886,7 +1886,7 @@
     """
 
   'TreeDiameter':
-    'prefix':'_TreeDiameter'
+    'prefix':'TreeDiameter'
     'body':"""
     ll TreeDiameter(vector<vector<ll>> &g) {
       vector<ll> D(g.size(), -1);
@@ -1905,7 +1905,7 @@
     """
 
   'TreeDiameter_w':
-    'prefix':'_TreeDiameter_w'
+    'prefix':'TreeDiameter_w'
     'body':"""
     pair<pair<ll, ll>, ll> TreeDiameter(vector<vector<pair<ll, ll>>> &g) {
       vector<ll> D(g.size(), -1);
@@ -2026,12 +2026,20 @@
   'Inversion':
     'prefix':'Inversion'
     'body':"""
+    template<typename T> vector<T> Compress(vector<T> &v) {
+      vector<T> r = v;
+      ranges::sort(r);
+      r.erase(unique(r.begin(), r.end()), r.end());
+      for(auto &i : v) { i = ranges::lower_bound(r, i) - r.begin(); }
+      return r;
+    }
+
     ll Inversion(vector<ll> &v) {
       ll r = 0, n = v.size();
       // Compress(v);
       fenwick_tree<ll> b(n + 1);
       for(ll i = 0; i < n; i++) {
-        r += b.sum(v[i]+1, n + 1);
+        r += b.sum(v[i] + 1, n + 1);
         b.add(v[i], 1);
       }
       return r;
@@ -4505,8 +4513,8 @@
     'prefix':'partition'
     'body':'Partition'
 
-  'teleporter':
-    'prefix':'teleporter'
+  'Namori':
+    'prefix':'Namori'
     'body':"""
     struct Namori {
       ll path_len;
@@ -9066,6 +9074,7 @@
         }
         return inv[s.top()];
       }
+      ll size() { return g.size(); }
       inline vector<ll> operator[](ll i) { return g[i]; }
       inline ll operator()(ll i) { return id[i]; }
     };
@@ -11748,4 +11757,64 @@
       cout << ${1:-1} << "\\\\n";
       exit(0);
     }$2
+    """
+
+  'ModRestore':
+    'prefix':'ModRestore'
+    'body':"""
+    pair<ll, ll> ModRestore(mint x) {
+      for(ll den = 1; den <= 1000; den++) {
+        mint num = x * den;
+        if(num.val() <= 1000) {
+          cout << num.val() << " " << den << "\\\\n";
+          return {num.val(), den};
+        }
+      }
+      return {-1, -1};
+    }
+    """
+
+  'SwapMatch':
+    'prefix':'SwapMatch'
+    'body':"""
+    template<typename T> vector<T> Compress(vector<T> &v) {
+      vector<T> r = v;
+      ranges::sort(r);
+      r.erase(unique(r.begin(), r.end()), r.end());
+      for(auto &i : v) { i = ranges::lower_bound(r, i) - r.begin(); }
+      return r;
+    }
+
+    ll Inversion(vector<ll> &v) {
+      ll r = 0, n = v.size();
+      // Compress(v);
+      fenwick_tree<ll> b(n + 1);
+      for(ll i = 0; i < n; i++) {
+        r += b.sum(v[i] + 1, n + 1);
+        b.add(v[i], 1);
+      }
+      return r;
+    }
+
+    ll SwapMatch(vector<ll> &A, vector<ll> &B, bool check = false) {
+      if(check) {
+        auto a = A, b = B;
+        ranges::sort(a);
+        ranges::sort(b);
+        if(a != b) { return -1; }
+      }
+      if(A.empty()) { return 0; }
+      auto a = A, b = B;
+      Compress(a);
+      Compress(b);
+      ll N = A.size();
+      vector<queue<ll>> q(ranges::max(a) + 1);
+      vector<ll> v;
+      for(ll i = 0; i < N; i++) { q[a[i]].emplace(i); }
+      for(ll i = 0; i < N; i++) {
+        v.emplace_back(q[b[i]].front());
+        q[b[i]].pop();
+      }
+      return Inversion(v);
+    }
     """
