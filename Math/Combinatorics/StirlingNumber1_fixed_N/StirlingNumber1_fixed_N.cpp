@@ -10,7 +10,7 @@ FPS<> TaylorShift(FPS<> f, mint c) {
   return f;
 }
 
-FPS<> Stirling1(int N) {  // fixed N
+FPS<> Stirling1(int N) {
   if(N <= 0) { return {1}; }
   int lg = 31 - __builtin_clz(N);
   FPS<> f{0, 1};
