@@ -1,4 +1,4 @@
-FPS<> Stirling1(int K, int N) {  // fixed K
+FPS<> Stirling1(int K, int N) {
   if(N < K) { return {}; }
   FPS<> f(N + 1);
   for(int i = 1; i <= N; i++) { f[i] = C[i]; }
