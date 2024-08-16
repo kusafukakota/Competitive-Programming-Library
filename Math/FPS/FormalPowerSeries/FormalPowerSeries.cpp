@@ -2,7 +2,11 @@
 template<ll MOD = 998244353, typename T = mint> struct FPS : vector<T> {
   using vector<T>::vector;
   using vector<T>::operator=;
-  FPS pre(int deg) const { return FPS(begin(*this), begin(*this) + min((int)this->size(), deg)); }
+  FPS pre(int deg) const {
+    FPS r(begin(*this), begin(*this) + min((int)this->size(), deg));
+    if((int)r.size() < deg) { r.resize(deg); }
+    return r;
+  }
   FPS rev(int deg = -1) const {
     FPS r(*this);
     if(deg != -1) { r.resize(deg, T(0)); }
@@ -220,18 +224,18 @@ template<ll MOD = 998244353, typename T = mint> struct FPS : vector<T> {
       ll m = MOD - 1, e = 0;
       if(!a) { return 0; }
       if(MOD == 2) { return a; }
-      if(mint(a).pow(m >> 1) != 1) { return -1; }
-      mint b = 1;
+      if(T(a).pow(m >> 1) != 1) { return -1; }
+      T b = 1;
       while(b.pow(m >> 1) == 1) { b++; }
       while(~m & 1) {
         m >>= 1;
         e++;
       }
-      mint x = mint(a).pow((m - 1) >> 1), y = mint(a) * x * x, z = mint(b).pow(m);
+      T x = T(a).pow((m - 1) >> 1), y = T(a) * x * x, z = T(b).pow(m);
       x *= a;
       while(y != 1) {
         ll j = 0;
-        mint t = y;
+        T t = y;
         while(t != 1) {
           j++;
           t *= t;
@@ -374,23 +378,6 @@ template<ll MOD = 998244353, typename T = mint> struct FPS : vector<T> {
       x.shrink();
       k >>= 1;
     }
-    return r;
-  }
-  FPS taylor_shift(T c) const {  // g(x) s.t. g(x)=f(x+c)
-    const int n = this->size();
-    vector<T> fact(n), rfact(n);
-    fact[0] = rfact[0] = T(1);
-    for(int i = 1; i < n; i++) { fact[i] = fact[i - 1] * T(i); }
-    rfact[n - 1] = T(1) / fact[n - 1];
-    for(int i = n - 1; i >= 2; i--) { rfact[i - 1] = rfact[i] * T(i); }
-    FPS r(*this);
-    for(int i = 0; i < n; i++) { r[i] *= fact[i]; }
-    r = r.rev();
-    FPS bs(n, T(1));
-    for(int i = 1; i < n; i++) { bs[i] = bs[i - 1] * c * rfact[i] * fact[i - 1]; }
-    r = (r * bs).pre(n);
-    r = r.rev();
-    for(int i = 0; i < n; i++) { r[i] *= rfact[i]; }
     return r;
   }
 };
