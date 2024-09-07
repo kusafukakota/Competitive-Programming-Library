@@ -1,4 +1,4 @@
-pair<vector<ll>, vector<ll>> LR(vector<ll> &h) {
+pair<vector<ll>, vector<ll>> MaximumRectangle(vector<ll> &h) {
   ll n = h.size();
   vector<ll> l(n, 0), r(n, n - 1);
   stack<pair<ll, ll>> sl, sr;
