@@ -43,8 +43,8 @@ struct Point {
 using Points = vector<Point>;
 
 Real angle(const Point &a, const Point &b, const Point &c) {  // ∠ABC (acute)
-  const Point v = a - b, w = c - b;
-  Real t1 = arg(v), t2 = arg(w);
+  const Point x = a - b, y = c - b;
+  Real t1 = arg(x), t2 = arg(y);
   if(t1 > t2) { swap(t1, t2); }
   Real t = t2 - t1;
   return min(t, 2 * PI - t);
@@ -101,10 +101,13 @@ bool isConvex(const Polygon &P) {
 }
 
 template<bool boundary = false> Polygon ConvexHull(Polygon P, bool sorted = false) {
+  if(!sorted) {
+    sort(P.begin(), P.end());
+    P.erase(unique(P.begin(), P.end()), P.end());
+  }
   const int N = P.size();
   int k = 0;
   if(N <= 2) { return P; }
-  if(!sorted) { sort(P.begin(), P.end()); }
   Polygon C(2 * N);
   Real e = boundary ? -EPS : EPS;
   for(int i = 0; i < N; C[k++] = P[i++]) {
@@ -126,13 +129,13 @@ Real Area(const Polygon &P) {
 
 pair<int, int> ConvexDiameter(const Polygon &P) {
   const int N = P.size();
-  int is = 0, js = 0;
-  for(int i = 1; i < N; i++) {
-    if(P[i].y > P[is].y) { is = i; }
-    if(P[i].y < P[js].y) { js = i; }
+  int i = 0, j = 0;
+  for(int k = 1; k < N; k++) {
+    if(P[k].y < P[i].y) { i = k; }
+    if(P[k].y > P[j].y) { j = k; }
   }
-  Real maxdis = norm(P[is] - P[js]);
-  int maxi = is, maxj = js, i = is, j = js;
+  ll maxdis = norm(P[i] - P[j]);
+  int maxi = i, maxj = j, is = i, js = j;
   do {
     if(cross(P[(i + 1) % N] - P[i], P[(j + 1) % N] - P[j]) >= 0) { j = (j + 1) % N; }
     else { i = (i + 1) % N; }
