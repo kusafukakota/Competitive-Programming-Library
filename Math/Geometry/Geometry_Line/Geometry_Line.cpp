@@ -27,6 +27,12 @@ Point crosspoint(const Line &l, const Line &r) {
   Real A = cross(l.b - l.a, r.b - r.a), B = cross(l.b - l.a, l.b - r.a);
   return eq(A) && eq(B) ? r.a : r.a + (r.b - r.a) * B / A;
 }
+Line PerpendicularBisector(const Point &l, const Point &r) {
+  Point m = (l + r) * 0.5, d = r - l;
+  Point p(m.x - d.y, m.y + d.x);
+  return Line(m, p);
+}
+Point Circumcenter(const Point &a, const Point &b, const Point &c) { return crosspoint(PerpendicularBisector(a, b), PerpendicularBisector(a, c)); }
 
 Polygon ConvexCut(const Polygon &P, const Line &l) {
   const int N = P.size();
