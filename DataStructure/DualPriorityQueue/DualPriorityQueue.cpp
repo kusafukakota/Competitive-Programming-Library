@@ -1,7 +1,6 @@
 template<typename T> struct DualPriorityQueue {
  private:
   inline int par(int i) { return (i - 4 + (i & 3)) / 2; }
-
   void down(int i) {
     int n = dat.size();
     if(i % 2 == 0) {
@@ -30,7 +29,6 @@ template<typename T> struct DualPriorityQueue {
       }
     }
   }
-
   void up() {
     int i = dat.size() - 1;
     if(2 <= i && i % 2 == 0) {
@@ -57,8 +55,8 @@ template<typename T> struct DualPriorityQueue {
 
  public:
   vector<T> dat;
-  Double_End_Queue() {}
-  Double_End_Queue(vector<T> &A) {
+  DualPriorityQueue() {}
+  DualPriorityQueue(vector<T> &A) {
     dat = A;
     int n = dat.size();
     for(int i = n - 1; i >= 0; i--) { down(i); }
