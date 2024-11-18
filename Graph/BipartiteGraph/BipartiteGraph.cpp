@@ -1,7 +1,7 @@
 struct BipartiteGraph {
  private:
   vector<int> find_residual_path() {
-    auto res = build_risidual_graph();
+    auto res = build_residual_graph();
     queue<int> q;
     vector<int> vis(n + m + 2);
     q.emplace(n + m);
@@ -124,7 +124,7 @@ struct BipartiteGraph {
   }
   vector<int> lex_minimum_vertex_cover(const vector<int> &ord) {
     assert((int)ord.size() == n + m);
-    auto res = build_risidual_graph();
+    auto res = build_residual_graph();
     vector<vector<int>> r_res(n + m + 2);
     for(int i = 0; i < n + m + 2; i++) {
       for(auto &j : res[i]) { r_res[j].emplace_back(i); }
@@ -197,24 +197,24 @@ struct BipartiteGraph {
     return es;
   }
   // left: [0,n), right: [n,n+m), S: n+m, T: n+m+1
-  vector<vector<int>> build_risidual_graph() {
+  vector<vector<int>> build_residual_graph() {
     if(!matched) { maximum_matching(); }
     const int S = n + m, T = n + m + 1;
-    vector<vector<int>> ris(n + m + 2);
+    vector<vector<int>> res(n + m + 2);
     for(int i = 0; i < n; i++) {
-      if(l[i] == -1) { ris[S].emplace_back(i); }
-      else { ris[i].emplace_back(S); }
+      if(l[i] == -1) { res[S].emplace_back(i); }
+      else { res[i].emplace_back(S); }
     }
     for(int i = 0; i < m; i++) {
-      if(r[i] == -1) { ris[i + n].emplace_back(T); }
-      else { ris[T].emplace_back(i + n); }
+      if(r[i] == -1) { res[i + n].emplace_back(T); }
+      else { res[T].emplace_back(i + n); }
     }
     for(int i = 0; i < n; i++) {
       for(auto &j : g[i]) {
-        if(l[i] == j) { ris[j + n].emplace_back(i); }
-        else { ris[i].emplace_back(j + n); }
+        if(l[i] == j) { res[j + n].emplace_back(i); }
+        else { res[i].emplace_back(j + n); }
       }
     }
-    return ris;
+    return res;
   }
 };
