@@ -1,4 +1,4 @@
-struct Combinatorics {
+struct Bimomial {
  private:
   void extend(int m) {
     int n = fac.size();
@@ -15,7 +15,7 @@ struct Combinatorics {
 
  public:
   vector<mint> fac, finv, inv;
-  Combinatorics(int n = 0): fac(1, 1), finv(1, 1), inv(1, 1) { extend(n); }
+  Bimomial(int n = 0): fac(1, 1), finv(1, 1), inv(1, 1) { extend(n); }
   mint operator()(int n) {
     extend(abs(n));
     return n >= 0 ? fac[n] : finv[-n];
