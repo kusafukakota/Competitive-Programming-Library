@@ -8,7 +8,7 @@ template<typename G> struct DSUonTree {
     if((int)g[v].size() >= 2 && g[v][0] == p) { swap(g[v][0], g[v][1]); }
     for(auto &nv : g[v]) {
       if(nv == p) { continue; }
-      sz[p] += dfs1(nv, v);
+      sz[v] += dfs1(nv, v);
       if(sz[nv] > sz[g[v][0]]) { swap(nv, g[v][0]); }
     }
     return sz[v];
@@ -24,7 +24,7 @@ template<typename G> struct DSUonTree {
   }
 
  public:
-  DSUonTree(G &g_, int root = 0): g(g), N(g_.size()), sz(g_.size()), euler(g_.size()), down(g_.size()), up(g_.size()), id(0), root(root) {
+  DSUonTree(G &g_, int root = 0): g(g_), N(g_.size()), sz(g_.size()), euler(g_.size()), down(g_.size()), up(g_.size()), id(0), root(root) {
     dfs1(root);
     dfs2(root);
   }
