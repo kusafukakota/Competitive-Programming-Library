@@ -1,13 +1,14 @@
 template<typename T, bool isMin> struct ConvexHullTrick {
  private:
   deque<pair<T, T>> H;
-  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }
-  inline bool check(const pair<T, T> &a, const pair<T, T> &b, const pair<T, T> &c) {
+  static constexpr int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }
+  static constexpr T floor(T n, T d) { return n / d - ((n ^ d) < 0 && n % d); }
+  static constexpr bool check(const pair<T, T> &a, const pair<T, T> &b, const pair<T, T> &c) {
     if(b.second == a.second || c.second == b.second) { return sgn(b.first - a.first) * sgn(c.second - b.second) >= sgn(c.first - b.first) * sgn(b.second - a.second); }
-    if(is_integral<T>::value) { return (b.second - a.second) / (a.first - b.first) >= (c.second - b.second) / (b.first - c.first); }
+    if constexpr(is_integral<T>::value) { return floor(b.second - a.second, a.first - b.first) >= floor(c.second - b.second, b.first - c.first); }
     else { return (b.first - a.first) * sgn(c.second - b.second) / abs(b.second - a.second) >= (c.first - b.first) * sgn(b.second - a.second) / abs(c.second - b.second); }
   }
-  inline T get_y(const pair<T, T> &a, const T &x) { return a.first * x + a.second; }
+  static constexpr T get(const pair<T, T> &a, const T &x) { return a.first * x + a.second; }
 
  public:
   ConvexHullTrick() = default;
@@ -38,29 +39,23 @@ template<typename T, bool isMin> struct ConvexHullTrick {
       H.emplace_back(line);
     }
   }
-  T query(T x) {
+  T query(T x) const {
     assert(!empty());
     int l = -1, r = H.size() - 1;
     while(l + 1 < r) {
       int m = (l + r) >> 1;
-      if(get_y(H[m], x) >= get_y(H[m + 1], x)) { l = m; }
-      else { r = m; }
+      get(H[m], x) >= get(H[m + 1], x) ? l = m : r = m;
     }
-    if(isMin) { return get_y(H[r], x); }
-    return -get_y(H[r], x);
+    return isMin ? get(H[r], x) : -get(H[r], x);
   }
   T query_inc(T x) {
     assert(!empty());
-    while(H.size() >= 2 && get_y(H.front(), x) >= get_y(H[1], x)) { H.pop_front(); }
-    if(isMin) { return get_y(H.front(), x); }
-    return -get_y(H.front(), x);
+    while(H.size() >= 2 && get(H.front(), x) >= get(H[1], x)) { H.pop_front(); }
+    return isMin ? get(H.front(), x) : -get(H.front(), x);
   }
   T query_dec(T x) {
     assert(!empty());
-    while(H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x)) { H.pop_back(); }
-    if(isMin) { return get_y(H.back(), x); }
-    return -get_y(H.back(), x);
+    while(H.size() >= 2 && get(H.back(), x) >= get(H[H.size() - 2], x)) { H.pop_back(); }
+    return isMin ? get(H.back(), x) : -get(H.back(), x);
   }
 };
-template<typename T> using ConvexHullTrick_min = ConvexHullTrick<T, 1>;
-template<typename T> using ConvexHullTrick_max = ConvexHullTrick<T, 0>;
