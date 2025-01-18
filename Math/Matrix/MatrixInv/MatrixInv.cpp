@@ -8,7 +8,7 @@ template<typename T> Matrix<T> Matinv(const Matrix<T> &v) {
     ranges::copy(v[i], m[i].begin());
     m[i][N + i] = 1;
   }
-  auto [rank, det] = GaussElimination(m, N, true);
+  auto [rank, det] = GaussianElimination(m, N, true);
   if(rank != N) { return {}; }
 
   Matrix<T> b(N, 0);
