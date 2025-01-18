@@ -1,4 +1,4 @@
-template<typename T> vector<vector<T>> COMTable(ll n) {
+template<typename T> vector<vector<T>> BinomialTable(ll n) {
   vector<vector<T>> r(n + 1, vector<T>(n + 1, 0));
   for(ll i = 0; i <= n; i++) {
     for(ll j = 0; j <= i; j++) {
