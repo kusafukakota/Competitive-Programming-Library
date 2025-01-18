@@ -1,4 +1,4 @@
-template<typename T> pair<ll, T> GaussElimination(Matrix<T> &v, ll pivot_end = -1, bool diagonalize = false) {
+template<typename T> pair<ll, T> GaussianElimination(Matrix<T> &v, ll pivot_end = -1, bool diagonalize = false) {
   int H = v.size(), W = v[0].size(), rank = 0;
   if(pivot_end == -1) { pivot_end = W; }
   T det = 1;
