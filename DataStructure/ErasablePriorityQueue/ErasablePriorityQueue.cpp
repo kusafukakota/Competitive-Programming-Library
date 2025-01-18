@@ -14,6 +14,7 @@ template<typename T, typename Compare> struct ErasablePriorityQueue {
     else { q2.emplace(x); }
   }
   T top() const { return q1.top(); }
+  void pop() { erase(top()); }
   int size() const { return q1.size() - q2.size(); }
   bool empty() const { return q1.empty(); }
 };
