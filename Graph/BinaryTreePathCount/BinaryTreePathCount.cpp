@@ -1,7 +1,7 @@
 vector<mint> BinaryTreePathCount(ll n) {
   ll D = 63 - __builtin_clzll(n + 1), L = n - (1LL << D) + 1;
   vector<mint> cnt(130), bin(130, 1);
-  for(ll i = 1; i < 130; i++) { bin[i] = bin[i] * 2; }
+  for(ll i = 1; i < 130; i++) { bin[i] = bin[i - 1] * 2; }
   map<ll, mint> memo[65][130];
   for(ll k = 0; k < 130; k++) {
     auto calc = [&](auto &&calc, ll d, ll l) -> mint {
@@ -13,7 +13,7 @@ vector<mint> BinaryTreePathCount(ll n) {
         if(k >= 2) { r += bin[k - 2] * (k - 1); }
       }
       else if(k >= 2) { r += bin[k - 2] * max(0LL, d * 2 - k - 1); }
-      ll t = 1LL << d - 1;
+      ll t = 1LL << (d - 1);
       if(l >= t) {
         r += calc(calc, d, 0) + calc(calc, d - 1, l - t);
         if(k == d) { r += l; }
