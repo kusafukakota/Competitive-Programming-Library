@@ -1,0 +1,214 @@
+// 既定値を上書きするには、このファイル内にキー バインドを挿入しますauto[]
+[
+    {
+        "key": "end",
+        "command": "cursorEnd",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "end",
+        "command": "-cursorEnd",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+right",
+        "command": "cursorEnd",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+left",
+        "command": "cursorHome",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+backspace",
+        "command": "deleteInsideWord"
+    },
+    {
+        "key": "ctrl+delete",
+        "command": "deleteAllRight"
+    },
+    {
+        "key": "ctrl+backspace",
+        "command": "deleteAllLeft"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "cursorTop",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+home",
+        "command": "-cursorTop",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "cursorBottom",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+end",
+        "command": "-cursorBottom",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "editor.action.selectToBracket"
+    },
+    {
+        "key": "ctrl+oem_5",
+        "command": "-workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+oem_102",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+shift+oem_102",
+        "command": "workbench.action.toggleAuxiliaryBar"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "editor.action.codeAction",
+        "when": "editorTextFocus && editorLangId =~ /^(c|(cuda-)?cpp)$/ && !(config.C_Cpp.intelliSenseEngine =~ /^[dD]isabled$/)"
+    },
+    {
+        "key": "ctrl+shift+r ctrl+e",
+        "command": "-editor.action.codeAction",
+        "when": "editorTextFocus && editorLangId =~ /^(c|(cuda-)?cpp)$/ && !(config.C_Cpp.intelliSenseEngine =~ /^[dD]isabled$/)"
+    },
+    {
+        "key": "ctrl+0",
+        "command": "editor.action.fontZoomReset"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "-codeium.openChatView",
+        "when": "true"
+    },
+    {
+        "key": "ctrl+alt+a",
+        "command": "-codeium.openChatView",
+        "when": "false"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "codeium.supercompleteAccept",
+        "when": "codeium.supercompleteOnTab && codeium.supercompleteShown && editorTextFocus && !inlineSuggestionsVisible"
+    },
+    {
+        "key": "tab",
+        "command": "-codeium.supercompleteAccept",
+        "when": "codeium.supercompleteOnTab && codeium.supercompleteShown && editorTextFocus && !inlineSuggestionsVisible"
+    },
+    {
+        "key": "tab",
+        "command": "-codeium.tabJumpAccept",
+        "when": "codeium.tabJumpEnabled && codeium.tabJumpShown && editorTextFocus && !inlineSuggestionsVisible"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "-editor.action.submitComment",
+        "when": "commentEditorFocused"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.commit",
+        "when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "when": "!activeEditorGroupEmpty"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "when": "!activeEditorGroupEmpty"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "acceptSelectedSuggestion",
+        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "tab",
+        "command": "-acceptSelectedSuggestion",
+        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "editor.action.jumpToBracket",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+oem_plus",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+oem_plus",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+oem_minus",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "ctrl+shift+oem_minus",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "ctrl+shift+oem_5",
+        "command": "-editor.action.jumpToBracket",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+oem_5",
+        "command": "-workbench.files.action.showActiveFileInExplorer"
+    },
+    {
+        "key": "ctrl+shift+oem_5",
+        "command": "workbench.action.toggleMaximizeEditorGroup",
+        "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
+    },
+    {
+        "key": "shift+alt+0",
+        "command": "-workbench.action.toggleEditorGroupLayout"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused"
+    },
+    {
+        "key": "tab",
+        "command": "-insertSnippet",
+        "when": "editorTextFocus && hasSnippetCompletions && !editorTabMovesFocus && !inSnippetMode"
+    }
+]
